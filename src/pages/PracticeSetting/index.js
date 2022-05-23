@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
-import Select from "../../components/Select";
-import List from "../../components/List";
+import Select from "./Components/Select";
+import List from "./Components/List";
 
-const ClassSetting = () => {
+const PracticeSetting = () => {
   const [data, setData] = useState([]);
 
   return (
@@ -18,7 +18,7 @@ const ClassSetting = () => {
   );
 };
 
-export default ClassSetting;
+export default PracticeSetting;
 
 // styled components
 const Main = styled.div`

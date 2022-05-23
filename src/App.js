@@ -1,10 +1,15 @@
 import "./style.css";
-import ClassSetting from "./pages/ClassSetting";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PracticeSetting from "./pages/PracticeSetting";
+import PracticeGo from "./pages/PracticeGo";
 
 export const App = () => {
   return (
-    <>
-      <ClassSetting></ClassSetting>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/PracticeGo" element={<PracticeGo />} />
+        <Route path="/" element={<PracticeSetting />} exact />
+      </Routes>
+    </Router>
   );
 };

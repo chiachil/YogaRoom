@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BiMinus } from "react-icons/bi";
 
-const Item = ({ id, imagePath, deleteData }) => {
+const Item = ({ id, imagePath, deleteData, minute, second }) => {
   function deleteItem() {
     deleteData(function (prev) {
       return prev.filter((item) => item.id !== id);
@@ -20,6 +20,8 @@ const Item = ({ id, imagePath, deleteData }) => {
                 placeholder="00"
                 min="0"
                 max="20"
+                value={minute}
+                disabled="disabled"
               ></TimeInput>
             </TimeBox>
             <TimeBox>
@@ -27,8 +29,11 @@ const Item = ({ id, imagePath, deleteData }) => {
               <TimeInput
                 type="number"
                 placeholder="00"
-                min="5"
+                min="0"
                 max="59"
+                step="5"
+                value={second}
+                disabled="disabled"
               ></TimeInput>
             </TimeBox>
           </ClockBox>
@@ -114,7 +119,7 @@ const TimeInput = styled.input`
   font-size: 40px;
   font-weight: 500;
   color: #333333;
-  border: none;
+  border: 1px solid lightgrey;
   border-radius: 4px;
   &::placeholder {
     color: #c4c4c4;

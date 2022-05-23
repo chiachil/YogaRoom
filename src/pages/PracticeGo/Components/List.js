@@ -1,8 +1,16 @@
-// import { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Item from "./Item";
+import firestore from "../../../Firebase";
+import { doc, deleteDoc } from "firebase/firestore";
 
-const List = ({ listData, deleteData }) => {
+const List = ({ poseList }) => {
+  function deletePractice() {
+    poseList.forEach(async (pose) => {
+      const { engName } = pose;
+      await deleteDoc(doc(firestore, "practices", engName));
+    });
+  }
   return (
     <>
       <SideSection>
@@ -10,8 +18,9 @@ const List = ({ listData, deleteData }) => {
           <Title>Your Practice Today</Title>
           <SideMenuBox>
             <ScrollBox>
-              {listData.map((item) => {
-                const { id, engName, chiName, imagePath } = item;
+              {poseList.map((pose) => {
+                const { id, engName, chiName, imagePath, minute, second } =
+                  pose;
                 return (
                   <Item
                     key={id}
@@ -19,12 +28,15 @@ const List = ({ listData, deleteData }) => {
                     engName={engName}
                     chiName={chiName}
                     imagePath={imagePath}
-                    deleteData={deleteData}
+                    minute={minute}
+                    second={second}
                   />
                 );
               })}
             </ScrollBox>
-            <RectangleButton primary>START</RectangleButton>
+            <Link to="/">
+              <RectangleButton onClick={deletePractice}>LEAVE</RectangleButton>
+            </Link>
           </SideMenuBox>
         </Container>
       </SideSection>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BiPlus } from "react-icons/bi";
-import { Poses } from "../global/Poses";
+import { Poses } from "../../../global/Poses";
 import { v4 } from "uuid";
 
 const Select = ({ add }) => {
@@ -20,6 +20,8 @@ const Select = ({ add }) => {
                       engName: pose.engName,
                       chiName: pose.chiName,
                       imagePath: pose.imagePath,
+                      minute: pose.minute,
+                      second: pose.second,
                     },
                   ];
                 });
@@ -100,10 +102,10 @@ const CardBox = styled.div`
   flex-wrap: wrap;
   padding: 0px 48px 48px 48px;
   @media (max-width: 1280px) {
-    padding: 0px 24px;
+    padding: 0px 24px 48px 24px;
   }
   @media (max-width: 768px) {
-    padding: 0px 10px;
+    padding: 0px 10px 48px 10px;
   }
 `;
 
