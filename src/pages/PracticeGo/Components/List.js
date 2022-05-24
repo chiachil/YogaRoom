@@ -1,16 +1,9 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Item from "./Item";
-import firestore from "../../../Firebase";
-import { doc, deleteDoc } from "firebase/firestore";
 
-const List = ({ poseList }) => {
-  function deletePractice() {
-    poseList.forEach(async (pose) => {
-      const { engName } = pose;
-      await deleteDoc(doc(firestore, "practices", engName));
-    });
-  }
+const List = ({ poses }) => {
+  const navigate = useNavigate();
   return (
     <>
       <SideSection>
@@ -18,7 +11,7 @@ const List = ({ poseList }) => {
           <Title>Your Practice Today</Title>
           <SideMenuBox>
             <ScrollBox>
-              {poseList.map((pose) => {
+              {poses.map((pose) => {
                 const { id, engName, chiName, imagePath, minute, second } =
                   pose;
                 return (
@@ -34,9 +27,9 @@ const List = ({ poseList }) => {
                 );
               })}
             </ScrollBox>
-            <Link to="/">
-              <RectangleButton onClick={deletePractice}>LEAVE</RectangleButton>
-            </Link>
+            <RectangleButton onClick={() => navigate(-1)}>
+              LEAVE
+            </RectangleButton>
           </SideMenuBox>
         </Container>
       </SideSection>

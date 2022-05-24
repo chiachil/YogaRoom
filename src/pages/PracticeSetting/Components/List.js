@@ -1,17 +1,11 @@
 import styled from "styled-components";
+import { useNavigate, useLocation } from "react-router-dom";
 import Item from "./Item";
-import { Link } from "react-router-dom";
-import firestore from "../../../Firebase";
-import { doc, setDoc } from "@firebase/firestore";
 
 const List = ({ listData, deleteData }) => {
-  function writeData() {
-    listData.map((item) => {
-      setDoc(doc(firestore, "practices", item.engName), item);
-      return item;
-    });
-    alert("Ready?");
-  }
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
   return (
     <>
       <SideSection>
@@ -37,11 +31,14 @@ const List = ({ listData, deleteData }) => {
                 );
               })}
             </ScrollBox>
-            <Link to="/PracticeGo">
-              <RectangleButton primary onClick={writeData}>
-                START
-              </RectangleButton>
-            </Link>
+            <RectangleButton
+              primary
+              onClick={() => {
+                navigate("/PracticeGo", { state: listData });
+              }}
+            >
+              START
+            </RectangleButton>
           </SideMenuBox>
         </Container>
       </SideSection>

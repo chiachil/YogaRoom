@@ -8,7 +8,7 @@ export const App = () => {
     <Router>
       <Routes>
         <Route path="/PracticeGo" element={<PracticeGo />} />
-        <Route path="/" element={<PracticeSetting />} exact />
+        <Route path="/" element={<PracticeSetting />} />
       </Routes>
     </Router>
   );

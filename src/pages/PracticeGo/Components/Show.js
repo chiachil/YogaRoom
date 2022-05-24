@@ -1,34 +1,20 @@
 import styled from "styled-components";
-import firestore from "../../../Firebase";
-import { collection, query, getDocs } from "@firebase/firestore";
 import { useEffect } from "react";
-import { BiMessageAltError } from "react-icons/bi";
 
-const Show = ({ pose, updatePose, setList }) => {
-  const { engName, chiName, imagePath } = pose;
+const Show = ({ poses, slide, setSlide }) => {
+  // const {engName, chiName, imagePath} = poses;
+  const { engName, chiName, imagePath } = slide;
 
   useEffect(() => {
-    async function getPoses() {
-      const q = query(collection(firestore, "practices"));
-      const querySnapshot = await getDocs(q);
-      const arr = [];
-      querySnapshot.forEach((doc) => {
-        arr.push(doc.data());
-      });
-      return arr;
-    }
-    getPoses().then(async (Poses) => {
-      await setList(Poses);
-      let i = 0;
-      let handle = setInterval(() => {
-        if (i < Poses.length) {
-          updatePose(Poses[i]);
-          i++;
-        } else {
-          clearInterval(handle);
-        }
-      }, 5000);
-    });
+    let i = 0;
+    let handle = setInterval(() => {
+      if (i < poses.length) {
+        setSlide(poses[i]);
+        i++;
+      } else {
+        clearInterval(handle);
+      }
+    }, 5000);
   }, []);
 
   return (
