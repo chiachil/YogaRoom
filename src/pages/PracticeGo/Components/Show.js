@@ -15,7 +15,7 @@ const Show = ({ poses, slide, setSlide }) => {
         clearInterval(handle);
       }
     }, 5000);
-  }, []);
+  });
 
   return (
     <>
