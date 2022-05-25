@@ -9,11 +9,10 @@ import { EasyPose } from "../../global/ImagePath";
 const PracticeGo = () => {
   const { state } = useLocation();
   const [slide, setSlide] = useState({
-    engName: "The class will start in 5 seconds...",
+    engName: "Listen carefully, the class will start in 10 seconds...",
     chiName: "",
     imagePath: EasyPose,
-    minute: 0,
-    second: 5,
+    duration: 10,
   });
 
   return (

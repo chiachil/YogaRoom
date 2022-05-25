@@ -20,8 +20,7 @@ const Select = ({ add }) => {
                       engName: pose.engName,
                       chiName: pose.chiName,
                       imagePath: pose.imagePath,
-                      minute: pose.minute,
-                      second: pose.second,
+                      duration: pose.duration,
                     },
                   ];
                 });
@@ -156,6 +155,7 @@ const NameBox = styled.div`
   width: 65%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: start;
 `;
 

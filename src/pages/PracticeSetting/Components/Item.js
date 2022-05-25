@@ -1,48 +1,59 @@
 import styled from "styled-components";
 import { BiMinus } from "react-icons/bi";
 
-const Item = ({ id, imagePath, deleteData, minute, second }) => {
+const Item = ({ id, imagePath, duration, updateData, deleteData }) => {
   function deleteItem() {
     deleteData(function (prev) {
-      return prev.filter((item) => item.id !== id);
+      return prev.filter((pose) => pose.id !== id);
     });
   }
+
+  function setTimer(e) {
+    updateData(function (prev) {
+      return prev.map((pose) => {
+        // validation
+        if (e.target.value == "" || e.target.value < 5) {
+          e.target.value = 5;
+        } else if (e.target.value > 60) {
+          e.target.value = 60;
+        } else if (e.target.value.length > 2) {
+          e.target.value = e.target.value.slice(-1);
+        }
+
+        // change time
+        if (pose.id == id) {
+          let num = parseInt(e.target.value);
+          pose.duration = num;
+        }
+        return pose;
+      });
+    });
+  }
+
   return (
-    <>
-      <TimeCard>
-        <PoseBox>
-          <Image src={imagePath} />
-          <ClockBox>
-            <TimeBox>
-              <TimeName>Minutes</TimeName>
-              <TimeInput
-                type="number"
-                placeholder="00"
-                min="0"
-                max="20"
-                value={minute}
-                disabled="disabled"
-              ></TimeInput>
-            </TimeBox>
-            <TimeBox>
-              <TimeName>Seconds</TimeName>
-              <TimeInput
-                type="number"
-                placeholder="00"
-                min="0"
-                max="59"
-                step="5"
-                value={second}
-                disabled="disabled"
-              ></TimeInput>
-            </TimeBox>
-          </ClockBox>
-        </PoseBox>
-        <CircleButton onClick={deleteItem}>
-          <Minus></Minus>
-        </CircleButton>
-      </TimeCard>
-    </>
+    <TimeCard>
+      <PoseBox>
+        <Image src={imagePath} />
+        <ClockBox>
+          <TimeBox>
+            <TimeName>Seconds</TimeName>
+            <TimeInput
+              id={id}
+              type="number"
+              placeholder="05"
+              value={duration}
+              onChange={setTimer}
+              min="5"
+              max="60"
+              step="5"
+            ></TimeInput>
+          </TimeBox>
+        </ClockBox>
+      </PoseBox>
+      <CircleButton onClick={deleteItem}>
+        <Minus></Minus>
+      </CircleButton>
+    </TimeCard>
   );
 };
 
@@ -101,6 +112,7 @@ const ClockBox = styled.div`
 const TimeBox = styled(ClockBox)`
   flex-direction: column;
   justify-content: start;
+  align-items: center;
   margin-right: 8px;
 `;
 
@@ -119,8 +131,12 @@ const TimeInput = styled.input`
   font-size: 40px;
   font-weight: 500;
   color: #333333;
-  border: 1px solid lightgrey;
-  border-radius: 4px;
+  text-align: center;
+  border: none;
+  background: #f8f8f8;
+  border-bottom: 1px solid #c4c4c4;
+  transition: 0.5s;
+  outline: none;
   &::placeholder {
     color: #c4c4c4;
   }

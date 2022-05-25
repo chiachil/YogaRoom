@@ -2,20 +2,17 @@ import styled from "styled-components";
 import { useEffect } from "react";
 
 const Show = ({ poses, slide, setSlide }) => {
-  // const {engName, chiName, imagePath} = poses;
-  const { engName, chiName, imagePath } = slide;
+  const { engName, chiName, imagePath, duration } = slide;
 
   useEffect(() => {
-    let i = 0;
-    let handle = setInterval(() => {
-      if (i < poses.length) {
+    let total = duration;
+    for (let i = 0; i < poses.length; i++) {
+      setTimeout(() => {
         setSlide(poses[i]);
-        i++;
-      } else {
-        clearInterval(handle);
-      }
-    }, 5000);
-  });
+      }, total * 1000);
+      total += poses[i].duration;
+    }
+  }, []);
 
   return (
     <>
@@ -77,11 +74,11 @@ const PracticeBox = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: ${(props) => (props.primary ? "24px" : "28px")};
+  font-size: ${(props) => (props.primary ? "24px" : "32px")};
   font-weight: ${(props) => (props.primary ? "500" : "300")};
   color: ${(props) => (props.primary ? "#333333" : "#c4c4c4")};
   line-height: 30px;
-  letter-spacing: ${(props) => (props.primary ? "1.25px" : "1px")};
+  letter-spacing: ${(props) => (props.primary ? "1.5px" : "1.25px")};
   margin-bottom: ${(props) => (props.primary ? "16px" : "40px")};
   text-align: left;
   @media (max-width: 768px) {

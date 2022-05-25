@@ -12,8 +12,7 @@ const List = ({ poses }) => {
           <SideMenuBox>
             <ScrollBox>
               {poses.map((pose) => {
-                const { id, engName, chiName, imagePath, minute, second } =
-                  pose;
+                const { id, engName, chiName, imagePath, duration } = pose;
                 return (
                   <Item
                     key={id}
@@ -21,8 +20,7 @@ const List = ({ poses }) => {
                     engName={engName}
                     chiName={chiName}
                     imagePath={imagePath}
-                    minute={minute}
-                    second={second}
+                    duration={duration}
                   />
                 );
               })}

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Item = ({ id, imagePath, minute, second }) => {
+const Item = ({ id, imagePath, duration }) => {
   return (
     <>
       <TimeCard>
@@ -8,26 +8,12 @@ const Item = ({ id, imagePath, minute, second }) => {
           <Image src={imagePath} />
           <ClockBox>
             <TimeBox>
-              <TimeName>Minutes</TimeName>
-              <TimeInput
-                type="number"
-                placeholder="00"
-                min="0"
-                max="20"
-                value={minute}
-                disabled="disabled"
-              ></TimeInput>
-            </TimeBox>
-            <TimeBox>
               <TimeName>Seconds</TimeName>
               <TimeInput
+                id={id}
                 type="number"
-                placeholder="00"
-                min="0"
-                max="59"
-                step="5"
-                value={second}
-                disabled="disabled"
+                value={duration}
+                readOnly
               ></TimeInput>
             </TimeBox>
           </ClockBox>
@@ -110,11 +96,10 @@ const TimeInput = styled.input`
   font-size: 40px;
   font-weight: 500;
   color: #333333;
-  border: 1px solid lightgrey;
-  border-radius: 4px;
-  &::placeholder {
-    color: #c4c4c4;
-  }
+  text-align: center;
+  border: none;
+  transition: 0.5s;
+  outline: none;
   @media (max-width: 1280px) {
     width: 50px;
     font-size: 32px;

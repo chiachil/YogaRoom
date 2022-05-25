@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Item from "./Item";
 
-const List = ({ listData, deleteData }) => {
+const List = ({ listData, updateData, deleteData }) => {
   const navigate = useNavigate();
-  const { state } = useLocation();
 
   return (
     <>
@@ -14,8 +13,7 @@ const List = ({ listData, deleteData }) => {
           <SideMenuBox>
             <ScrollBox>
               {listData.map((item) => {
-                const { id, engName, chiName, imagePath, minute, second } =
-                  item;
+                const { id, engName, chiName, imagePath, duration } = item;
 
                 return (
                   <Item
@@ -24,9 +22,9 @@ const List = ({ listData, deleteData }) => {
                     engName={engName}
                     chiName={chiName}
                     imagePath={imagePath}
+                    duration={duration}
+                    updateData={updateData}
                     deleteData={deleteData}
-                    minute={minute}
-                    second={second}
                   />
                 );
               })}

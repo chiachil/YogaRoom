@@ -6,13 +6,13 @@ import List from "./Components/List";
 
 const PracticeSetting = () => {
   const [data, setData] = useState([]);
-
+  console.log(data);
   return (
     <>
       <Header />
       <Main>
         <Select add={setData} />
-        <List listData={data} deleteData={setData} />
+        <List listData={data} updateData={setData} deleteData={setData} />
       </Main>
     </>
   );
