@@ -51,12 +51,6 @@ export const Poses = [
     duration: 10,
   },
   {
-    engName: "Chaturanga",
-    chiName: "鱷魚式",
-    imagePath: Chaturanga,
-    duration: 10,
-  },
-  {
     engName: "Child",
     chiName: "嬰兒式",
     imagePath: Child,
@@ -102,6 +96,12 @@ export const Poses = [
     engName: "Fish",
     chiName: "魚式",
     imagePath: Fish,
+    duration: 10,
+  },
+  {
+    engName: "Four-Limbed Staff",
+    chiName: "四肢支撐式",
+    imagePath: Chaturanga,
     duration: 10,
   },
   {

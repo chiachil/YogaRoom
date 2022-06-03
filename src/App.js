@@ -1,14 +1,15 @@
-import "./style.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PracticeSetting from "./pages/PracticeSetting";
-import PracticeGo from "./pages/PracticeGo";
+import SetFlow from "./pages/SetFlow";
+import GoPractice from "./pages/GoPractice";
+import SetRoom from "./pages/SetRoom";
 
 export const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/PracticeGo" element={<PracticeGo />} />
-        <Route path="/" element={<PracticeSetting />} />
+        <Route path="/goPractice" element={<GoPractice />} />
+        <Route path="/setRoom" element={<SetRoom />} />
+        <Route path="/" element={<SetFlow />} />
       </Routes>
     </Router>
   );

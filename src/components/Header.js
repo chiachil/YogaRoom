@@ -1,9 +1,20 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <Container>
-      <Logo>YogaRoom</Logo>
+      <Content>
+        <Logo
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          YogaRoom
+        </Logo>
+      </Content>
     </Container>
   );
 };
@@ -16,23 +27,36 @@ const Container = styled.div`
   left: 0;
   z-index: 2;
   width: 100%;
-  padding: 24px 48px;
-  background: #333333;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  @media (max-width: 1280px) {
-    padding: 24px 24px;
+  background: #ffffff;
+  border-bottom: 2px solid #e5e5e5;
+`;
+
+const Content = styled.div`
+  width: 1344px;
+  margin: 0 auto;
+  padding: 24px 0px;
+  @media (max-width: 1440px) {
+    width: 100%;
+    margin: 0px;
+    padding: 24px 48px;
+  }
+  @media (max-width: 1024px) {
+    padding: 24px;
   }
   @media (max-width: 768px) {
     padding: 24px 10px;
-  }
+  } ;
 `;
+
 const Logo = styled.a`
-  width: 200px;
+  width: 100%;
   display: block;
-  color: #ffffff;
-  font-weight: 500;
+  color: #333333;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
   font-size: 28px;
   letter-spacing: 4px;
+  cursor: pointer;
   @media (max-width: 768px) {
     letter-spacing: 2px;
   }
