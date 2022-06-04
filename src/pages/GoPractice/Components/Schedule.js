@@ -66,7 +66,8 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: start;
   width: 100%;
-  height: 100px;
+  height: auto;
+  padding-bottom: 32px;
 `;
 
 const Pose = styled.h2`

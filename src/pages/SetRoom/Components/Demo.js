@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { LordoftheFishes } from "../../../global/ImagePath";
+import { EasyPose } from "../../../global/ImagePath";
 
 const Demo = ({ roomData }) => {
   return (
     <Container>
       <Background src={roomData.background} alt="Room"></Background>
       <Mat color={roomData.color}></Mat>
-      <Figure src={LordoftheFishes}></Figure>
+      <Figure src={EasyPose}></Figure>
     </Container>
   );
 };
@@ -28,10 +28,6 @@ const Container = styled.div`
   @media (max-width: 1024px) {
     width: 100%;
     margin-right: 0px;
-    height: 400px;
-  }
-  @media (max-width: 768px) {
-    width: 100%;
     height: 400px;
   }
 `;

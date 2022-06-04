@@ -30,17 +30,13 @@ const Container = styled.div`
     margin-right: 0px;
     height: 400px;
   }
-  @media (max-width: 768px) {
-    width: 100%;
-    height: 400px;
-  }
 `;
 const Background = styled.img`
   width: 100%;
   height: 100%;
   border: none;
   border-radius: 6px;
-  object-fit: cover;
+  object-fit: fill;
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;

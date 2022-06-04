@@ -21,11 +21,13 @@ const SetRoom = () => {
       <Header />
       <Main>
         <Content>
-          <Title primary>What kind of practice room do you prefer?</Title>
-          <Boxes>
+          <Box>
+            <Title>What kind of practice room do you prefer?</Title>
+          </Box>
+          <Box primary>
             <Demo roomData={room} />
             <Setting roomData={room} setRoom={setRoom} />
-          </Boxes>
+          </Box>
         </Content>
       </Main>
       <Footer listData={state.listData} roomData={room} />
@@ -58,32 +60,36 @@ const Content = styled.div`
     padding: 78px 24px 114px 24px;
   }
   @media (max-width: 768px) {
-    padding: 78px 10px 114px 10px;
+    padding: 62px 10px 114px 10px;
   } ;
 `;
 
 const Title = styled.h1`
   font-weight: 500;
   font-size: 24px;
-  padding: 40px 0px;
   letter-spacing: 2px;
   line-height: 32px;
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     font-size: 20px;
     padding: 24px 0px;
   }
+  @media (max-width: 768px) {
+    font-size: 18px;
+    letter-spacing: 1px;
+    padding: 16px 0px;
+  }
 `;
-const Boxes = styled.div`
+
+const Box = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-  height: 80%;
-  @media (max-width: 1440px) {
-    height: 75%;
-  }
+  height: ${(props) => (props.primary ? "80%" : "15%")};
   @media (max-width: 1024px) {
     flex-direction: column;
     height: auto;
+    align-items: start;
   }
 `;

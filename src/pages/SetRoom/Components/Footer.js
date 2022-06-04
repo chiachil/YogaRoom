@@ -52,7 +52,7 @@ const Content = styled.div`
     padding: 24px;
   }
   @media (max-width: 768px) {
-    padding: 24px 10px;
+    padding: 16px 10px;
   }
 `;
 
@@ -79,5 +79,10 @@ const Button = styled.button`
     transform: translateY(2px);
     box-shadow: ${(props) =>
       props.primary ? "0px 0px 0px #69403b" : "0px 0px 0px #adadad"};
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+    width: 104px;
+    height: 40px;
   }
 `;

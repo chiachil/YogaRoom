@@ -44,7 +44,7 @@ const Content = styled.div`
     padding: 24px;
   }
   @media (max-width: 768px) {
-    padding: 24px 10px;
+    padding: 16px 10px;
   } ;
 `;
 

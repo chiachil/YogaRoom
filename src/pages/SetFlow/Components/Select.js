@@ -61,20 +61,15 @@ const Box = styled.div`
   flex-wrap: wrap;
   overflow-x: hidden;
   overflow-y: scroll;
-  @media (max-width: 1440px) {
-  }
   @media (max-width: 1280px) {
     width: 60%;
     padding-right: 16px;
   }
   @media (max-width: 1024px) {
-    width: 55%;
-  }
-  @media (max-width: 768px) {
     width: 100%;
-    padding-right: 2px;
-    margin-top: 16px;
     margin-right: 0px;
+    margin-top: 16px;
+    padding-right: 2px;
   }
 `;
 

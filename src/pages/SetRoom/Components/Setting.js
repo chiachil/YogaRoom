@@ -29,19 +29,6 @@ const Setting = ({ roomData, setRoom }) => {
       color: roomData.color,
       language: option,
     });
-    // if (isDefault) {
-    //   setRoom({
-    //     background: roomData.background,
-    //     color: roomData.color,
-    //     language: "English",
-    //   });
-    // } else {
-    //   setRoom({
-    //     background: roomData.background,
-    //     color: roomData.color,
-    //     language: "中文",
-    //   });
-    // }
   }
   return (
     <Container>
@@ -124,10 +111,9 @@ const Container = styled.div`
   }
   @media (max-width: 1024px) {
     width: 100%;
-    margin-top: 32px;
+    margin-top: 16px;
   }
   @media (max-width: 768px) {
-    width: 100%;
     padding: 8px 16px;
   }
 `;
@@ -155,6 +141,7 @@ const SubTitle = styled(Title)`
 `;
 const Box = styled.div`
   display: flex;
+  height: ${(prop) => (prop.first ? "20%" : "auto")};
   justify-content: ${(prop) => (prop.first ? "space-between" : "start")};
   width: 100%;
   padding-bottom: ${(prop) => (prop.last ? "0px" : "16px")};
@@ -168,12 +155,11 @@ const Box = styled.div`
 
 const BackgroundOption = styled.img`
   width: 46%;
-  height: 96px;
+  height: ${(prop) => (prop.first ? "100%" : "auto")};
   border: 4px solid #ffffff;
   outline: ${(prop) =>
     prop.selected ? "2px solid #adadad" : "2px solid #e9e9e9"};
   border-radius: 8px;
-  /* background-size: cover; */
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
