@@ -1,11 +1,20 @@
 import styled from "styled-components";
+import Preference from "./Preference";
+import { lgImageUrl } from "../../../global/path";
 
-const Demo = ({ slide, roomData }) => {
+const Demo = ({ slide, roomData, updateRoom, setSpeech, popup, setPopup }) => {
   return (
     <Container>
       <Background src={roomData.background} alt="Room"></Background>
       <Mat color={roomData.color}></Mat>
-      <Figure src={slide.imagePath}></Figure>
+      <Figure src={lgImageUrl + slide.imagePath}></Figure>
+      <Preference
+        roomData={roomData}
+        updateRoom={updateRoom}
+        popup={popup}
+        setPopup={setPopup}
+        setSpeech={setSpeech}
+      ></Preference>
     </Container>
   );
 };
@@ -29,6 +38,9 @@ const Container = styled.div`
     width: 100%;
     margin-right: 0px;
     height: 400px;
+  }
+  @media (max-width: 768px) {
+    height: 300px;
   }
 `;
 const Background = styled.img`
@@ -70,15 +82,15 @@ const Figure = styled.img`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 0%;
-  width: 400px;
-  height: 400px;
+  bottom: 7%;
+  width: 80%;
+  height: 80%;
   @media (max-width: 1024px) {
     width: 320px;
     height: 320px;
   }
   @media (max-width: 768px) {
-    width: 280px;
-    height: 280px;
+    width: 240px;
+    height: 240px;
   }
 `;

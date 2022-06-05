@@ -1,24 +1,24 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import Header from "../../components/Header";
 import Select from "./Components/Select";
 import List from "./Components/List";
 import Footer from "./Components/Footer";
-import { EasyPose } from "../../global/ImagePath";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import primaryRoom from "../../assets/Room/1.jpg";
 
 const SetFlow = () => {
   const { state } = useLocation();
   const [list, setList] = useState([
     {
-      id: 1,
+      id: 0,
       engName: "Easy Pose",
       chiName: "簡易坐式",
-      imagePath: EasyPose,
+      imagePath: "EasyPose.svg",
       duration: 10,
     },
   ]);
+
   const [background, setBackground] = useState({
     background: primaryRoom,
     color: "#d7b0a9",
@@ -41,7 +41,7 @@ const SetFlow = () => {
             <Title>Hi, what would you like to practice today?</Title>
           </Box>
           <Box primary>
-            <Select listData={list} add={setList} />
+            <Select listData={list} addData={setList} />
             <List listData={list} updateData={setList} deleteData={setList} />
           </Box>
         </Content>

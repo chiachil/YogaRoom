@@ -9,7 +9,7 @@ const Footer = ({ listData, roomData }) => {
     if (listData.length < 3) {
       alert("please at least choose two poses");
     } else {
-      navigate("/setRoom", {
+      navigate("/goPractice", {
         state: { listData: listData, roomData: roomData },
       });
     }

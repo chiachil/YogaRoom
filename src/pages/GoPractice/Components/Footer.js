@@ -11,6 +11,7 @@ const Footer = ({
   setSlide,
   roomData,
   setDuration,
+  setPopup,
 }) => {
   const navigate = useNavigate();
   const { speak, voices, supported } = useSpeechSynthesis();
@@ -35,6 +36,7 @@ const Footer = ({
 
   function clickStart(status) {
     if (status) {
+      setPopup(false);
       setButton({ text: "QUIT", active: false });
       if (!supported) {
         alert(
@@ -54,8 +56,8 @@ const Footer = ({
           listData: [listData[0]],
           roomData: {
             background: primaryRoom,
-            color: "#d7b0a9",
-            language: "English",
+            color: roomData.color,
+            language: roomData.language,
           },
         },
       });
@@ -68,14 +70,14 @@ const Footer = ({
       setTimeout(() => {
         if (language === "English") {
           if (i === listData.length - 1) {
-            setSpeech("Last position, " + listData[i].engName + " Pose.");
+            setSpeech("Last position, " + listData[i].engName + ".");
             setTimeout(() => {
               clearInterval(timeId);
               setDuration(0);
               setSpeech("Congrats! You've finished today's practice!");
             }, listData[i].duration * 1000);
           } else {
-            setSpeech("Next position, " + listData[i].engName + " Pose.");
+            setSpeech("Next position, " + listData[i].engName + ".");
           }
         } else if (language === "中文") {
           if (i === listData.length - 1) {
@@ -96,7 +98,7 @@ const Footer = ({
     }
   }
   function clickBack() {
-    navigate("/setRoom", { state: { listData: listData, roomData: roomData } });
+    navigate("/", { state: { listData: listData, roomData: roomData } });
   }
 
   return (

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BiMinus } from "react-icons/bi";
+import { smImageUrl } from "../../../global/path";
 
 const Item = ({ id, imagePath, duration, updateData, deleteData }) => {
   function deleteItem() {
@@ -33,7 +34,7 @@ const Item = ({ id, imagePath, duration, updateData, deleteData }) => {
   return (
     <Box>
       <Pose>
-        <Image src={imagePath} />
+        <Image src={smImageUrl + imagePath} />
         <TimeBox>
           <TimeName>Seconds</TimeName>
           <TimeInput
@@ -48,7 +49,7 @@ const Item = ({ id, imagePath, duration, updateData, deleteData }) => {
           ></TimeInput>
         </TimeBox>
       </Pose>
-      {id === 1 ? (
+      {id === 0 ? (
         <Note>default</Note>
       ) : (
         <>

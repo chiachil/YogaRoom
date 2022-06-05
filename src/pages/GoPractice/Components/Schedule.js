@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import { useEffect } from "react";
 
 const Schedule = ({ slide, duration }) => {
   return (

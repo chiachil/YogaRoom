@@ -12,6 +12,8 @@ const GoPractice = () => {
   const [speech, setSpeech] = useState("click 'START' when you are all set.");
   const [slide, setSlide] = useState(listData[0]);
   const [duration, setDuration] = useState(slide.duration);
+  const [room, setRoom] = useState(roomData);
+  const [popup, setPopup] = useState(false);
 
   return (
     <>
@@ -22,7 +24,14 @@ const GoPractice = () => {
             <Title primary>{speech}</Title>
           </Box>
           <Box primary>
-            <Demo slide={slide} roomData={roomData} />
+            <Demo
+              slide={slide}
+              roomData={room}
+              updateRoom={setRoom}
+              setSpeech={setSpeech}
+              popup={popup}
+              setPopup={setPopup}
+            />
             <Schedule
               slide={slide}
               duration={duration}
@@ -36,8 +45,9 @@ const GoPractice = () => {
         setSpeech={setSpeech}
         listData={listData}
         setSlide={setSlide}
-        roomData={roomData}
+        roomData={room}
         setDuration={setDuration}
+        setPopup={setPopup}
       />
     </>
   );
