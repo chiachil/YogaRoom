@@ -27,9 +27,12 @@ const Preference = ({ roomData, updateRoom, popup, setPopup, setSpeech }) => {
       language: option,
     });
     if (option === "中文") {
-      setSpeech("準備好後請點擊開始");
+      setSpeech({ text: "準備好後請點擊開始", trigger: false });
     } else {
-      setSpeech("click 'START' when you are all set.");
+      setSpeech({
+        text: "click 'START' when you are all set.",
+        trigger: false,
+      });
     }
   }
 

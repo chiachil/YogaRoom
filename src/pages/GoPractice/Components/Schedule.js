@@ -11,7 +11,7 @@ const Schedule = ({ slide, duration }) => {
       </Box>
       <SubTitle>Duration</SubTitle>
       <Box>
-        <Pose primary>{duration}</Pose>
+        <Number>{duration}</Number>
       </Box>
     </Container>
   );
@@ -75,4 +75,8 @@ const Pose = styled.h2`
   color: ${(prop) => (prop.primary ? "#333333" : "#c4c4c4")};
   letter-spacing: ${(prop) => (prop.primary ? "1px" : "2.5px")};
   margin-bottom: ${(prop) => (prop.primary ? "16px" : "0px")};
+`;
+
+const Number = styled.div`
+  font-size: 48px;
 `;

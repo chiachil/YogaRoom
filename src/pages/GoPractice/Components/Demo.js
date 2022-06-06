@@ -1,20 +1,33 @@
 import styled from "styled-components";
 import Preference from "./Preference";
-import { lgImageUrl } from "../../../global/path";
+import { lgImageUrl } from "../../../global/constants";
+import { roomImage } from "../../../global/constants";
 
-const Demo = ({ slide, roomData, updateRoom, setSpeech, popup, setPopup }) => {
+const Demo = ({
+  slide,
+  roomData,
+  updateRoom,
+  setSpeech,
+  popup,
+  setPopup,
+  button,
+}) => {
   return (
     <Container>
-      <Background src={roomData.background} alt="Room"></Background>
+      <Background src={roomImage} alt="Room"></Background>
       <Mat color={roomData.color}></Mat>
       <Figure src={lgImageUrl + slide.imagePath}></Figure>
-      <Preference
-        roomData={roomData}
-        updateRoom={updateRoom}
-        popup={popup}
-        setPopup={setPopup}
-        setSpeech={setSpeech}
-      ></Preference>
+      {button.active ? (
+        <Preference
+          roomData={roomData}
+          updateRoom={updateRoom}
+          popup={popup}
+          setPopup={setPopup}
+          setSpeech={setSpeech}
+        ></Preference>
+      ) : (
+        <></>
+      )}
     </Container>
   );
 };

@@ -9,11 +9,15 @@ import Footer from "./Components/Footer";
 const GoPractice = () => {
   const { state } = useLocation();
   const { listData, roomData } = state;
-  const [speech, setSpeech] = useState("click 'START' when you are all set.");
+  const [speech, setSpeech] = useState({
+    text: "click 'START' when you are all set.",
+    trigger: false,
+  });
   const [slide, setSlide] = useState(listData[0]);
   const [duration, setDuration] = useState(slide.duration);
   const [room, setRoom] = useState(roomData);
   const [popup, setPopup] = useState(false);
+  const [button, setButton] = useState({ text: "START", active: true });
 
   return (
     <>
@@ -21,7 +25,7 @@ const GoPractice = () => {
       <Main>
         <Content>
           <Box>
-            <Title primary>{speech}</Title>
+            <Title primary>{speech.text}</Title>
           </Box>
           <Box primary>
             <Demo
@@ -31,6 +35,7 @@ const GoPractice = () => {
               setSpeech={setSpeech}
               popup={popup}
               setPopup={setPopup}
+              button={button}
             />
             <Schedule
               slide={slide}
@@ -48,6 +53,8 @@ const GoPractice = () => {
         roomData={room}
         setDuration={setDuration}
         setPopup={setPopup}
+        button={button}
+        setButton={setButton}
       />
     </>
   );

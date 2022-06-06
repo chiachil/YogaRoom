@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BiMinus } from "react-icons/bi";
-import { smImageUrl } from "../../../global/path";
+import { smImageUrl } from "../../../global/constants";
 
 const Item = ({ id, imagePath, duration, updateData, deleteData }) => {
   function deleteItem() {

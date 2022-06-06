@@ -5,7 +5,7 @@ import List from "./Components/List";
 import Footer from "./Components/Footer";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import primaryRoom from "../../assets/Room/1.jpg";
+import { colorArr, voiceArr } from "../../global/room";
 
 const SetFlow = () => {
   const { state } = useLocation();
@@ -20,9 +20,8 @@ const SetFlow = () => {
   ]);
 
   const [background, setBackground] = useState({
-    background: primaryRoom,
-    color: "#d7b0a9",
-    language: "English",
+    color: colorArr[0],
+    language: voiceArr[0],
   });
 
   useEffect(() => {

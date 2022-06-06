@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useSpeechSynthesis } from "react-speech-kit";
-import { useEffect, useState } from "react";
-import primaryRoom from "../../../assets/Room/1.jpg";
+import { useEffect } from "react";
 
 const Footer = ({
   speech,
@@ -12,18 +11,22 @@ const Footer = ({
   roomData,
   setDuration,
   setPopup,
+  button,
+  setButton,
 }) => {
   const navigate = useNavigate();
   const { speak, voices, supported } = useSpeechSynthesis();
   const voiceEng = voices.find(({ lang }) => lang.match("en-ZA"));
   const voiceChi = voices.find(({ lang }) => lang.match("zh-TW"));
-  const [button, setButton] = useState({ text: "START", active: true });
 
   useEffect(() => {
+    if (!speech.trigger) {
+      return;
+    }
     if (supported && roomData.language === "English") {
-      speak({ text: speech, voice: voiceEng });
+      speak({ text: speech.text, voice: voiceEng });
     } else if (supported && roomData.language === "中文") {
-      speak({ text: speech, voice: voiceChi });
+      speak({ text: speech.text, voice: voiceChi });
     }
   }, [speech]);
 
@@ -44,9 +47,15 @@ const Footer = ({
         );
       }
       if (roomData.language === "English") {
-        setSpeech("The practice starts with " + listData[0].engName + ".");
+        setSpeech({
+          text: "The practice starts with " + listData[0].engName + ".",
+          trigger: true,
+        });
       } else if (roomData.language === "中文") {
-        setSpeech("從" + listData[0].chiName + "開始練習。");
+        setSpeech({
+          text: "從" + listData[0].chiName + "開始練習。",
+          trigger: true,
+        });
       }
       let timeId = countDown();
       playSlide(roomData.language, timeId);
@@ -55,7 +64,6 @@ const Footer = ({
         state: {
           listData: [listData[0]],
           roomData: {
-            background: primaryRoom,
             color: roomData.color,
             language: roomData.language,
           },
@@ -70,25 +78,40 @@ const Footer = ({
       setTimeout(() => {
         if (language === "English") {
           if (i === listData.length - 1) {
-            setSpeech("Last position, " + listData[i].engName + ".");
+            setSpeech({
+              text: "Last position, " + listData[i].engName + ".",
+              trigger: true,
+            });
             setTimeout(() => {
               clearInterval(timeId);
               setDuration(0);
-              setSpeech("Congrats! You've finished today's practice!");
+              setSpeech({
+                text: "Congrats! You've finished today's practice!",
+                trigger: true,
+              });
             }, listData[i].duration * 1000);
           } else {
-            setSpeech("Next position, " + listData[i].engName + ".");
+            setSpeech({
+              text: "Next position, " + listData[i].engName + ".",
+              trigger: true,
+            });
           }
         } else if (language === "中文") {
           if (i === listData.length - 1) {
-            setSpeech("最後一個動作，" + listData[i].chiName);
+            setSpeech({
+              text: "最後一個動作，" + listData[i].chiName,
+              trigger: true,
+            });
             setTimeout(() => {
               clearInterval(timeId);
               setDuration(0);
-              setSpeech("恭喜! 您已完成今天的練習！");
+              setSpeech({ text: "恭喜! 您已完成今天的練習！", trigger: true });
             }, listData[i].duration * 1000);
           } else {
-            setSpeech("下一個動作， " + listData[i].chiName);
+            setSpeech({
+              text: "下一個動作， " + listData[i].chiName,
+              trigger: true,
+            });
           }
         }
         setSlide(listData[i]);
@@ -104,7 +127,8 @@ const Footer = ({
   return (
     <Container>
       <Content>
-        <Button onClick={clickBack}>BACK</Button>
+        {button.active ? <Button onClick={clickBack}>BACK</Button> : <></>}
+
         <Button
           primary={button.active}
           onClick={() => {
