@@ -36,6 +36,7 @@ const Container = styled.div`
   width: 100%;
   background: #ffffff;
   border-top: 2px solid #e5e5e5;
+  box-shadow: 0px -1px 4px #e5e5e5;
 `;
 
 const Content = styled.div`

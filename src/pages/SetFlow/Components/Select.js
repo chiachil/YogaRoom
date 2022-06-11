@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Option from "./Option";
-import { poses } from "../../../global/poses";
+import { poses } from "../../../global/constants/poses";
 import { v4 } from "uuid";
 
 const Select = ({ listData, addData }) => {

@@ -5,7 +5,7 @@ import List from "./Components/List";
 import Footer from "./Components/Footer";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { colorArr, voiceArr } from "../../global/room";
+import { colorArr, voiceArr } from "../../global/constants/room";
 
 const SetFlow = () => {
   const { state } = useLocation();

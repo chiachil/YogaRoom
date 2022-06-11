@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Preference from "./Preference";
-import { lgImageUrl } from "../../../global/constants";
-import { roomImage } from "../../../global/constants";
+import { lgImageUrl } from "../../../global/constants/urlPath";
+import { roomImage } from "../../../global/constants/urlPath";
 
 const Demo = ({
   slide,

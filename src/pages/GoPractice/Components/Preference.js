@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IoIosSettings } from "react-icons/io";
 import { AiFillSound } from "react-icons/ai";
-import { colorArr, voiceArr } from "../../../global/room";
+import { colorArr, voiceArr } from "../../../global/constants/room";
 
 const Preference = ({ roomData, updateRoom, popup, setPopup, setSpeech }) => {
   function controlPopup() {

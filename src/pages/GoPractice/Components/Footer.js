@@ -60,7 +60,7 @@ const Footer = ({
       let timeId = countDown();
       playSlide(roomData.language, timeId);
     } else if (!status) {
-      navigate("/", {
+      navigate("/setFlow", {
         state: {
           listData: [listData[0]],
           roomData: {
@@ -121,7 +121,7 @@ const Footer = ({
     }
   }
   function clickBack() {
-    navigate("/", { state: { listData: listData, roomData: roomData } });
+    navigate("/setFlow", { state: { listData: listData, roomData: roomData } });
   }
 
   return (
@@ -152,6 +152,7 @@ const Container = styled.div`
   width: 100%;
   background: #ffffff;
   border-top: 2px solid #e5e5e5;
+  box-shadow: 0px -1px 4px #e5e5e5;
 `;
 
 const Content = styled.div`
