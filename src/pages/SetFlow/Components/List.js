@@ -4,7 +4,7 @@ import Item from "./Item";
 const List = ({ listData, updateData, deleteData }) => {
   return (
     <SideMenuBox>
-      <Title>Your flow</Title>
+      <Title>Your Sequences</Title>
       <ScrollBox>
         {listData.map((item) => {
           const { id, engName, chiName, imagePath, duration } = item;
@@ -45,18 +45,18 @@ const SideMenuBox = styled.div`
     height: 400px;
   }
   @media (max-width: 768px) {
-    height: 250px;
+    height: 320px;
     padding: 8px 16px;
   }
 `;
 const Title = styled.h1`
   font-weight: 500;
   font-size: 18px;
-  padding-top: 8px;
-  padding-bottom: 24px;
   letter-spacing: 1.5px;
   padding-left: 2px;
   color: #c4c4c4;
+  padding-top: 8px;
+  padding-bottom: 24px;
   @media (max-width: 768px) {
     padding-bottom: 16px;
   }
@@ -73,6 +73,6 @@ const ScrollBox = styled.div`
     height: 87%;
   }
   @media (max-width: 768px) {
-    height: 180px;
+    height: 250px;
   }
 `;

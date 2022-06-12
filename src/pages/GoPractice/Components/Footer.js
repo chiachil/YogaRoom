@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useSpeechSynthesis } from "react-speech-kit";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { db } from "../../../firebase-config";
+import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
+import { useContext } from "react";
+import { LoginContext } from "../../../context/userContext";
+import { AiFillSound } from "react-icons/ai";
 
 const Footer = ({
   speech,
@@ -10,14 +15,17 @@ const Footer = ({
   setSlide,
   roomData,
   setDuration,
-  setPopup,
-  button,
-  setButton,
+  started,
+  setStarted,
+  listName,
+  practiceId,
 }) => {
   const navigate = useNavigate();
   const { speak, voices, supported } = useSpeechSynthesis();
   const voiceEng = voices.find(({ lang }) => lang.match("en-ZA"));
   const voiceChi = voices.find(({ lang }) => lang.match("zh-TW"));
+  const practicesCollectionRef = collection(db, "practices");
+  const { loggedIn, setLoggedIn } = useContext(LoginContext);
 
   useEffect(() => {
     if (!speech.trigger) {
@@ -37,39 +45,62 @@ const Footer = ({
     return timeId;
   }
 
-  function clickStart(status) {
-    if (status) {
-      setPopup(false);
-      setButton({ text: "QUIT", active: false });
-      if (!supported) {
-        alert(
-          "Sorry, your practice will continue without voice guide since your browser doesn't support it."
-        );
-      }
-      if (roomData.language === "English") {
-        setSpeech({
-          text: "The practice starts with " + listData[0].engName + ".",
-          trigger: true,
-        });
-      } else if (roomData.language === "中文") {
-        setSpeech({
-          text: "從" + listData[0].chiName + "開始練習。",
-          trigger: true,
-        });
-      }
-      let timeId = countDown();
-      playSlide(roomData.language, timeId);
-    } else if (!status) {
-      navigate("/setFlow", {
-        state: {
-          listData: [listData[0]],
-          roomData: {
-            color: roomData.color,
-            language: roomData.language,
-          },
-        },
+  function clickStart() {
+    setStarted(!started);
+    if (!supported) {
+      alert(
+        "Sorry, your practice will continue without voice guide since your browser doesn't support it."
+      );
+    }
+    if (roomData.language === "English") {
+      setSpeech({
+        text: "The practice starts with " + listData[0].engName + ".",
+        trigger: true,
+      });
+    } else if (roomData.language === "中文") {
+      setSpeech({
+        text: "從" + listData[0].chiName + "開始練習。",
+        trigger: true,
       });
     }
+    let timeId = countDown();
+    playSlide(roomData.language, timeId);
+  }
+
+  async function Quit(isSave) {
+    if (isSave) {
+      // create timestamp
+      const today = new Date();
+      const date = `${today.getFullYear()}/${
+        today.getMonth() + 1
+      }/${today.getDate()}`;
+
+      if (practiceId !== "123") {
+        const practiceDoc = doc(db, "practices", practiceId);
+        const newListData = {
+          listName: listName,
+          listData: listData,
+          timestamp: date,
+        };
+        await updateDoc(practiceDoc, newListData);
+      } else {
+        // save list data to firestore
+        await addDoc(practicesCollectionRef, {
+          listName: listName,
+          listData: listData,
+          timestamp: date,
+        });
+      }
+    }
+    navigate("/setFlow", {
+      state: {
+        listData: [listData[0]],
+        roomData: {
+          color: roomData.color,
+          language: roomData.language,
+        },
+      },
+    });
   }
 
   function playSlide(language, timeId) {
@@ -86,7 +117,7 @@ const Footer = ({
               clearInterval(timeId);
               setDuration(0);
               setSpeech({
-                text: "Congrats! You've finished today's practice!",
+                text: "Congrats! You just finished today's practice!",
                 trigger: true,
               });
             }, listData[i].duration * 1000);
@@ -125,20 +156,41 @@ const Footer = ({
   }
 
   return (
-    <Container>
-      <Content>
-        {button.active ? <Button onClick={clickBack}>BACK</Button> : <></>}
-
-        <Button
-          primary={button.active}
-          onClick={() => {
-            clickStart(button.active);
-          }}
-        >
-          {button.text}
-        </Button>
-      </Content>
-    </Container>
+    <>
+      <Container>
+        <Content>
+          {started ? (
+            loggedIn ? (
+              <>
+                <Button first onClick={() => Quit(false)}>
+                  Just Quit
+                </Button>
+                <Button primary onClick={() => Quit(true)}>
+                  SAVE & QUIT
+                </Button>
+              </>
+            ) : (
+              <Button first onClick={() => Quit(false)}>
+                Quit
+              </Button>
+            )
+          ) : (
+            <>
+              <Button onClick={clickBack}>BACK</Button>
+              <Button
+                primary
+                onClick={() => {
+                  clickStart();
+                  setStarted(true);
+                }}
+              >
+                START<SoundIcon></SoundIcon>
+              </Button>
+            </>
+          )}
+        </Content>
+      </Container>
+    </>
   );
 };
 
@@ -174,7 +226,7 @@ const Content = styled.div`
 `;
 
 const Button = styled.button`
-  width: 152px;
+  width: 168px;
   height: 48px;
   background-color: ${(props) => (props.primary ? "#d7b0a9" : "#FFFFFF")};
   border: ${(props) =>
@@ -186,6 +238,10 @@ const Button = styled.button`
   font-size: 18px;
   color: ${(props) => (props.primary ? "#FFFFFF" : "#adadad")};
   letter-spacing: 1px;
+  margin-right: ${(props) => (props.first ? "16px" : "0px")};
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   &:hover {
     background: ${(props) => (props.primary ? "#dec8b8" : "#e9e9e9")};
@@ -199,7 +255,12 @@ const Button = styled.button`
   }
   @media (max-width: 768px) {
     font-size: 16px;
-    width: 104px;
+    width: 136px;
     height: 40px;
   }
+`;
+
+const SoundIcon = styled(AiFillSound)`
+  margin-left: 8px;
+  font-size: 20px;
 `;

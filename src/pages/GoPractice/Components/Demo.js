@@ -3,30 +3,20 @@ import Preference from "./Preference";
 import { lgImageUrl } from "../../../global/constants/urlPath";
 import { roomImage } from "../../../global/constants/urlPath";
 
-const Demo = ({
-  slide,
-  roomData,
-  updateRoom,
-  setSpeech,
-  popup,
-  setPopup,
-  button,
-}) => {
+const Demo = ({ slide, roomData, updateRoom, setSpeech, started }) => {
   return (
     <Container>
       <Background src={roomImage} alt="Room"></Background>
       <Mat color={roomData.color}></Mat>
       <Figure src={lgImageUrl + slide.imagePath}></Figure>
-      {button.active ? (
+      {started ? (
+        <></>
+      ) : (
         <Preference
           roomData={roomData}
           updateRoom={updateRoom}
-          popup={popup}
-          setPopup={setPopup}
           setSpeech={setSpeech}
         ></Preference>
-      ) : (
-        <></>
       )}
     </Container>
   );
@@ -77,7 +67,6 @@ const Mat = styled.div`
   border-left: 90px solid transparent;
   border-right: 90px solid transparent;
   border-radius: 1px;
-  /* box-shadow: 0px 2px 0px 0px rgba(51, 51, 51, 0.3); */
   @media (max-width: 1280px) {
     width: 95%;
   }

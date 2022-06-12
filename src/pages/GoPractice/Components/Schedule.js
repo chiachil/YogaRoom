@@ -1,18 +1,39 @@
+import { useState } from "react";
 import styled from "styled-components";
+import Item from "./Item";
 
-const Schedule = ({ slide, duration }) => {
+const Schedule = ({ listData, slide, duration, started, listName }) => {
   return (
     <Container>
-      <Title>Your practice</Title>
-      <SubTitle>Position</SubTitle>
-      <Box>
-        <Pose primary>{slide.engName}</Pose>
-        <Pose>{slide.chiName}</Pose>
-      </Box>
-      <SubTitle>Duration</SubTitle>
-      <Box>
-        <Number>{duration}</Number>
-      </Box>
+      <Title>{listName}</Title>
+      {started ? (
+        <>
+          <SubTitle>Position</SubTitle>
+          <Box>
+            <Pose primary>{slide.engName}</Pose>
+            <Pose>{slide.chiName}</Pose>
+          </Box>
+          <SubTitle>Duration</SubTitle>
+          <Box>
+            <Number>{duration}</Number>
+          </Box>
+        </>
+      ) : (
+        <ScrollBox>
+          {listData.map((item, i) => {
+            const { engName, chiName, imagePath, duration } = item;
+            return (
+              <Item
+                key={i}
+                engName={engName}
+                chiName={chiName}
+                imagePath={imagePath}
+                duration={duration}
+              ></Item>
+            );
+          })}
+        </ScrollBox>
+      )}
     </Container>
   );
 };
@@ -47,6 +68,9 @@ const Title = styled.h1`
   padding-bottom: 24px;
   letter-spacing: 1.5px;
   color: #c4c4c4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media (max-width: 768px) {
     padding-bottom: 16px;
   }
@@ -79,4 +103,20 @@ const Pose = styled.h2`
 
 const Number = styled.div`
   font-size: 48px;
+`;
+
+const ScrollBox = styled.div`
+  width: 100%;
+  height: 89%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  @media (max-width: 1440px) {
+    height: 87%;
+  }
+  @media (max-width: 768px) {
+    height: auto;
+  }
 `;

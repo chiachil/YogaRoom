@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   PopBG,
   Popup,
@@ -30,11 +30,7 @@ const SignUp = ({
         registerEmail,
         registerPassword
       );
-
       setNote("Account created successfully.");
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
     } catch (error) {
       setNote(error.message);
       setMessageColor("#8B8B8B");

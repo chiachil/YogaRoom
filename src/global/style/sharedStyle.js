@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import styled from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 html {
@@ -7,6 +6,10 @@ html {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
 };
 button {
+  font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  cursor: pointer;
+}
+input {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
 }
 `;

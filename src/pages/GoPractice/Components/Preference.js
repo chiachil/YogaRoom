@@ -2,16 +2,10 @@ import styled from "styled-components";
 import { IoIosSettings } from "react-icons/io";
 import { AiFillSound } from "react-icons/ai";
 import { colorArr, voiceArr } from "../../../global/constants/room";
+import { useState } from "react";
 
-const Preference = ({ roomData, updateRoom, popup, setPopup, setSpeech }) => {
-  function controlPopup() {
-    if (popup === true) {
-      setPopup(false);
-    } else {
-      setPopup(true);
-    }
-  }
-
+const Preference = ({ roomData, updateRoom, setSpeech }) => {
+  const [popup, setPopup] = useState(false);
   function changeColor(option) {
     updateRoom({
       background: roomData.background,
@@ -27,10 +21,10 @@ const Preference = ({ roomData, updateRoom, popup, setPopup, setSpeech }) => {
       language: option,
     });
     if (option === "中文") {
-      setSpeech({ text: "準備好後請點擊開始", trigger: false });
+      setSpeech({ text: "點擊 'START'", trigger: false });
     } else {
       setSpeech({
-        text: "click 'START' when you are all set.",
+        text: "Click 'START'",
         trigger: false,
       });
     }
@@ -38,7 +32,7 @@ const Preference = ({ roomData, updateRoom, popup, setPopup, setSpeech }) => {
 
   return (
     <>
-      <Button onClick={controlPopup}>
+      <Button onClick={() => setPopup(!popup)}>
         <Icon></Icon>
         PREFERENCE
       </Button>

@@ -3,12 +3,16 @@ import Header from "../../components/Header";
 import Select from "./Components/Select";
 import List from "./Components/List";
 import Footer from "./Components/Footer";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { colorArr, voiceArr } from "../../global/constants/room";
+import { LoginContext } from "../../context/userContext";
 
 const SetFlow = () => {
   const { state } = useLocation();
+  const { loggedIn, setLoggedIn } = useContext(LoginContext);
+  const [listName, setListName] = useState("");
+  const [practiceId, setPracticeId] = useState("123");
   const [list, setList] = useState([
     {
       id: 0,
@@ -28,6 +32,7 @@ const SetFlow = () => {
     if (state !== null) {
       setList(state.listData);
       setBackground(state.roomData);
+      setPracticeId(state.practiceId);
     }
   }, []);
 
@@ -37,7 +42,15 @@ const SetFlow = () => {
       <Main>
         <Content>
           <Box>
-            <Title>Hi, what would you like to practice today?</Title>
+            <TitleBox>
+              <Title>Practice Name:</Title>
+              <Input
+                type="type"
+                placeholder="e.g. 10 min Core Yoga"
+                value={listName}
+                onChange={(e) => setListName(e.target.value)}
+              ></Input>
+            </TitleBox>
           </Box>
           <Box primary>
             <Select listData={list} addData={setList} />
@@ -45,7 +58,13 @@ const SetFlow = () => {
           </Box>
         </Content>
       </Main>
-      <Footer listData={list} roomData={background} />
+      <Footer
+        listData={list}
+        roomData={background}
+        listName={listName}
+        setListName={setListName}
+        practiceId={practiceId}
+      />
     </>
   );
 };
@@ -82,8 +101,9 @@ const Content = styled.div`
 const Title = styled.h1`
   font-weight: 500;
   font-size: 24px;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   line-height: 32px;
+  color: #333;
   @media (max-width: 1024px) {
     font-size: 20px;
     padding: 24px 0px;
@@ -91,20 +111,57 @@ const Title = styled.h1`
   @media (max-width: 768px) {
     font-size: 18px;
     letter-spacing: 1px;
-    padding: 16px 0px;
+    padding: 16px 0px 4px 0px;
   }
 `;
 
 const Box = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: ${(prop) => (prop.primary ? "space-between" : "start")};
   align-items: center;
   width: 100%;
-  height: ${(props) => (props.primary ? "80%" : "15%")};
+  height: ${(prop) => (prop.primary ? "80%" : "15%")};
   @media (max-width: 1024px) {
     flex-direction: column-reverse;
     height: auto;
     align-items: start;
+  }
+`;
+
+const Input = styled.input`
+  width: 30%;
+  font-size: 24px;
+  border: none;
+  border-bottom: 1px solid lightgray;
+  padding: 2px;
+  margin-left: 16px;
+  color: #d7b0a9;
+  letter-spacing: 1.5px;
+  outline: 0;
+  ::placeholder,
+  ::-webkit-input-placeholder {
+    color: #e9e9e9;
+    font-weight: 400;
+    font-style: italic;
+  }
+  :-ms-input-placeholder {
+    color: #e9e9e9;
+  }
+  @media (max-width: 768px) {
+    margin-left: 0px;
+    width: 100%;
+    font-size: 20px;
+  }
+`;
+const TitleBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 24px;
   }
 `;

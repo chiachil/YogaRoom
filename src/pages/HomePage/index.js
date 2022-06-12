@@ -3,10 +3,15 @@ import Header from "../../components/Header";
 import { demo1Image } from "../../global/constants/urlPath";
 import { demo2Image } from "../../global/constants/urlPath";
 import { demo3Image } from "../../global/constants/urlPath";
+import { demo4Image } from "../../global/constants/urlPath";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { LoginContext } from "../../context/userContext";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const { loggedIn, setLoggedIn } = useContext(LoginContext);
+
   return (
     <>
       <Header />
@@ -45,6 +50,18 @@ const HomePage = () => {
             <Box3>
               <Demo src={demo3Image}></Demo>
             </Box3>
+          </Content>
+        </Section>
+        <Section second>
+          <Content second>
+            <Title second>Create List for Your Favorite Practices</Title>
+            <SubTitle>
+              Upon logging, you can save your practice and start any practice
+              immediately.
+            </SubTitle>
+            <Box2>
+              <Demo src={demo4Image}></Demo>
+            </Box2>
           </Content>
         </Section>
       </Main>

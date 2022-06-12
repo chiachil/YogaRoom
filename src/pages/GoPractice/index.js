@@ -8,16 +8,15 @@ import Footer from "./Components/Footer";
 
 const GoPractice = () => {
   const { state } = useLocation();
-  const { listData, roomData } = state;
+  const { listData, roomData, listName, practiceId } = state;
   const [speech, setSpeech] = useState({
-    text: "click 'START' when you are all set.",
+    text: "Click 'START'",
     trigger: false,
   });
   const [slide, setSlide] = useState(listData[0]);
   const [duration, setDuration] = useState(slide.duration);
   const [room, setRoom] = useState(roomData);
-  const [popup, setPopup] = useState(false);
-  const [button, setButton] = useState({ text: "START", active: true });
+  const [started, setStarted] = useState(false);
 
   return (
     <>
@@ -33,14 +32,15 @@ const GoPractice = () => {
               roomData={room}
               updateRoom={setRoom}
               setSpeech={setSpeech}
-              popup={popup}
-              setPopup={setPopup}
-              button={button}
+              started={started}
             />
             <Schedule
               slide={slide}
               duration={duration}
               setDuration={setDuration}
+              listData={listData}
+              started={started}
+              listName={listName}
             />
           </Box>
         </Content>
@@ -52,9 +52,10 @@ const GoPractice = () => {
         setSlide={setSlide}
         roomData={room}
         setDuration={setDuration}
-        setPopup={setPopup}
-        button={button}
-        setButton={setButton}
+        started={started}
+        setStarted={setStarted}
+        listName={listName}
+        practiceId={practiceId}
       />
     </>
   );
@@ -92,7 +93,7 @@ const Content = styled.div`
 const Title = styled.h1`
   font-weight: 500;
   font-size: 24px;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   line-height: 32px;
   @media (max-width: 1024px) {
     font-size: 20px;

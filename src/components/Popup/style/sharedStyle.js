@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const PopBG = styled.div`
   position: absolute;
   width: 100%;
-  height: 100vh;
+  height: 400%;
   background-color: rgba(56, 56, 56, 0.5);
   z-index: 3;
   top: 0px;
@@ -22,13 +22,15 @@ export const Popup = styled.div`
   border-radius: 8px;
   z-index: 4;
   box-shadow: 2px 2px 2px rgb(0 0 0 / 25%);
-  padding: 16px;
+  padding: 32px 16px;
 `;
 export const Title = styled.p`
   font-size: 24px;
-  margin-bottom: 24px;
+  font-weight: 500;
+  margin-bottom: 32px;
   text-align: center;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  color: #333;
 `;
 
 export const Input = styled.input`
@@ -39,6 +41,9 @@ export const Input = styled.input`
   margin-bottom: 16px;
   padding: 8px;
   border-radius: 8px;
+  outline: none;
+  letter-spacing: 1px;
+  color: #333;
 `;
 
 export const Button = styled.button`
@@ -69,6 +74,7 @@ export const Button = styled.button`
 export const Tab = styled.div`
   display: flex;
   margin-top: 32px;
+  color: #333;
 `;
 export const TabLink = styled.a`
   width: fit-content;
@@ -77,7 +83,6 @@ export const TabLink = styled.a`
   margin-left: 16px;
   color: #b39e99;
   font-weight: 500;
-  /* text-decoration: underline; */
   &:hover {
     color: #d7b0a9;
   }

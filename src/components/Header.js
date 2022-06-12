@@ -1,25 +1,27 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { domain } from "../global/constants/urlPath";
 import SignIn from "./Popup/SignIn";
 import SignUp from "./Popup/SignUp";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase-config";
+import { LoginContext } from "../context/userContext";
+import { domain } from "../global/constants/urlPath";
+import { AiOutlineLogout } from "react-icons/ai";
 
 const Header = () => {
   const navigate = useNavigate();
   const [small, setSmall] = useState(true);
   const [open, setOpen] = useState(false);
   const [signup, setSignup] = useState(false);
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("yoga@yogaroom.com");
+  const [loginPassword, setLoginPassword] = useState("yoga123");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
-  const [user, setUser] = useState({});
+  const { loggedIn, setLoggedIn } = useContext(LoginContext);
 
   useEffect(() => {
-    if ((typeof window !== "undefined") & (window.location == domain)) {
+    if ((typeof window !== "undefined") & (window.location === domain)) {
       setSmall(false);
       window.addEventListener("scroll", () =>
         setSmall(window.pageYOffset > 140)
@@ -28,22 +30,30 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    if (user) {
+    if (loggedIn) {
       setOpen(false);
     }
     onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+      setLoggedIn(currentUser);
     });
   }, []);
 
   useEffect(() => {
     setOpen(false);
-  }, [user]);
+  }, [loggedIn]);
 
   const logout = async () => {
     await signOut(auth);
-    console.log(user);
+    navigate("/");
   };
+
+  function clickFavList() {
+    if (loggedIn) {
+      navigate("/favList");
+    } else {
+      setOpen(true);
+    }
+  }
 
   return (
     <>
@@ -55,16 +65,20 @@ const Header = () => {
               navigate("/");
             }}
           >
-            {/* YogaR♾️m */}
             YogaRoom
           </Logo>
           <Navbar>
-            {user ? (
+            <Option first onClick={clickFavList}>
+              Practice List
+            </Option>
+            {loggedIn ? (
               <>
-                <Option onClick={logout}>Sign Out</Option>
+                <Option onClick={logout}>
+                  <AiOutlineLogout />
+                </Option>
               </>
             ) : (
-              <Option onClick={() => setOpen(!open)}>Sign In</Option>
+              <Option onClick={() => setOpen(!open)}>Login</Option>
             )}
           </Navbar>
         </Content>
@@ -102,13 +116,10 @@ const Container = styled.div`
   left: 0;
   z-index: 2;
   width: 100%;
-  /* background: #fff; */
   background-image: ${(props) =>
     props.small
       ? "linear-gradient(135deg, #c59c96, #d3aba4, #d7b0a9, #e2c2ba)"
       : "auto"};
-  /* border-bottom: ${(props) =>
-    props.small ? "2px solid #e5e5e5" : "none"}; */
   box-shadow: ${(props) => (props.small ? "0px 0px 6px #c59c96" : "none")};
 `;
 
@@ -157,4 +168,9 @@ const Option = styled.li`
   color: #fff;
   margin-right: ${(prop) => (prop.first ? "24px" : "0px")};
   letter-spacing: 2px;
+  cursor: pointer;
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-right: ${(prop) => (prop.first ? "16px" : "0px")};
+  }
 `;

@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { LoginContext } from "../../context/userContext";
+
 import {
   PopBG,
   Popup,
@@ -22,15 +24,14 @@ const SignIn = ({
 }) => {
   const [note, setNote] = useState("");
   const [messageColor, setMessageColor] = useState("");
+  const { setUser } = useContext(LoginContext);
 
   async function login() {
     try {
       await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
       setMessageColor("#383838");
       setNote("Sign In Successfully!");
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
+      setUser(true);
     } catch (error) {
       setMessageColor("#8B8B8B");
       if (loginEmail === "" || loginPassword === "") {
@@ -60,6 +61,7 @@ const SignIn = ({
           }}
           type="type"
           placeholder="email"
+          value={loginEmail}
         ></Input>
         <Input
           onChange={(e) => {
@@ -68,6 +70,7 @@ const SignIn = ({
           }}
           type="password"
           placeholder="password"
+          value={loginPassword}
         ></Input>
         <Button onClick={login}>SIGN IN</Button>
         <Note color={messageColor}>{note}</Note>
