@@ -1,12 +1,23 @@
 import styled, { keyframes } from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AiOutlineAlert } from "react-icons/ai";
+import { db } from "../../../firebase-config";
+import { updateDoc, doc } from "firebase/firestore";
+import { UserContext } from "../../../context/userContext";
 
 const Footer = ({ listData, roomData, listName, practiceId }) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
+  const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    if (practiceId) {
+      setOpen(true);
+      setMessage("You are in editing mode.");
+    }
+  }, [practiceId]);
 
   async function clickEnterRoom() {
     // data validation
@@ -44,6 +55,27 @@ const Footer = ({ listData, roomData, listName, practiceId }) => {
       },
     });
   }
+  async function clickSave() {
+    setOpen(false);
+    // update data to firestore
+    const today = new Date();
+    const date = `${today.getFullYear()}/${
+      today.getMonth() + 1
+    }/${today.getDate()}`;
+    const practiceDoc = doc(db, "users", user, "practices", practiceId);
+    const newListData = {
+      listName: listName,
+      listData: listData,
+      timestamp: date,
+    };
+    await updateDoc(practiceDoc, newListData);
+    navigate("/favList");
+  }
+
+  function clickDiscard() {
+    setOpen(false);
+    navigate("/favList");
+  }
 
   return (
     <>
@@ -57,9 +89,18 @@ const Footer = ({ listData, roomData, listName, practiceId }) => {
       )}
       <Container>
         <Content>
-          <EnterButton primary onClick={clickEnterRoom}>
-            ENTER ROOM
-          </EnterButton>
+          {practiceId ? (
+            <>
+              <EnterButton onClick={clickDiscard}>QUIT</EnterButton>
+              <EnterButton primary onClick={clickSave}>
+                SAVE
+              </EnterButton>
+            </>
+          ) : (
+            <EnterButton primary onClick={clickEnterRoom}>
+              ENTER ROOM
+            </EnterButton>
+          )}
         </Content>
       </Container>
     </>
@@ -83,7 +124,8 @@ const Content = styled.div`
   width: 1344px;
   margin: 0 auto;
   display: flex;
-  justify-content: end;
+  flex-direction: row-reverse;
+  justify-content: space-between;
   padding: 32px 0px;
   @media (max-width: 1440px) {
     width: 100%;
@@ -98,7 +140,7 @@ const Content = styled.div`
 `;
 
 const EnterButton = styled.button`
-  width: 168px;
+  width: 158px;
   height: 48px;
   background-color: ${(props) => (props.primary ? "#d7b0a9" : "#FFFFFF")};
   border: ${(props) =>

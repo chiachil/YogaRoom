@@ -32,6 +32,7 @@ const SetFlow = () => {
     if (state !== null) {
       setList(state.listData);
       setBackground(state.roomData);
+      setListName(state.listName);
       setPracticeId(state.practiceId);
     }
   }, []);

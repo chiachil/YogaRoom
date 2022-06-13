@@ -158,36 +158,26 @@ const Footer = ({
       total += listData[i].duration;
     }
   }
-  function clickBack() {
-    navigate("/setFlow", { state: { listData: listData, roomData: roomData } });
-  }
 
   return (
     <>
       <Container>
         <Content>
           {!started ? (
-            <>
-              <Button onClick={clickBack}>BACK</Button>
-              <Button
-                primary
-                onClick={() => {
-                  clickStart();
-                  setStarted(true);
-                }}
-              >
-                START<SoundIcon></SoundIcon>
-              </Button>
-            </>
-          ) : !loggedIn ? (
-            <Button first onClick={() => Quit(false)}>
-              Quit
+            <Button
+              primary
+              onClick={() => {
+                clickStart();
+                setStarted(true);
+              }}
+            >
+              START<SoundIcon></SoundIcon>
             </Button>
+          ) : !loggedIn ? (
+            <Button onClick={() => Quit(false)}>Quit</Button>
           ) : !isEnter ? (
             <>
-              <Button first onClick={() => Quit(false)}>
-                Just Quit
-              </Button>
+              <Button onClick={() => Quit(false)}>Just Quit</Button>
               <Button primary onClick={() => Quit(true)}>
                 SAVE & QUIT
               </Button>
@@ -220,6 +210,7 @@ const Content = styled.div`
   width: 1344px;
   margin: 0 auto;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-between;
   padding: 32px 0px;
   @media (max-width: 1440px) {
@@ -247,7 +238,6 @@ const Button = styled.button`
   font-size: 18px;
   color: ${(props) => (props.primary ? "#FFFFFF" : "#adadad")};
   letter-spacing: 1px;
-  margin-right: ${(props) => (props.first ? "16px" : "0px")};
   display: flex;
   justify-content: center;
   align-items: center;
