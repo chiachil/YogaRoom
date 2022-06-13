@@ -8,7 +8,7 @@ import Footer from "./Components/Footer";
 
 const GoPractice = () => {
   const { state } = useLocation();
-  const { listData, roomData, listName, practiceId } = state;
+  const { listData, roomData, listName, practiceId, isEnter } = state;
   const [speech, setSpeech] = useState({
     text: "Click 'START'",
     trigger: false,
@@ -56,6 +56,7 @@ const GoPractice = () => {
         setStarted={setStarted}
         listName={listName}
         practiceId={practiceId}
+        isEnter={isEnter}
       />
     </>
   );

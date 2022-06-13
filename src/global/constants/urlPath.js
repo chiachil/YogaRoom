@@ -6,7 +6,10 @@ export const roomImage =
   "https://yogaroom-24504.firebaseapp.com/images/room/1.jpg";
 export const demo1Image =
   "https://yogaroom-24504.firebaseapp.com/images/demo/demo1.gif";
-export const demo2Image = "https://yogaroom-24504.firebaseapp.com/images/images/demo/demo2.gif";
-export const demo3Image = "https://yogaroom-24504.firebaseapp.com/images/images/demo/demo3.gif";
-export const demo4Image = "https://yogaroom-24504.firebaseapp.com/images/images/demo/demo4.png";
+export const demo2Image =
+  "https://yogaroom-24504.firebaseapp.com/images/demo/demo2.gif";
+export const demo3Image =
+  "https://yogaroom-24504.firebaseapp.com/images/demo/demo3.gif";
+export const demo4Image =
+  "https://yogaroom-24504.firebaseapp.com/images/demo/demo4.png";
 export const domain = "https://yogaroom-24504.firebaseapp.com/";

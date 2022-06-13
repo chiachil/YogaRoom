@@ -23,6 +23,9 @@ export const Popup = styled.div`
   z-index: 4;
   box-shadow: 2px 2px 2px rgb(0 0 0 / 25%);
   padding: 32px 16px;
+  @media (max-width: 768px) {
+    width: 350px;
+  }
 `;
 export const Title = styled.p`
   font-size: 24px;

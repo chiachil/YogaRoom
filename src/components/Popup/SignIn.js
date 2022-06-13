@@ -24,14 +24,20 @@ const SignIn = ({
 }) => {
   const [note, setNote] = useState("");
   const [messageColor, setMessageColor] = useState("");
-  const { setUser } = useContext(LoginContext);
+  const { setLoggedIn } = useContext(LoginContext);
 
   async function login() {
     try {
-      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      const data = await signInWithEmailAndPassword(
+        auth,
+        loginEmail,
+        loginPassword
+      );
       setMessageColor("#383838");
       setNote("Sign In Successfully!");
-      setUser(true);
+      const uid = data.user.uid;
+      console.log(uid);
+      setLoggedIn(uid);
     } catch (error) {
       setMessageColor("#8B8B8B");
       if (loginEmail === "" || loginPassword === "") {

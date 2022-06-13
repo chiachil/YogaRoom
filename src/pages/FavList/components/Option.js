@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { smImageUrl } from "../../../global/constants/urlPath";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { RiEditBoxLine } from "react-icons/ri";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../../firebase-config";
-import { collection, doc, getDocs, deleteDoc } from "firebase/firestore";
+import { collection, doc, deleteDoc } from "firebase/firestore";
 import { colorArr, voiceArr } from "../../../global/constants/room";
+import { LoginContext } from "../../../context/userContext";
 
 const Option = ({
   id,
@@ -23,6 +24,7 @@ const Option = ({
     color: colorArr[0],
     language: voiceArr[0],
   };
+  const { loggedIn, setLoggedIn } = useContext(LoginContext);
 
   async function updatePractice() {
     navigate("/setFlow", {
@@ -36,7 +38,8 @@ const Option = ({
   }
 
   async function deletePractice() {
-    const practiceDoc = doc(db, "practices", id);
+    const uid = loggedIn.uid;
+    const practiceDoc = doc(db, "users", uid, "practices", id);
     await deleteDoc(practiceDoc);
     setList((prev) => {
       return prev.filter((practice) => practice.id !== id);
@@ -44,8 +47,14 @@ const Option = ({
   }
 
   function goPractice() {
+    const isEnter = true;
     navigate("/goPractice", {
-      state: { listData: listData, roomData: roomData, listName: listName },
+      state: {
+        listData: listData,
+        roomData: roomData,
+        listName: listName,
+        isEnter: isEnter,
+      },
     });
   }
   return (

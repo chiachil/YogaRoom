@@ -11,5 +11,6 @@ button {
 }
 input {
   font-family: 'Poppins', 'Noto Sans TC', sans-serif;
+  -webkit-appearance: none;
 }
 `;

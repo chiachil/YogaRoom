@@ -12,7 +12,7 @@ const SetFlow = () => {
   const { state } = useLocation();
   const { loggedIn, setLoggedIn } = useContext(LoginContext);
   const [listName, setListName] = useState("");
-  const [practiceId, setPracticeId] = useState("123");
+  const [practiceId, setPracticeId] = useState("");
   const [list, setList] = useState([
     {
       id: 0,

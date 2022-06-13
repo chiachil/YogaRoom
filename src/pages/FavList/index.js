@@ -7,13 +7,17 @@ import { collection, getDocs } from "firebase/firestore";
 import { LoginContext } from "../../context/userContext";
 
 const FavList = () => {
-  const practicesCollectionRef = collection(db, "practices");
+  // const practicesCollectionRef = collection(db, "practices");
   const [list, setList] = useState([]);
   const { loggedIn, setLoggedIn } = useContext(LoginContext);
 
   useEffect(() => {
     const getPractice = async () => {
-      const data = await getDocs(practicesCollectionRef);
+      const uid = loggedIn.uid;
+      if (!uid) {
+        return;
+      }
+      const data = await getDocs(collection(db, "users", uid, "practices"));
       setList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getPractice();

@@ -19,12 +19,12 @@ const Footer = ({
   setStarted,
   listName,
   practiceId,
+  isEnter,
 }) => {
   const navigate = useNavigate();
   const { speak, voices, supported } = useSpeechSynthesis();
   const voiceEng = voices.find(({ lang }) => lang.match("en-ZA"));
   const voiceChi = voices.find(({ lang }) => lang.match("zh-TW"));
-  const practicesCollectionRef = collection(db, "practices");
   const { loggedIn, setLoggedIn } = useContext(LoginContext);
 
   useEffect(() => {
@@ -75,8 +75,10 @@ const Footer = ({
         today.getMonth() + 1
       }/${today.getDate()}`;
 
-      if (practiceId !== "123") {
-        const practiceDoc = doc(db, "practices", practiceId);
+      if (practiceId) {
+        // update doc to firestore
+        const uid = loggedIn.uid;
+        const practiceDoc = doc(db, "users", uid, "practices", practiceId);
         const newListData = {
           listName: listName,
           listData: listData,
@@ -84,12 +86,18 @@ const Footer = ({
         };
         await updateDoc(practiceDoc, newListData);
       } else {
-        // save list data to firestore
-        await addDoc(practicesCollectionRef, {
-          listName: listName,
-          listData: listData,
-          timestamp: date,
-        });
+        // add doc to firestore
+        const addPractice = async () => {
+          const uid = loggedIn.uid;
+          await Promise.all([
+            addDoc(collection(db, "users", uid, "practices"), {
+              listName: listName,
+              listData: listData,
+              timestamp: date,
+            }),
+          ]);
+        };
+        addPractice();
       }
     }
     navigate("/setFlow", {
@@ -159,22 +167,7 @@ const Footer = ({
     <>
       <Container>
         <Content>
-          {started ? (
-            loggedIn ? (
-              <>
-                <Button first onClick={() => Quit(false)}>
-                  Just Quit
-                </Button>
-                <Button primary onClick={() => Quit(true)}>
-                  SAVE & QUIT
-                </Button>
-              </>
-            ) : (
-              <Button first onClick={() => Quit(false)}>
-                Quit
-              </Button>
-            )
-          ) : (
+          {!started ? (
             <>
               <Button onClick={clickBack}>BACK</Button>
               <Button
@@ -187,6 +180,23 @@ const Footer = ({
                 START<SoundIcon></SoundIcon>
               </Button>
             </>
+          ) : !loggedIn ? (
+            <Button first onClick={() => Quit(false)}>
+              Quit
+            </Button>
+          ) : !isEnter ? (
+            <>
+              <Button first onClick={() => Quit(false)}>
+                Just Quit
+              </Button>
+              <Button primary onClick={() => Quit(true)}>
+                SAVE & QUIT
+              </Button>
+            </>
+          ) : (
+            <Button first onClick={() => Quit(false)}>
+              Quit
+            </Button>
           )}
         </Content>
       </Container>
