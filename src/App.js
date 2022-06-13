@@ -5,9 +5,11 @@ import HomePage from "./pages/HomePage";
 import FavList from "./pages/FavList";
 import { useState } from "react";
 import { LoginContext } from "./context/userContext";
-import Test from "./pages/test";
+import { UserContext } from "./context/userContext";
+
 export const App = () => {
-  const [loggedIn, setLoggedIn] = useState("");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState("");
 
   return (
     <LoginContext.Provider
@@ -16,15 +18,21 @@ export const App = () => {
         setLoggedIn,
       }}
     >
-      <Router>
-        <Routes>
-          <Route path="/goPractice" element={<GoPractice />} />
-          <Route path="/setFlow" element={<SetFlow />} />
-          <Route path="/favList" element={<FavList />} />
-          <Route path="/test" element={<Test />} />
-          <Route path="/" element={<HomePage />} />
-        </Routes>
-      </Router>
+      <UserContext.Provider
+        value={{
+          user,
+          setUser,
+        }}
+      >
+        <Router>
+          <Routes>
+            <Route path="/goPractice" element={<GoPractice />} />
+            <Route path="/setFlow" element={<SetFlow />} />
+            <Route path="/favList" element={<FavList />} />
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        </Router>
+      </UserContext.Provider>
     </LoginContext.Provider>
   );
 };

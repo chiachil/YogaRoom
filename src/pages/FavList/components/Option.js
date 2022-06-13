@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { db } from "../../../firebase-config";
 import { collection, doc, deleteDoc } from "firebase/firestore";
 import { colorArr, voiceArr } from "../../../global/constants/room";
-import { LoginContext } from "../../../context/userContext";
+import { LoginContext, UserContext } from "../../../context/userContext";
 
 const Option = ({
   id,
@@ -19,12 +19,12 @@ const Option = ({
 }) => {
   const [openSetting, setOpenSetting] = useState(false);
   const navigate = useNavigate();
-  const practicesCollectionRef = collection(db, "practices");
   const roomData = {
     color: colorArr[0],
     language: voiceArr[0],
   };
-  const { loggedIn, setLoggedIn } = useContext(LoginContext);
+  // const { loggedIn, setLoggedIn } = useContext(LoginContext);
+  const { user, setUser } = useContext(UserContext);
 
   async function updatePractice() {
     navigate("/setFlow", {
@@ -38,8 +38,7 @@ const Option = ({
   }
 
   async function deletePractice() {
-    const uid = loggedIn.uid;
-    const practiceDoc = doc(db, "users", uid, "practices", id);
+    const practiceDoc = doc(db, "users", user, "practices", id);
     await deleteDoc(practiceDoc);
     setList((prev) => {
       return prev.filter((practice) => practice.id !== id);

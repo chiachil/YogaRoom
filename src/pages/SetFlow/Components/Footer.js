@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { AiOutlineAlert } from "react-icons/ai";
 
-const Footer = ({ listData, roomData, listName, setListName, practiceId }) => {
+const Footer = ({ listData, roomData, listName, practiceId }) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -12,7 +12,7 @@ const Footer = ({ listData, roomData, listName, setListName, practiceId }) => {
     // data validation
     if (listData.length < 2) {
       setOpen(true);
-      setMessage("Please add one more position.");
+      setMessage("At least 2 positions.");
       setTimeout(() => setOpen(false), 3000);
       return;
     }

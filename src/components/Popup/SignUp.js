@@ -30,6 +30,7 @@ const SignUp = ({
         registerEmail,
         registerPassword
       );
+      setMessageColor("#b39e99");
       setNote("Account created successfully.");
     } catch (error) {
       setNote(error.message);

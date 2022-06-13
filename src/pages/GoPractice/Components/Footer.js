@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useSpeechSynthesis } from "react-speech-kit";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { db } from "../../../firebase-config";
 import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
 import { useContext } from "react";
-import { LoginContext } from "../../../context/userContext";
+import { LoginContext, UserContext } from "../../../context/userContext";
 import { AiFillSound } from "react-icons/ai";
 
 const Footer = ({
@@ -25,7 +25,8 @@ const Footer = ({
   const { speak, voices, supported } = useSpeechSynthesis();
   const voiceEng = voices.find(({ lang }) => lang.match("en-ZA"));
   const voiceChi = voices.find(({ lang }) => lang.match("zh-TW"));
-  const { loggedIn, setLoggedIn } = useContext(LoginContext);
+  const { loggedIn } = useContext(LoginContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     if (!speech.trigger) {
@@ -77,8 +78,7 @@ const Footer = ({
 
       if (practiceId) {
         // update doc to firestore
-        const uid = loggedIn.uid;
-        const practiceDoc = doc(db, "users", uid, "practices", practiceId);
+        const practiceDoc = doc(db, "users", user, "practices", practiceId);
         const newListData = {
           listName: listName,
           listData: listData,
@@ -88,9 +88,8 @@ const Footer = ({
       } else {
         // add doc to firestore
         const addPractice = async () => {
-          const uid = loggedIn.uid;
           await Promise.all([
-            addDoc(collection(db, "users", uid, "practices"), {
+            addDoc(collection(db, "users", user, "practices"), {
               listName: listName,
               listData: listData,
               timestamp: date,

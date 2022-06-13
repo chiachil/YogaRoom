@@ -30,17 +30,10 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    if (loggedIn) {
-      setOpen(false);
-    }
     onAuthStateChanged(auth, (currentUser) => {
       setLoggedIn(currentUser);
     });
   }, []);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [loggedIn]);
 
   const logout = async () => {
     await signOut(auth);

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { LoginContext } from "../../context/userContext";
+import { UserContext } from "../../context/userContext";
 
 import {
   PopBG,
@@ -24,7 +24,7 @@ const SignIn = ({
 }) => {
   const [note, setNote] = useState("");
   const [messageColor, setMessageColor] = useState("");
-  const { setLoggedIn } = useContext(LoginContext);
+  const { setUser } = useContext(UserContext);
 
   async function login() {
     try {
@@ -33,11 +33,12 @@ const SignIn = ({
         loginEmail,
         loginPassword
       );
-      setMessageColor("#383838");
+      setMessageColor("#b39e99");
       setNote("Sign In Successfully!");
-      const uid = data.user.uid;
-      console.log(uid);
-      setLoggedIn(uid);
+      setTimeout(() => {
+        setOpen(false);
+      }, 1000);
+      setUser(data.user.uid);
     } catch (error) {
       setMessageColor("#8B8B8B");
       if (loginEmail === "" || loginPassword === "") {
