@@ -5,6 +5,8 @@ import Header from "../../components/Header";
 import Demo from "./Components/Demo";
 import Schedule from "./Components/Schedule";
 import Footer from "./Components/Footer";
+import { useEffect } from "react";
+import { LanguageContext } from "../../context/preferenceContext";
 
 const GoPractice = () => {
   const { state } = useLocation();
@@ -17,47 +19,56 @@ const GoPractice = () => {
   const [duration, setDuration] = useState(slide.duration);
   const [room, setRoom] = useState(roomData);
   const [started, setStarted] = useState(false);
+  const [chinese, setChinese] = useState(false);
 
+  useEffect(() => {}, []);
   return (
     <>
-      <Header />
-      <Main>
-        <Content>
-          <Box>
-            <Title primary>{speech.text}</Title>
-          </Box>
-          <Box primary>
-            <Demo
-              slide={slide}
-              roomData={room}
-              updateRoom={setRoom}
-              setSpeech={setSpeech}
-              started={started}
-            />
-            <Schedule
-              slide={slide}
-              duration={duration}
-              setDuration={setDuration}
-              listData={listData}
-              started={started}
-              listName={listName}
-            />
-          </Box>
-        </Content>
-      </Main>
-      <Footer
-        speech={speech}
-        setSpeech={setSpeech}
-        listData={listData}
-        setSlide={setSlide}
-        roomData={room}
-        setDuration={setDuration}
-        started={started}
-        setStarted={setStarted}
-        listName={listName}
-        practiceId={practiceId}
-        isEnter={isEnter}
-      />
+      <LanguageContext.Provider
+        value={{
+          chinese,
+          setChinese,
+        }}
+      >
+        <Header />
+        <Main>
+          <Content>
+            <Box>
+              <Title primary>{speech.text}</Title>
+            </Box>
+            <Box primary>
+              <Demo
+                slide={slide}
+                roomData={room}
+                updateRoom={setRoom}
+                setSpeech={setSpeech}
+                started={started}
+              />
+              <Schedule
+                slide={slide}
+                duration={duration}
+                setDuration={setDuration}
+                listData={listData}
+                started={started}
+                listName={listName}
+              />
+            </Box>
+          </Content>
+        </Main>
+        <Footer
+          speech={speech}
+          setSpeech={setSpeech}
+          listData={listData}
+          setSlide={setSlide}
+          roomData={room}
+          setDuration={setDuration}
+          started={started}
+          setStarted={setStarted}
+          listName={listName}
+          practiceId={practiceId}
+          isEnter={isEnter}
+        />
+      </LanguageContext.Provider>
     </>
   );
 };

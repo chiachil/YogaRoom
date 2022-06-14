@@ -2,10 +2,13 @@ import styled from "styled-components";
 import { IoIosSettings } from "react-icons/io";
 import { AiFillSound } from "react-icons/ai";
 import { colorArr, voiceArr } from "../../../global/constants/room";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { LanguageContext } from "../../../context/preferenceContext";
 
 const Preference = ({ roomData, updateRoom, setSpeech }) => {
   const [popup, setPopup] = useState(false);
+  const { setChinese } = useContext(LanguageContext);
+
   function changeColor(option) {
     updateRoom({
       background: roomData.background,
@@ -22,11 +25,13 @@ const Preference = ({ roomData, updateRoom, setSpeech }) => {
     });
     if (option === "中文") {
       setSpeech({ text: "點擊 'START'", trigger: false });
+      setChinese(true);
     } else {
       setSpeech({
         text: "Click 'START'",
         trigger: false,
       });
+      setChinese(false);
     }
   }
 

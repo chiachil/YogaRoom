@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import { smImageUrl } from "../../../global/constants/urlPath";
+import { useContext } from "react";
+import { LanguageContext } from "../../../context/preferenceContext";
 
 const Item = ({ engName, chiName, imagePath, duration }) => {
+  const { chinese } = useContext(LanguageContext);
+
   return (
     <Card>
       <Image src={smImageUrl + imagePath}></Image>
-      <Name>{duration + "sec" + " · " + engName}</Name>
+      <Number>{duration + "s"}</Number>
+      {chinese ? <Name>{chiName}</Name> : <Name>{engName}</Name>}
     </Card>
   );
 };
@@ -39,14 +44,20 @@ const Image = styled.img`
   background-repeat: no-repeat;
 `;
 
-const Name = styled.h2`
-  width: 100%;
+const Name = styled.p`
+  width: calc(100%-48px);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 18px;
   line-height: 24px;
-  font-weight: 500;
+  font-weight: 400;
   color: #333333;
   letter-spacing: 1px;
+`;
+
+const Number = styled(Name)`
+  width: 48px;
+  font-size: 18px;
+  font-weight: 500;
 `;
