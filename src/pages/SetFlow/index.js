@@ -134,7 +134,7 @@ const Input = styled.input`
   width: 30%;
   font-size: 24px;
   border: none;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid #e9e9e9;
   padding: 2px;
   margin-left: 16px;
   color: #d7b0a9;

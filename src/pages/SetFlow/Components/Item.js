@@ -177,7 +177,9 @@ const Button = styled.button`
   position: relative;
   width: 16px;
   height: 24px;
-  /* background-color: #F8F8F8; */
+  &:hover {
+    background-color: #f8f8f8;
+  }
 `;
 const PlusArrow = styled(IoMdArrowDropup)`
   position: absolute;
