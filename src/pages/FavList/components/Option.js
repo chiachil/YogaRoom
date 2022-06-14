@@ -24,7 +24,7 @@ const Option = ({
     language: voiceArr[0],
   };
   // const { loggedIn, setLoggedIn } = useContext(LoginContext);
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   async function updatePractice() {
     navigate("/setFlow", {
@@ -60,20 +60,23 @@ const Option = ({
     <Card>
       <Setting onClick={() => setOpenSetting(!openSetting)}>⋮</Setting>
       {openSetting ? (
-        <Popup>
-          <Select first>
-            <SelectBtn onClick={updatePractice}>
-              <EditIcon />
-              Edit
-            </SelectBtn>
-          </Select>
-          <Select>
-            <SelectBtn onClick={deletePractice}>
-              <DeleteIcon />
-              Delete
-            </SelectBtn>
-          </Select>
-        </Popup>
+        <>
+          <Popup>
+            <Select first>
+              <SelectBtn onClick={updatePractice}>
+                <EditIcon />
+                Edit
+              </SelectBtn>
+            </Select>
+            <Select>
+              <SelectBtn onClick={deletePractice}>
+                <DeleteIcon />
+                Delete
+              </SelectBtn>
+            </Select>
+          </Popup>
+          <PopBG onClick={() => setOpenSetting(!openSetting)}></PopBG>
+        </>
       ) : (
         ""
       )}
@@ -196,7 +199,15 @@ const Setting = styled.button`
   font-size: 32px;
   font-weight: 500;
 `;
-
+const PopBG = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+`;
 const Popup = styled.div`
   position: absolute;
   background: #fff;
@@ -207,6 +218,7 @@ const Popup = styled.div`
   border: 1px solid #e5e5e5;
   border-radius: 8px;
   padding: 4px 8px;
+  z-index: 2;
 `;
 const Select = styled.div`
   padding-bottom: ${(prop) => (prop.first ? "8px" : "0px")};

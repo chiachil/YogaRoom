@@ -158,6 +158,16 @@ const Footer = ({
       total += listData[i].duration;
     }
   }
+  function BackEdit() {
+    navigate("/setFlow", {
+      state: {
+        listData: listData,
+        roomData: roomData,
+        listName: listName,
+        practiceId: practiceId,
+      },
+    });
+  }
 
   return (
     <>
