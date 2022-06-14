@@ -1,34 +1,40 @@
 import styled from "styled-components";
 import { BiMinus } from "react-icons/bi";
 import { smImageUrl } from "../../../global/constants/urlPath";
+import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Item = ({ id, imagePath, duration, updateData, deleteData }) => {
+  const [sec, setSec] = useState(duration);
+
+  useEffect(() => {
+    updateData(function (prev) {
+      return prev.map((pose) => {
+        if (pose.id === id) {
+          pose.duration = sec;
+        }
+        return pose;
+      });
+    });
+  }, [sec]);
+
   function deleteItem() {
     deleteData(function (prev) {
       return prev.filter((pose) => pose.id !== id);
     });
   }
 
-  function setTimer(e) {
-    updateData(function (prev) {
-      return prev.map((pose) => {
-        // validation
-        if (e.target.value === "" || e.target.value < 5) {
-          e.target.value = 5;
-        } else if (e.target.value > 60) {
-          e.target.value = 60;
-        } else if (e.target.value.length > 2) {
-          e.target.value = e.target.value.slice(-1);
-        }
+  function PlusTime() {
+    if (sec < 60 && sec >= 5) {
+      setSec(() => sec + 5);
+    }
+  }
 
-        // change time
-        if (pose.id === id) {
-          let num = parseInt(e.target.value);
-          pose.duration = num;
-        }
-        return pose;
-      });
-    });
+  function MinusTime() {
+    if (sec <= 60 && sec > 5) {
+      setSec(() => sec - 5);
+    }
   }
 
   return (
@@ -37,16 +43,17 @@ const Item = ({ id, imagePath, duration, updateData, deleteData }) => {
         <Image src={smImageUrl + imagePath} />
         <TimeBox>
           <TimeName>Seconds</TimeName>
-          <TimeInput
-            id={id}
-            type="number"
-            placeholder="05"
-            value={duration}
-            onChange={setTimer}
-            min="5"
-            max="60"
-            step="5"
-          ></TimeInput>
+          <InputBox>
+            <TimeInput>{sec}</TimeInput>
+            <ButtonBox>
+              <Button onClick={PlusTime}>
+                <PlusArrow></PlusArrow>
+              </Button>
+              <Button onClick={MinusTime}>
+                <MinusArrow></MinusArrow>
+              </Button>
+            </ButtonBox>
+          </InputBox>
         </TimeBox>
       </Pose>
       {id === 0 ? (
@@ -81,7 +88,7 @@ const Box = styled.div`
 `;
 
 const Pose = styled.div`
-  width: 60%;
+  width: 148px;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -100,21 +107,22 @@ const Image = styled.img`
 `;
 
 const TimeBox = styled.div`
+  width: 88px;
   flex-direction: column;
   justify-content: start;
   align-items: center;
 `;
 
 const TimeName = styled.p`
-  font-family: "Poppins";
   font-size: 14px;
   font-weight: 400;
   color: #c4c4c4;
   margin-bottom: 4px;
+  /* letter-spacing: 1px; */
 `;
 
-const TimeInput = styled.input`
-  font-family: "Poppins";
+const TimeInput = styled.p`
+  width: 50px;
   font-size: 32px;
   font-weight: 500;
   color: #333333;
@@ -123,7 +131,7 @@ const TimeInput = styled.input`
   transition: 0.5s;
   outline: none;
   &::-webkit-inner-spin-button {
-    opacity: 1;
+    opacity: 0;
   }
   &::placeholder {
     color: #c4c4c4;
@@ -164,4 +172,37 @@ const Minus = styled(BiMinus)`
   color: #333333;
   width: 24px;
   height: 24px;
+`;
+const Button = styled.button`
+  position: relative;
+  width: 16px;
+  height: 24px;
+  /* background-color: #F8F8F8; */
+`;
+const PlusArrow = styled(IoMdArrowDropup)`
+  position: absolute;
+  font-size: 20px;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+const MinusArrow = styled(IoMdArrowDropdown)`
+  position: absolute;
+  font-size: 20px;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
+const InputBox = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+`;
+const ButtonBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  height: 48px;
 `;
