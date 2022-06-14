@@ -41,6 +41,13 @@ const Box = styled.div`
   flex-wrap: wrap;
   overflow-x: hidden;
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: #e9e9e9;
+  }
   @media (max-width: 1280px) {
     width: 60%;
     padding-right: 16px;
