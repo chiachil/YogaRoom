@@ -19,7 +19,7 @@ export default Item;
 
 // styled components
 const Card = styled.div`
-  width: 98%;
+  width: 100%;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -27,12 +27,6 @@ const Card = styled.div`
   border-bottom: 1px solid #e5e5e5;
   padding: 8px;
   margin-bottom: 8px;
-  @media (max-width: 1440px) {
-    width: 96%;
-  }
-  @media (max-width: 1280px) {
-    width: 100%;
-  }
 `;
 
 const Image = styled.img`
@@ -45,7 +39,7 @@ const Image = styled.img`
 `;
 
 const Name = styled.p`
-  width: calc(100%-48px);
+  width: 200px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -54,6 +48,12 @@ const Name = styled.p`
   font-weight: 400;
   color: #333333;
   letter-spacing: 1px;
+  @media (max-width: 1280px) {
+    width: 270px;
+  }
+  @media (max-width: 1024px) {
+    width: calc(100%-48px);
+  }
 `;
 
 const Number = styled(Name)`

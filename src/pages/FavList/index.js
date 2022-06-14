@@ -113,7 +113,6 @@ const List = styled.div`
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
-  /* background: lightgray; */
 `;
 
 const Note = styled.p`

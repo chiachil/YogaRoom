@@ -29,6 +29,17 @@ const Header = () => {
       );
     }
   }, []);
+  useEffect(() => {
+    if (!open) {
+      document.body.style.overflow = "auto";
+      return;
+    }
+    if (window.pageYOffset > 0) {
+      document.documentElement.scrollTop = 0;
+    }
+    document.body.scrollTop = 0; // for safari
+    document.body.style.overflow = "hidden";
+  }, [open]);
 
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
