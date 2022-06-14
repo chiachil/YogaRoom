@@ -5,12 +5,9 @@ import { demo2Image } from "../../global/constants/urlPath";
 import { demo3Image } from "../../global/constants/urlPath";
 import { demo4Image } from "../../global/constants/urlPath";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { LoginContext } from "../../context/userContext";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const { loggedIn, setLoggedIn } = useContext(LoginContext);
 
   return (
     <>
