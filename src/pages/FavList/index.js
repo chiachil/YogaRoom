@@ -5,11 +5,12 @@ import Option from "./components/Option";
 import { db } from "../../firebase-config";
 import { collection, getDocs } from "firebase/firestore";
 import { LoginContext } from "../../context/userContext";
+import { spinner } from "../../global/constants/urlPath";
 
 const FavList = () => {
-  // const practicesCollectionRef = collection(db, "practices");
   const [list, setList] = useState([]);
   const { loggedIn } = useContext(LoginContext);
+  const [open, setOpen] = useState(true);
 
   useEffect(() => {
     const getPractice = async () => {
@@ -18,6 +19,7 @@ const FavList = () => {
           collection(db, "users", loggedIn.uid, "practices")
         );
         setList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        setOpen(false);
       }
     };
     getPractice();
@@ -27,6 +29,13 @@ const FavList = () => {
     <>
       <Header />
       <Main>
+        {open ? (
+          <PopBG>
+            <Spinner src={spinner}></Spinner>
+          </PopBG>
+        ) : (
+          ""
+        )}
         <Content>
           <TitleBox>
             <Title>Practice List</Title>
@@ -123,4 +132,22 @@ const Note = styled.p`
   @media (max-width: 768px) {
     font-size: 16px;
   }
+`;
+const PopBG = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 3;
+  top: 72px;
+  @media (max-width: 768px) {
+    top: 56px;
+  }
+`;
+const Spinner = styled.img`
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 50%;
+  top: 10%;
 `;
