@@ -25,6 +25,7 @@ export const Popup = styled.div`
   padding: 32px 16px;
   @media (max-width: 768px) {
     width: 350px;
+    top: 30%;
   }
 `;
 export const Title = styled.p`

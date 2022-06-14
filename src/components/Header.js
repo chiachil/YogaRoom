@@ -164,6 +164,7 @@ const Option = styled.li`
   cursor: pointer;
   @media (max-width: 768px) {
     font-size: 16px;
-    margin-right: ${(prop) => (prop.first ? "16px" : "0px")};
+    margin-right: ${(prop) => (prop.first ? "12px" : "0px")};
+    letter-spacing: 1px;
   }
 `;

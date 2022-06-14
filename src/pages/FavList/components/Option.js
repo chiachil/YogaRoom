@@ -9,14 +9,7 @@ import { collection, doc, deleteDoc } from "firebase/firestore";
 import { colorArr, voiceArr } from "../../../global/constants/room";
 import { LoginContext, UserContext } from "../../../context/userContext";
 
-const Option = ({
-  id,
-  listData,
-  listName,
-  setList,
-  timestamp,
-  setListChange,
-}) => {
+const Option = ({ id, listData, listName, setList, timestamp }) => {
   const [openSetting, setOpenSetting] = useState(false);
   const navigate = useNavigate();
   const roomData = {

@@ -91,7 +91,7 @@ const Footer = ({ listData, roomData, listName, practiceId }) => {
         <Content>
           {practiceId ? (
             <>
-              <EnterButton onClick={clickDiscard}>QUIT</EnterButton>
+              <EnterButton onClick={clickDiscard}>DISCARD</EnterButton>
               <EnterButton primary onClick={clickSave}>
                 SAVE
               </EnterButton>
