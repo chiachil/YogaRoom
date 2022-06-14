@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase-config";
-import { LoginContext } from "../context/userContext";
+import { LoginContext, UserContext } from "../context/userContext";
 import { domain } from "../global/constants/urlPath";
 import { FiLogOut } from "react-icons/fi";
 
@@ -19,6 +19,7 @@ const Header = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const { loggedIn, setLoggedIn } = useContext(LoginContext);
+  const { setUser } = useContext(UserContext);
 
   useEffect(() => {
     if ((typeof window !== "undefined") & (window.location == domain)) {
@@ -32,6 +33,9 @@ const Header = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setLoggedIn(currentUser);
+      if (loggedIn) {
+        setUser(loggedIn.uid);
+      }
     });
   }, []);
 
