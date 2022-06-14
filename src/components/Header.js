@@ -129,6 +129,9 @@ const Container = styled.div`
       ? "linear-gradient(135deg, #c59c96, #d3aba4, #d7b0a9, #e2c2ba)"
       : "auto"};
   box-shadow: ${(props) => (props.small ? "0px 0px 6px #c59c96" : "none")};
+  @media (max-width: 768px) {
+    z-index: 4;
+  } ;
 `;
 
 const Content = styled.div`

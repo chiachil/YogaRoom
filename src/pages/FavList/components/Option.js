@@ -229,6 +229,10 @@ const Popup = styled.div`
   border-radius: 8px;
   padding: 4px 8px;
   z-index: 2;
+  @media (max-width: 768px) {
+    top: 2px;
+    left: 24px;
+  }
 `;
 const Select = styled.div`
   padding-bottom: ${(prop) => (prop.first ? "8px" : "0px")};

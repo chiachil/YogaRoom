@@ -45,6 +45,7 @@ const SideMenuBox = styled.div`
     height: 400px;
   }
   @media (max-width: 768px) {
+    height: auto;
     max-height: 320px;
     padding: 8px 8px;
   }
@@ -81,6 +82,7 @@ const ScrollBox = styled.div`
     height: 87%;
   }
   @media (max-width: 768px) {
-    height: 250px;
+    height: auto;
+    max-height: 250px;
   }
 `;
