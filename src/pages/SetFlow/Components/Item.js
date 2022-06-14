@@ -85,6 +85,10 @@ const Box = styled.div`
   margin-bottom: 16px;
   margin-right: 16px;
   margin-left: 2px;
+  @media (max-width: 768px) {
+    width: 99%;
+    padding: 8px;
+  }
 `;
 
 const Pose = styled.div`
@@ -104,6 +108,10 @@ const Image = styled.img`
   @media (max-width: 1280px) {
     margin-right: 16px;
   }
+  @media (max-width: 768px) {
+    width: 56px;
+    height: 56px;
+  }
 `;
 
 const TimeBox = styled.div`
@@ -118,7 +126,6 @@ const TimeName = styled.p`
   font-weight: 400;
   color: #c4c4c4;
   margin-bottom: 4px;
-  /* letter-spacing: 1px; */
 `;
 
 const TimeInput = styled.p`
@@ -139,7 +146,6 @@ const TimeInput = styled.p`
 `;
 
 const Note = styled.span`
-  font-family: "Poppins";
   font-size: 16px;
   font-weight: 300;
   color: #adadad;
@@ -163,6 +169,10 @@ const CircleButton = styled.button`
     transform: scale(1);
     box-shadow: inset 0 0 4px 1px rgba(0, 0, 0, 0.1);
   }
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const Minus = styled(BiMinus)`
@@ -172,6 +182,10 @@ const Minus = styled(BiMinus)`
   color: #333333;
   width: 24px;
   height: 24px;
+  @media (max-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 const Button = styled.button`
   position: relative;
@@ -187,6 +201,7 @@ const PlusArrow = styled(IoMdArrowDropup)`
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
+  color: #333333;
 `;
 const MinusArrow = styled(IoMdArrowDropdown)`
   position: absolute;
@@ -194,6 +209,7 @@ const MinusArrow = styled(IoMdArrowDropdown)`
   bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
+  color: #333333;
 `;
 
 const InputBox = styled.div`

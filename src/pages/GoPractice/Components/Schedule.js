@@ -58,7 +58,7 @@ const Container = styled.div`
   }
   @media (max-width: 768px) {
     width: 100%;
-    padding: 8px 16px;
+    padding: 8px;
   }
 `;
 const Title = styled.h1`
@@ -73,6 +73,7 @@ const Title = styled.h1`
   text-overflow: ellipsis;
   @media (max-width: 768px) {
     padding-bottom: 16px;
+    font-size: 16px;
   }
 `;
 const SubTitle = styled(Title)`
@@ -91,6 +92,9 @@ const Box = styled.div`
   width: 100%;
   height: auto;
   padding-bottom: 32px;
+  @media (max-width: 768px) {
+    padding-bottom: 24px;
+  }
 `;
 
 const Pose = styled.h2`
@@ -99,10 +103,16 @@ const Pose = styled.h2`
   color: ${(prop) => (prop.primary ? "#333333" : "#c4c4c4")};
   letter-spacing: ${(prop) => (prop.primary ? "1px" : "2.5px")};
   margin-bottom: ${(prop) => (prop.primary ? "16px" : "0px")};
+  @media (max-width: 768px) {
+    font-size: ${(prop) => (prop.primary ? "20px" : "18px")};
+  }
 `;
 
 const Number = styled.div`
   font-size: 48px;
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
 `;
 
 const ScrollBox = styled.div`

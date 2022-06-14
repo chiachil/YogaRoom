@@ -124,7 +124,7 @@ const Footer = ({
               clearInterval(timeId);
               setDuration(0);
               setSpeech({
-                text: "Congrats! You just finished today's practice!",
+                text: "End of practice!",
                 trigger: true,
               });
             }, listData[i].duration * 1000);
@@ -143,7 +143,7 @@ const Footer = ({
             setTimeout(() => {
               clearInterval(timeId);
               setDuration(0);
-              setSpeech({ text: "恭喜! 您已完成今天的練習！", trigger: true });
+              setSpeech({ text: "練習結束！", trigger: true });
             }, listData[i].duration * 1000);
           } else {
             setSpeech({
@@ -158,16 +158,16 @@ const Footer = ({
       total += listData[i].duration;
     }
   }
-  function BackEdit() {
-    navigate("/setFlow", {
-      state: {
-        listData: listData,
-        roomData: roomData,
-        listName: listName,
-        practiceId: practiceId,
-      },
-    });
-  }
+  // function BackEdit() {
+  //   navigate("/setFlow", {
+  //     state: {
+  //       listData: listData,
+  //       roomData: roomData,
+  //       listName: listName,
+  //       practiceId: practiceId,
+  //     },
+  //   });
+  // }
 
   return (
     <>

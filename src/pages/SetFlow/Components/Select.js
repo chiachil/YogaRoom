@@ -58,4 +58,7 @@ const Box = styled.div`
     margin-top: 16px;
     padding-right: 2px;
   }
+  @media (max-width: 768px) {
+    overflow-y: hidden;
+  }
 `;

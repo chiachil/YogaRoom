@@ -107,6 +107,9 @@ const Card = styled.div`
     width: 100%;
     margin: 0px 0px 16px 0px;
   }
+  @media (max-width: 768px) {
+    padding: 8px;
+  }
 `;
 
 const Practice = styled.div`
@@ -114,7 +117,7 @@ const Practice = styled.div`
   display: flex;
   justify-content: start;
   @media (max-width: 768px) {
-    width: 60%;
+    width: 65%;
   }
 `;
 
@@ -127,18 +130,20 @@ const Image = styled.img`
   background-repeat: no-repeat;
   padding: 8px;
   @media (max-width: 768px) {
-    margin-right: 8px;
+    margin-right: 0px;
+    width: 64px;
+    height: 64px;
   }
 `;
 const NameBox = styled.div`
-  width: 80%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: start;
 `;
 const Name = styled.h2`
-  width: 100%;
+  width: 95%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -148,6 +153,10 @@ const Name = styled.h2`
   color: #333333;
   letter-spacing: 1px;
   margin-bottom: 8px;
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
 `;
 
 const Date = styled.h3`
@@ -157,6 +166,9 @@ const Date = styled.h3`
   font-weight: 400;
   color: #c4c4c4;
   letter-spacing: 2.5px;
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const Button = styled.button`
@@ -178,7 +190,8 @@ const Button = styled.button`
     background: #dec8b8;
   }
   @media (max-width: 768px) {
-    width: 80px;
+    width: 72px;
+    font-size: 16px;
   }
 `;
 
@@ -191,6 +204,10 @@ const Setting = styled.button`
   color: #adadad;
   font-size: 32px;
   font-weight: 500;
+  @media (max-width: 768px) {
+    top: 2px;
+    left: 2px;
+  }
 `;
 const PopBG = styled.div`
   position: fixed;

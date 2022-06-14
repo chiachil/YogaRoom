@@ -16,6 +16,7 @@ const Footer = ({ listData, roomData, listName, practiceId }) => {
     if (practiceId) {
       setOpen(true);
       setMessage("You are in editing mode.");
+      setTimeout(() => setOpen(false), 3000);
     }
   }, [practiceId]);
 
@@ -201,8 +202,10 @@ const AlertCard = styled.div`
   animation-fill-mode: forwards;
   @media (max-width: 768px) {
     width: 80%;
-    top: 56px;
-    right: 0px;
+    top: 64px;
+    right: 8px;
+    animation-name: none;
+    height: 48px;
   }
 `;
 

@@ -45,8 +45,8 @@ const SideMenuBox = styled.div`
     height: 400px;
   }
   @media (max-width: 768px) {
-    height: 320px;
-    padding: 8px 16px;
+    max-height: 320px;
+    padding: 8px 8px;
   }
 `;
 const Title = styled.h1`
@@ -59,6 +59,7 @@ const Title = styled.h1`
   padding-bottom: 24px;
   @media (max-width: 768px) {
     padding-bottom: 16px;
+    font-size: 16px;
   }
 `;
 

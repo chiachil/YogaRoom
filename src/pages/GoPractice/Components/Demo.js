@@ -72,12 +72,15 @@ const Mat = styled.div`
   }
   @media (max-width: 1024px) {
     width: 80%;
+    border-bottom: 72px solid ${(props) => props.color};
+    border-left: 72px solid transparent;
+    border-right: 72px solid transparent;
   }
   @media (max-width: 768px) {
     width: 95%;
-    border-bottom: 70px solid ${(props) => props.color};
-    border-left: 70px solid transparent;
-    border-right: 70px solid transparent;
+    border-bottom: 56px solid ${(props) => props.color};
+    border-left: 56px solid transparent;
+    border-right: 56px solid transparent;
   }
 `;
 const Figure = styled.img`

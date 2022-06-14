@@ -67,6 +67,10 @@ const Card = styled.div`
     width: 100%;
     margin: 0px 0px 16px 0px;
   }
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 8px;
+  }
 `;
 
 const Pose = styled.div`
@@ -82,6 +86,10 @@ const Image = styled.img`
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
+  @media (max-width: 768px) {
+    width: 64px;
+    height: 64px;
+  }
 `;
 const NameBox = styled.div`
   width: 100%;
@@ -99,6 +107,10 @@ const EngName = styled.h2`
   color: #333333;
   letter-spacing: 1px;
   margin-bottom: 8px;
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
 `;
 
 const ChiName = styled.h3`
@@ -108,6 +120,9 @@ const ChiName = styled.h3`
   font-weight: 400;
   color: #c4c4c4;
   letter-spacing: 2.5px;
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 const CircleButton = styled.button`
   position: relative;
@@ -126,6 +141,10 @@ const CircleButton = styled.button`
     transform: scale(1);
     box-shadow: inset 0 0 4px 1px rgba(0, 0, 0, 0.1);
   }
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const Plus = styled(BiPlus)`
@@ -135,4 +154,8 @@ const Plus = styled(BiPlus)`
   color: #333333;
   width: 24px;
   height: 24px;
+  @media (max-width: 768px) {
+    width: 20px;
+    height: 20px;
+  }
 `;

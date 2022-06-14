@@ -33,7 +33,7 @@ const HomePage = () => {
               list of your own.
             </SubTitle>
             <Box2>
-              <Demo src={demo2Image}></Demo>
+              <Demo second src={demo2Image}></Demo>
             </Box2>
           </Content>
         </Section>
@@ -57,7 +57,7 @@ const HomePage = () => {
               immediately.
             </SubTitle>
             <Box2>
-              <Demo src={demo4Image}></Demo>
+              <Demo second src={demo4Image}></Demo>
             </Box2>
           </Content>
         </Section>
@@ -87,9 +87,12 @@ const Section = styled.div`
       ? "linear-gradient(135deg, #c59c96, #d7b0a9, #edd3cb, #FAEBE8)"
       : props.last
       ? "#FFF"
-      : "none"};
+      : "#none"};
   position: relative;
   color: #fff;
+  @media (max-width: 768px) {
+    padding: 0px 22px;
+  } ;
 `;
 const Content = styled.div`
   width: 1344px;
@@ -142,9 +145,11 @@ const Box1 = styled.div`
   @media (max-width: 1440px) {
     margin-top: -48px;
   }
+  @media (max-width: 1280px) {
+    margin-top: 16px;
+  }
   @media (max-width: 768px) {
-    margin-top: 0px;
-    bottom: 10%;
+    bottom: 5%;
   }
   @media (max-width: 600px) {
     bottom: auto;
@@ -161,10 +166,9 @@ const Box2 = styled.div`
     bottom: 10%;
   }
   @media (max-width: 600px) {
-    bottom: auto;
     margin-top: 40px;
-    animation-name: none;
-  } ;
+    bottom: auto;
+  }
 `;
 const Box3 = styled.div`
   position: absolute;
@@ -176,14 +180,14 @@ const Box3 = styled.div`
     bottom: 10%;
   }
   @media (max-width: 600px) {
-    bottom: auto;
     margin-top: 40px;
     right: 50%;
     transform: translateX(40%);
-  } ;
+    bottom: auto;
+  }
 `;
 const Demo = styled.img`
-  width: 65vw;
+  width: ${(props) => (props.second ? "50vw" : "65vw")};
   min-width: 350px;
   max-width: 1000px;
   border-radius: 8px;
@@ -191,6 +195,18 @@ const Demo = styled.img`
     prop.primary
       ? "-40px 48px 48px rgb(85 78 78 / 32%)"
       : "48px 40px 48px rgb(85 78 78 / 32%)"};
+  @media (max-width: 1400px) {
+    width: ${(props) => (props.second ? "800px" : "936px")};
+  }
+  @media (max-width: 1280px) {
+    width: 880px;
+  }
+  @media (max-width: 1024px) {
+    width: ${(props) => (props.second ? "740px" : "800px")};
+  }
+  @media (max-width: 768px) {
+    width: 90vw;
+  }
 `;
 
 const Title = styled.p`
@@ -201,14 +217,18 @@ const Title = styled.p`
   margin-top: ${(prop) => (prop.primary ? "5%" : "0%")};
   line-height: 40px;
   @media (max-width: 1440px) {
-    margin-top: ${(prop) => (prop.second ? "5%" : "0%")};
+    margin-top: ${(prop) => (prop.second ? "3%" : "0%")};
     padding-top: ${(prop) => (prop.primary ? "8%" : "3%")};
   }
-  @media (max-width: 768px) {
-    margin-top: ${(prop) => (prop.second ? "10%" : "0%")};
+  @media (max-width: 1024px) {
     font-size: 32px;
-    line-height: 48px;
-  } ;
+  }
+  @media (max-width: 768px) {
+    margin-top: 0%;
+    padding-top: ${(prop) => (prop.primary ? "15%" : "3%")};
+    font-size: 24px;
+    line-height: 32px;
+  }
 `;
 
 const SubTitle = styled.p`
@@ -217,10 +237,14 @@ const SubTitle = styled.p`
   color: ${(prop) => (prop.primary ? "#FFF" : "#adadad")};
   margin-top: 24px;
   line-height: 40px;
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     font-size: 20px;
-    line-height: 32px;
-  } ;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 16px;
+  }
 `;
 
 const Button = styled.button`
@@ -240,6 +264,11 @@ const Button = styled.button`
   }
   &:active {
     background: #dec8b8;
+  }
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-top: 24px;
+    padding: 8px 16px;
   }
 `;
 const Footer = styled.div`

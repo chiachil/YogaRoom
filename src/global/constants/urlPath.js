@@ -14,4 +14,5 @@ export const demo4Image =
   "https://yogaroom-24504.firebaseapp.com/images/demo/demo4.png";
 export const domain = "https://yogaroom-24504.firebaseapp.com/";
 
-export const spinner = "https://yogaroom-24504.firebaseapp.com/images/icons/spinner.gif";
+export const spinner =
+  "https://yogaroom-24504.firebaseapp.com/images/icons/spinner.gif";
