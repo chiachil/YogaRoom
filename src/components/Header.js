@@ -7,7 +7,7 @@ import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase-config";
 import { LoginContext } from "../context/userContext";
 import { domain } from "../global/constants/urlPath";
-import { AiOutlineLogout } from "react-icons/ai";
+import { FiLogOut } from "react-icons/fi";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Header = () => {
   const { loggedIn, setLoggedIn } = useContext(LoginContext);
 
   useEffect(() => {
-    if ((typeof window !== "undefined") & (window.location === domain)) {
+    if ((typeof window !== "undefined") & (window.location == domain)) {
       setSmall(false);
       window.addEventListener("scroll", () =>
         setSmall(window.pageYOffset > 140)
@@ -35,10 +35,10 @@ const Header = () => {
     });
   }, []);
 
-  const logout = async () => {
+  async function logout() {
     await signOut(auth);
     navigate("/");
-  };
+  }
 
   function clickFavList() {
     if (loggedIn) {
@@ -67,7 +67,7 @@ const Header = () => {
             {loggedIn ? (
               <>
                 <Option onClick={logout}>
-                  <AiOutlineLogout />
+                  <FiLogOut />
                 </Option>
               </>
             ) : (
@@ -122,7 +122,7 @@ const Content = styled.div`
   align-items: center;
   width: 1344px;
   margin: 0 auto;
-  padding: ${(props) => (props.small ? "24px 0px" : "24px 0px")};
+  padding: 24px 0px;
   @media (max-width: 1440px) {
     width: 100%;
     margin: 0px;
