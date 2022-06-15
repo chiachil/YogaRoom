@@ -19,7 +19,7 @@ const HomePage = () => {
             <SubTitle primary>
               with easier tool to design sequences and practice
             </SubTitle>
-            <Button onClick={() => navigate("/setFlow")}>QUICK START</Button>
+            <Button onClick={() => navigate("/flow")}>QUICK START</Button>
             <Box1>
               <Demo primary src={demo1Image}></Demo>
             </Box1>

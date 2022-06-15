@@ -55,7 +55,7 @@ const Footer = ({
     }
     if (roomData.language === "English") {
       setSpeech({
-        text: "The practice starts with " + listData[0].engName + ".",
+        text: "Practice starts with " + listData[0].engName + ".",
         trigger: true,
       });
     } else if (roomData.language === "中文") {
@@ -99,7 +99,7 @@ const Footer = ({
         addPractice();
       }
     }
-    navigate("/setFlow", {
+    navigate("/flow", {
       state: {
         listData: [listData[0]],
         roomData: {
@@ -158,44 +158,75 @@ const Footer = ({
       total += listData[i].duration;
     }
   }
-  // function BackEdit() {
-  //   navigate("/setFlow", {
-  //     state: {
-  //       listData: listData,
-  //       roomData: roomData,
-  //       listName: listName,
-  //       practiceId: practiceId,
-  //     },
-  //   });
-  // }
+  function BackEdit() {
+    navigate("/flow", {
+      state: {
+        listData: listData,
+        roomData: roomData,
+        listName: listName,
+        // practiceId: practiceId,
+      },
+    });
+  }
 
   return (
     <>
       <Container>
         <Content>
           {!started ? (
-            <Button
-              primary
-              onClick={() => {
-                clickStart();
-                setStarted(true);
-              }}
-            >
-              START<SoundIcon></SoundIcon>
+            !loggedIn ? (
+              <>
+                <Button
+                  primary
+                  onClick={() => {
+                    clickStart();
+                    setStarted(true);
+                  }}
+                >
+                  START<SoundIcon></SoundIcon>
+                </Button>
+                <Button onClick={BackEdit}>BACK TO EDIT</Button>
+              </>
+            ) : !isEnter ? (
+              <>
+                <Button
+                  primary
+                  onClick={() => {
+                    clickStart();
+                    setStarted(true);
+                  }}
+                >
+                  START<SoundIcon></SoundIcon>
+                </Button>
+                <Button onClick={BackEdit}>BACK TO EDIT</Button>
+              </>
+            ) : (
+              <Button
+                primary
+                onClick={() => {
+                  clickStart();
+                  setStarted(true);
+                }}
+              >
+                START<SoundIcon></SoundIcon>
+              </Button>
+            )
+          ) : // click start
+          !loggedIn ? (
+            <Button first onClick={() => Quit(false)}>
+              Quit
             </Button>
-          ) : !loggedIn ? (
-            <Button onClick={() => Quit(false)}>Quit</Button>
-          ) : !isEnter ? (
+          ) : isEnter ? (
+            <Button first onClick={() => Quit(false)}>
+              Quit
+            </Button>
+          ) : (
             <>
               <Button onClick={() => Quit(false)}>Just Quit</Button>
               <Button primary onClick={() => Quit(true)}>
                 SAVE & QUIT
               </Button>
             </>
-          ) : (
-            <Button first onClick={() => Quit(false)}>
-              Quit
-            </Button>
           )}
         </Content>
       </Container>

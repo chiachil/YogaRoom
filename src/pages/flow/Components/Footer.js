@@ -36,7 +36,7 @@ const Footer = ({ listData, roomData, listName, practiceId }) => {
     }
     if (!listName) {
       const listName = "Untitled";
-      navigate("/goPractice", {
+      navigate("/practice", {
         state: {
           listData: listData,
           roomData: roomData,
@@ -47,7 +47,7 @@ const Footer = ({ listData, roomData, listName, practiceId }) => {
       return;
     }
     // change page
-    navigate("/goPractice", {
+    navigate("/practice", {
       state: {
         listData: listData,
         roomData: roomData,
@@ -70,12 +70,12 @@ const Footer = ({ listData, roomData, listName, practiceId }) => {
       timestamp: date,
     };
     await updateDoc(practiceDoc, newListData);
-    navigate("/favList");
+    navigate("/practiceList");
   }
 
   function clickDiscard() {
     setOpen(false);
-    navigate("/favList");
+    navigate("/practiceList");
   }
 
   return (

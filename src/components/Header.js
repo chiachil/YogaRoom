@@ -57,7 +57,7 @@ const Header = () => {
 
   function clickFavList() {
     if (loggedIn) {
-      navigate("/favList");
+      navigate("/practiceList");
     } else {
       setOpen(true);
     }

@@ -5,9 +5,9 @@ import { RiEditBoxLine } from "react-icons/ri";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../../firebase-config";
-import { collection, doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 import { colorArr, voiceArr } from "../../../global/constants/room";
-import { LoginContext, UserContext } from "../../../context/userContext";
+import { UserContext } from "../../../context/userContext";
 
 const Option = ({ id, listData, listName, setList, timestamp }) => {
   const [openSetting, setOpenSetting] = useState(false);
@@ -16,11 +16,10 @@ const Option = ({ id, listData, listName, setList, timestamp }) => {
     color: colorArr[0],
     language: voiceArr[0],
   };
-  // const { loggedIn, setLoggedIn } = useContext(LoginContext);
   const { user } = useContext(UserContext);
 
   async function updatePractice() {
-    navigate("/setFlow", {
+    navigate("/flow", {
       state: {
         listData: listData,
         roomData: roomData,
@@ -40,7 +39,7 @@ const Option = ({ id, listData, listName, setList, timestamp }) => {
 
   function goPractice() {
     const isEnter = true;
-    navigate("/goPractice", {
+    navigate("/practice", {
       state: {
         listData: listData,
         roomData: roomData,
