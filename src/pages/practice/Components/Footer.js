@@ -169,6 +169,10 @@ const Footer = ({
     });
   }
 
+  function BackList() {
+    navigate("/practiceList");
+  }
+
   return (
     <>
       <Container>
@@ -201,15 +205,18 @@ const Footer = ({
                 <Button onClick={BackEdit}>BACK TO EDIT</Button>
               </>
             ) : (
-              <Button
-                primary
-                onClick={() => {
-                  clickStart();
-                  setStarted(true);
-                }}
-              >
-                START<SoundIcon></SoundIcon>
-              </Button>
+              <>
+                <Button
+                  primary
+                  onClick={() => {
+                    clickStart();
+                    setStarted(true);
+                  }}
+                >
+                  START<SoundIcon></SoundIcon>
+                </Button>
+                <Button onClick={BackList}>BACK TO LIST</Button>
+              </>
             )
           ) : // click start
           !loggedIn ? (
