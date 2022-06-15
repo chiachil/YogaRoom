@@ -24,7 +24,7 @@ const Footer = ({ listData, roomData, listName, practiceId }) => {
     // data validation
     if (listData.length < 2) {
       setOpen(true);
-      setMessage("At least 2 positions.");
+      setMessage("At least 2 positions are required.");
       setTimeout(() => setOpen(false), 3000);
       return;
     }
