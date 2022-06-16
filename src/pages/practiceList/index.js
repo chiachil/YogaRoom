@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import { useEffect, useState, useContext } from "react";
 import Option from "./components/Option";
 import { db } from "../../firebase-config";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { LoginContext } from "../../context/userContext";
 import { spinner } from "../../global/constants/urlPath";
 
@@ -15,11 +15,18 @@ const FavList = () => {
   useEffect(() => {
     const getPractice = async () => {
       if (loggedIn) {
-        const data = await getDocs(
-          collection(db, "users", loggedIn.uid, "practices")
+        const collectionRef = collection(
+          db,
+          "users",
+          loggedIn.uid,
+          "practices"
         );
-        setList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        const q = query(collectionRef, orderBy("timestamp", "desc"));
+        const data = onSnapshot(q, (snapshot) =>
+          setList(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+        );
         setOpen(false);
+        return data;
       }
     };
     getPractice();
@@ -47,6 +54,13 @@ const FavList = () => {
               <>
                 {list.map((item) => {
                   const { listName, listData, id, timestamp } = item;
+                  const date = timestamp.toDate();
+                  const dateString =
+                    date.getFullYear() +
+                    "/" +
+                    date.getMonth() +
+                    "/" +
+                    date.getDate();
                   return (
                     <Option
                       key={id}
@@ -55,7 +69,7 @@ const FavList = () => {
                       listName={listName}
                       list={list}
                       setList={setList}
-                      timestamp={timestamp}
+                      date={dateString}
                     ></Option>
                   );
                 })}

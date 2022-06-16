@@ -3,7 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useSpeechSynthesis } from "react-speech-kit";
 import { useEffect } from "react";
 import { db } from "../../../firebase-config";
-import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  updateDoc,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { useContext } from "react";
 import { LoginContext, UserContext } from "../../../context/userContext";
 import { AiFillSound } from "react-icons/ai";
@@ -70,11 +76,7 @@ const Footer = ({
 
   async function Quit(isSave) {
     if (isSave) {
-      // create timestamp
-      const today = new Date();
-      const date = `${today.getFullYear()}/${
-        today.getMonth() + 1
-      }/${today.getDate()}`;
+      const timestamp = serverTimestamp();
 
       if (practiceId) {
         // update doc to firestore
@@ -82,7 +84,7 @@ const Footer = ({
         const newListData = {
           listName: listName,
           listData: listData,
-          timestamp: date,
+          timestamp: timestamp,
         };
         await updateDoc(practiceDoc, newListData);
       } else {
@@ -92,7 +94,7 @@ const Footer = ({
             addDoc(collection(db, "users", user, "practices"), {
               listName: listName,
               listData: listData,
-              timestamp: date,
+              timestamp: timestamp,
             }),
           ]);
         };
@@ -164,7 +166,6 @@ const Footer = ({
         listData: listData,
         roomData: roomData,
         listName: listName,
-        // practiceId: practiceId,
       },
     });
   }

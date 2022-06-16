@@ -9,7 +9,7 @@ import { doc, deleteDoc } from "firebase/firestore";
 import { colorArr, voiceArr } from "../../../global/constants/room";
 import { UserContext } from "../../../context/userContext";
 
-const Option = ({ id, listData, listName, setList, timestamp }) => {
+const Option = ({ id, listData, listName, setList, date }) => {
   const [openSetting, setOpenSetting] = useState(false);
   const navigate = useNavigate();
   const roomData = {
@@ -76,7 +76,7 @@ const Option = ({ id, listData, listName, setList, timestamp }) => {
         <Image src={smImageUrl + "EasyPose.svg"}></Image>
         <NameBox>
           <Name>{listName}</Name>
-          <Date>{timestamp}</Date>
+          <Date>{date}</Date>
         </NameBox>
       </Practice>
       <Button onClick={goPractice}>Enter</Button>

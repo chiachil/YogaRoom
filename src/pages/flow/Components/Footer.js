@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import { AiOutlineAlert } from "react-icons/ai";
 import { db } from "../../../firebase-config";
-import { updateDoc, doc } from "firebase/firestore";
+import { updateDoc, doc, serverTimestamp } from "firebase/firestore";
 import { UserContext } from "../../../context/userContext";
 
 const Footer = ({ listData, roomData, listName, practiceId }) => {
@@ -59,15 +59,12 @@ const Footer = ({ listData, roomData, listName, practiceId }) => {
   async function clickSave() {
     setOpen(false);
     // update data to firestore
-    const today = new Date();
-    const date = `${today.getFullYear()}/${
-      today.getMonth() + 1
-    }/${today.getDate()}`;
+    const timestamp = serverTimestamp();
     const practiceDoc = doc(db, "users", user, "practices", practiceId);
     const newListData = {
       listName: listName,
       listData: listData,
-      timestamp: date,
+      timestamp: timestamp,
     };
     await updateDoc(practiceDoc, newListData);
     navigate("/practiceList");
