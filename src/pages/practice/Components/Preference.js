@@ -43,7 +43,6 @@ const Preference = ({ roomData, updateRoom, setSpeech }) => {
       </Button>
       {popup ? (
         <>
-          <PopBG onClick={() => setPopup(!popup)}></PopBG>
           <Popup>
             <SubTitle>Mat Color</SubTitle>
             <Box>
@@ -125,15 +124,6 @@ const Icon = styled(IoIosSettings)`
   width: 24px;
   height: 24px;
   margin-right: 8px;
-`;
-const PopBG = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0);
-  z-index: 3;
-  top: 0px;
-  left: 0px;
 `;
 
 const Popup = styled.div`
