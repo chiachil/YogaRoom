@@ -4,6 +4,7 @@ YogaRoom is a website that aims to assist yogi / yogini with their practice at h
 
 YogaRoom 是一個輔助瑜珈自主練習的工具網站。它的誕生是源於疫情期間，為了幫助瑜珈學習者在家也能自在練習，因此打造了瑜珈課體驗的線上空間，引導學習者從自行設計瑜珈序列，到給予視/聽覺的示範輔助，以及儲存課程等功能，讓瑜珈練習變得更個人、舒適和方便的體驗。
 
+
 ## Content of Table
 
   * [Live Demo](#live-demo)
@@ -12,9 +13,8 @@ YogaRoom 是一個輔助瑜珈自主練習的工具網站。它的誕生是源�
   * [Component Planning & State Management](#component-planning---state-management)
   * [Features](#features)
 
-## Live Demo
 
----
+## Live Demo
 
 [https://yogaroom-24504.firebaseapp.com/](https://yogaroom-24504.firebaseapp.com/)
 
@@ -24,9 +24,12 @@ You are free to experience YogaRoom as a guest or you might want to log in, whic
 
 你可以透過訪客的方式體驗 YogaRoom 大多數的功能，也可以選擇登入會員，獲得儲存課程的功能，方便下次輕鬆快速開始你的練習。若希望測試會員功能，以下提供測試帳號及密碼供你使用。
 
-## Tech Stack
+| Account | yoga@yogaroom.com |
+| --- | --- |
+| Password | yoga123 |
 
----
+
+## Tech Stack
 
 YogaRoom is constructed by using `React Hook` and  `React-Router` to implement Single Page Application（**SPA**）, making the user experience better; Using `React Context` to pass member state through nested components tree; Using `JSX` and `Styled-components` to write HTML element and style right directly in the JS component, making writing more semantic and intuitive; Using `Third-party Module` to achieve the text-to-speech function.
 
@@ -45,9 +48,8 @@ Using `NPM` for package management, `Prettier` to unified coding style, and `G
 
 開發工具使用 **NPM** 進行套件管理、**Prettier** 統一程式碼風格、**GitHub** 做版本控制。
 
-## Component Planning & State Management
 
----
+## Component Planning & State Management
 
 Component planning manages routing according to the core functions, and is divided into four main components (Homepage, Flow, Practice, PracticeList), and then divided into sub-components according to the functional complexity of each component. Among them, Header is a shared component.
 
@@ -57,9 +59,8 @@ The position of the main function state management is in the parent layer of eac
 
 主要功能狀態管理的位置都在四個主要組件各自的父層，並透過prop傳遞到子層。考量資料庫的負擔，除非是有儲存的課程資料才會是從Firebase Firestore撈取資料，否則其他設定都是透過React Router的useNavigate和useLocation實現不同路由的組件間的傳遞，並以session的方式紀錄。
 
-## Features
 
----
+## Features
 
 ### 1. ****Arrange Sequences and Adjust Time on Each Position****
 
