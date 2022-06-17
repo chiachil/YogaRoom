@@ -1,14 +1,15 @@
 # YogaRoom
 
----
-
 YogaRoom is a website that aims to assist yogi / yogini with their practice at home. It was born during the pandemic of COVID-19, when people can’t go to the yoga classes. Therefore, YogaRoom brings the experience from offline to online and tries to make yoga practice more personal, comfortable and convinient through a set of online tools, such as `Sequence Design`, `Visual and Auditory Guidance`, and `Saving Practices`.
 
 YogaRoom 是一個輔助瑜珈自主練習的工具網站。它的誕生是源於疫情期間，為了幫助瑜珈學習者在家也能自在練習，因此打造了瑜珈課體驗的線上空間，引導學習者從自行設計瑜珈序列，到給予視/聽覺的示範輔助，以及儲存課程等功能，讓瑜珈練習變得更個人、舒適和方便的體驗。
 
 ## Content of Table
 
----
+1. [Live Demo](## Live Demo)
+2. [Tech Stack](## Tech Stack)
+3. [Component Planning & State Management](## Component Planning & State Management)
+4. [Features](## Features)
 
 ## Live Demo
 
