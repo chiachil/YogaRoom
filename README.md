@@ -6,10 +6,11 @@ YogaRoom 是一個輔助瑜珈自主練習的工具網站。它的誕生是源�
 
 ## Content of Table
 
-1. [Live Demo](## Live Demo)
-2. [Tech Stack](## Tech Stack)
-3. [Component Planning & State Management](## Component Planning & State Management)
-4. [Features](## Features)
+  * [Live Demo](#live-demo)
+    + [Test Account](#test-account)
+  * [Tech Stack](#tech-stack)
+  * [Component Planning & State Management](#component-planning---state-management)
+  * [Features](#features)
 
 ## Live Demo
 
