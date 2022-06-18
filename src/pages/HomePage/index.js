@@ -5,12 +5,36 @@ import { demo2Image } from "../../global/constants/urlPath";
 import { demo3Image } from "../../global/constants/urlPath";
 import { demo4Image } from "../../global/constants/urlPath";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [top, setTop] = useState(false);
 
+  useEffect(() => {
+    window.onscroll = function () {
+      scroll();
+    };
+  }, []);
+
+  function scroll() {
+    if (
+      document.body.scrollTop > 2500 ||
+      document.documentElement.scrollTop > 2500
+    ) {
+      setTop(true);
+    } else {
+      setTop(false);
+    }
+  }
+
+  function backToTop() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0;
+  }
   return (
     <>
+      {top ? <GoTop onClick={backToTop}>TOP</GoTop> : ""}
       <Header />
       <Main>
         <Section primary>
@@ -284,4 +308,19 @@ const Copyright = styled.p`
   color: #adadad;
   letter-spacing: 0.5px;
   margin: 0 auto;
+`;
+const GoTop = styled.button`
+  width: 56px;
+  height: 56px;
+  position: fixed;
+  bottom: 120px;
+  right: 48px;
+  z-index: 5;
+  background-color: #d7b0a9;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 50%;
+  &:hover {
+    background: #dec8b8;
+  }
 `;
