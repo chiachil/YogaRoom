@@ -51,10 +51,10 @@ const HomePage = () => {
         </Section>
         <Section second>
           <Content second>
-            <Title second>Arrange Sequences from Over 20 Positions</Title>
+            <Title second>Arrange Sequences from over 50 Positions</Title>
             <SubTitle>
-              Simply add or remove any positions to design a desirable practice
-              list of your own.
+              Simply add or remove and adjust time on each position to design a
+              desirable practice list of your own.
             </SubTitle>
             <Box2>
               <Demo second src={demo2Image}></Demo>
