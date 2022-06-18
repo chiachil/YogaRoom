@@ -317,6 +317,7 @@ const GoTop = styled.button`
   right: 48px;
   z-index: 5;
   background-color: #d7b0a9;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
   color: #fff;
   font-size: 16px;
   border-radius: 50%;
