@@ -1,9 +1,7 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import Header from "../../components/Header";
-import { demo1Image } from "../../global/constants/urlPath";
-import { demo2Image } from "../../global/constants/urlPath";
-import { demo3Image } from "../../global/constants/urlPath";
-import { demo4Image } from "../../global/constants/urlPath";
+import Content from "./content";
+import { demoImage } from "../../global/constants/urlPath";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -19,8 +17,8 @@ const HomePage = () => {
 
   function scroll() {
     if (
-      document.body.scrollTop > 2500 ||
-      document.documentElement.scrollTop > 2500
+      document.body.scrollTop > 1000 ||
+      document.documentElement.scrollTop > 1000
     ) {
       setTop(true);
     } else {
@@ -37,54 +35,31 @@ const HomePage = () => {
       {top ? <GoTop onClick={backToTop}>TOP</GoTop> : ""}
       <Header />
       <Main>
-        <Section primary>
-          <Content primary>
-            <Title primary>Delightful Space for Your Yoga Practice</Title>
-            <SubTitle primary>
-              with easier tool to design sequences and practice
-            </SubTitle>
-            <Button onClick={() => navigate("/flow")}>QUICK START</Button>
-            <Box1>
-              <Demo primary src={demo1Image}></Demo>
-            </Box1>
-          </Content>
-        </Section>
-        <Section second>
-          <Content second>
-            <Title second>Arrange Sequences from over 50 Positions</Title>
-            <SubTitle>
-              Simply add or remove and adjust time on each position to design a
-              desirable practice list of your own.
-            </SubTitle>
-            <Box2>
-              <Demo second src={demo2Image}></Demo>
-            </Box2>
-          </Content>
-        </Section>
-        <Section last>
-          <Content last>
-            <Title last>Visual and Auditory Guidance</Title>
-            <SubTitle>
-              Support voice guide in English and Mandarin & different mat colors
-              to choose from.
-            </SubTitle>
-            <Box3>
-              <Demo src={demo3Image}></Demo>
-            </Box3>
-          </Content>
-        </Section>
-        <Section second>
-          <Content second>
-            <Title second>Create List for Your Favorite Practices</Title>
-            <SubTitle>
-              Upon logging, you can save your practice and start any practice
-              immediately.
-            </SubTitle>
-            <Box2>
-              <Demo second src={demo4Image}></Demo>
-            </Box2>
-          </Content>
-        </Section>
+        {Content.map((section) => {
+          const { id, title, subTitle } = section;
+          return (
+            <Section id={id}>
+              <Box id={id}>
+                <TitleBox id={id}>
+                  <Title id={id}>{title}</Title>
+                  <SubTitle id={id}>{subTitle}</SubTitle>
+                  {id === 1 ? (
+                    <Button onClick={() => navigate("/flow")}>
+                      QUICK START
+                    </Button>
+                  ) : (
+                    <></>
+                  )}
+                </TitleBox>
+                {id !== 1 ? (
+                  <Demo id={id} src={demoImage + "demo" + id + ".png"}></Demo>
+                ) : (
+                  <Demo id={id} src={demoImage + "demo1.gif"}></Demo>
+                )}
+              </Box>
+            </Section>
+          );
+        })}
       </Main>
       <Footer>
         <Copyright>Copyright © 2022 C.Liao. All rights reserved.</Copyright>
@@ -104,152 +79,85 @@ const Main = styled.div`
 `;
 
 const Section = styled.div`
+  width: 100%;
+  height: 100%;
   position: relative;
-  height: 100vh;
-  background: ${(props) =>
-    props.primary
+  height: ${(prop) => (prop.id === 1 ? "100vh" : "70vh")};
+  background: ${(prop) =>
+    prop.id === 1
       ? "linear-gradient(135deg, #c59c96, #d7b0a9, #edd3cb, #FAEBE8)"
-      : props.last
-      ? "#FFF"
-      : "#none"};
-  position: relative;
-  color: #fff;
+      : prop.id === 3
+      ? "#e9e9e9"
+      : "#FFFFFF"};
   @media (max-width: 768px) {
-    padding: 0px 22px;
+    height: 100vh;
   } ;
 `;
-const Content = styled.div`
+const Box = styled.div`
+  display: flex;
+  flex-direction: ${(prop) =>
+    prop.id === 1 || prop.id === 3 ? "row" : "row-reverse"};
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 1344px;
-  margin: 0 auto;
-  overflow-x: hidden;
-  text-align: ${(props) => (props.last ? "right" : "left")};
-  padding: 78px 0px 0px 0px;
+  height: 100%;
+  padding: ${(prop) => (prop.id === 1 ? "158px 0px 0px 0px" : "0px")};
   @media (max-width: 1440px) {
     width: 100%;
-    padding: 78px 48px 0px 48px;
+    padding: ${(prop) => (prop.id === 1 ? "158px 48px 0px 48px" : "0px 48px")};
   }
   @media (max-width: 1024px) {
-    padding: 78px 24px 0px 24px;
+    padding: ${(prop) => (prop.id === 1 ? "158px 24px 0px 24px" : "0px 24px")};
   }
   @media (max-width: 768px) {
-    padding: 62px 10px 0px 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: ${(prop) => (prop.id === 1 ? "80px 10px 0px 10px" : "0px 10px")};
+    height: 100%;
+  } ;
+`;
+const TitleBox = styled.div`
+  width: 45%;
+  margin-bottom: ${(prop) => (prop.id === 1 ? "48px" : "0px")};
+  align-self: ${(prop) => (prop.id === 1 ? "flex-start" : "none")};
+  @media (max-width: 768px) {
+    margin-bottom: 48px;
+    width: 100%;
   } ;
 `;
 
-const rightIn = keyframes`
-    0% {
-        opacity: 0.8;
-        left: 50%;
-    }
-
-    100% {
-        opacity: 1;
-        left: 45%;
-    }
-
-`;
-const leftIn = keyframes`
-    0% {
-        opacity: 0.8;
-        right: 50%;
-    }
-
-    100% {
-        opacity: 1;
-        right: 45%;
-    }
-`;
-const Box1 = styled.div`
-  position: absolute;
-  left: 50%;
-  animation-name: ${rightIn};
-  animation-duration: 4s;
-  animation-fill-mode: forwards;
-  margin-top: 32px;
-  @media (max-width: 1440px) {
-    margin-top: -48px;
-  }
-  @media (max-width: 1280px) {
-    margin-top: 16px;
-  }
-  @media (max-width: 768px) {
-    bottom: 5%;
-  }
-  @media (max-width: 600px) {
-    bottom: auto;
-    margin-top: 40px;
-    transform: translateX(-40%);
-  } ;
-`;
-const Box2 = styled.div`
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 5%;
-  @media (max-width: 768px) {
-    bottom: 10%;
-  }
-  @media (max-width: 600px) {
-    margin-top: 40px;
-    bottom: auto;
-  }
-`;
-const Box3 = styled.div`
-  position: absolute;
-  animation-name: ${leftIn};
-  animation-duration: 4s;
-  animation-fill-mode: forwards;
-  margin-top: 3%;
-  @media (max-width: 768px) {
-    bottom: 10%;
-  }
-  @media (max-width: 600px) {
-    margin-top: 40px;
-    right: 50%;
-    transform: translateX(40%);
-    bottom: auto;
-  }
-`;
 const Demo = styled.img`
-  width: ${(props) => (props.second ? "50vw" : "65vw")};
-  min-width: 350px;
-  max-width: 1000px;
+  max-width: ${(prop) => (prop.id === 1 ? "55%" : "50%")};
   border-radius: 8px;
   box-shadow: ${(prop) =>
-    prop.primary
+    prop.id === 4
       ? "-40px 48px 48px rgb(85 78 78 / 32%)"
-      : "48px 40px 48px rgb(85 78 78 / 32%)"};
-  @media (max-width: 1400px) {
-    width: ${(props) => (props.second ? "800px" : "936px")};
-  }
-  @media (max-width: 1280px) {
-    width: 880px;
-  }
-  @media (max-width: 1024px) {
-    width: ${(props) => (props.second ? "740px" : "800px")};
-  }
+      : prop.id === 1 || prop.id === 3
+      ? "48px 40px 48px rgb(85 78 78 / 32%)"
+      : "none"};
+  align-self: ${(prop) => (prop.id === 1 ? "flex-end" : "none")};
+  margin-bottom: ${(prop) => (prop.id === 1 ? "10%" : "0px")};
   @media (max-width: 768px) {
-    width: 90vw;
+    align-self: center;
+    max-width: 90%;
+    margin-bottom: 0px;
   }
 `;
 
 const Title = styled.p`
   font-size: 40px;
   font-weight: 500;
-  color: ${(prop) => (prop.primary ? "#FFF" : "#333")};
-  padding-top: ${(prop) => (prop.last ? "5%" : "10%")};
-  margin-top: ${(prop) => (prop.primary ? "5%" : "0%")};
-  line-height: 40px;
-  @media (max-width: 1440px) {
-    margin-top: ${(prop) => (prop.second ? "3%" : "0%")};
-    padding-top: ${(prop) => (prop.primary ? "8%" : "3%")};
-  }
+  color: ${(prop) => (prop.id === 1 ? "#FFF" : "#333")};
+  line-height: 64px;
   @media (max-width: 1024px) {
     font-size: 32px;
   }
   @media (max-width: 768px) {
-    margin-top: 0%;
-    padding-top: ${(prop) => (prop.primary ? "15%" : "3%")};
     font-size: 24px;
     line-height: 32px;
   }
@@ -258,7 +166,7 @@ const Title = styled.p`
 const SubTitle = styled.p`
   font-size: 24px;
   font-weight: 400;
-  color: ${(prop) => (prop.primary ? "#FFF" : "#adadad")};
+  color: ${(prop) => (prop.id === 1 ? "#FFF" : "#adadad")};
   margin-top: 24px;
   line-height: 40px;
   @media (max-width: 1024px) {
@@ -323,5 +231,9 @@ const GoTop = styled.button`
   border-radius: 50%;
   &:hover {
     background: #dec8b8;
+  }
+  @media (max-width: 768px) {
+    bottom: 120px;
+    right: 16px;
   }
 `;

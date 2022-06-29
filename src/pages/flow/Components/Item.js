@@ -102,9 +102,6 @@ const Image = styled.img`
   width: 60px;
   height: 60px;
   margin-right: 32px;
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
   @media (max-width: 1280px) {
     margin-right: 16px;
   }

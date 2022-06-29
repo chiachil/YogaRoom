@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { smImageUrl } from "../../../global/constants/urlPath";
+import { demoImage } from "../../../global/constants/urlPath";
 import { useState, useContext } from "react";
 import { RiEditBoxLine } from "react-icons/ri";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -73,7 +73,7 @@ const Option = ({ id, listData, listName, setList, date }) => {
         ""
       )}
       <Practice>
-        <Image src={smImageUrl + "EasyPose.svg"}></Image>
+        <Image src={demoImage + "EasyPose-demo.svg"}></Image>
         <NameBox>
           <Name>{listName}</Name>
           <Date>{date}</Date>
