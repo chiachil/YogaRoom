@@ -90,7 +90,7 @@ const Section = styled.div`
       ? "#e9e9e9"
       : "#FFFFFF"};
   @media (max-width: 768px) {
-    height: 100vh;
+    height: ${(prop) => (prop.id === 1 ? "100vh" : "80vh")};
   } ;
 `;
 const Box = styled.div`
@@ -117,12 +117,12 @@ const Box = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: ${(prop) => (prop.id === 1 ? "80px 10px 0px 10px" : "0px 10px")};
+    padding: ${(prop) => (prop.id === 1 ? "0px 10px" : "0px 10px")};
     height: 100%;
   } ;
 `;
 const TitleBox = styled.div`
-  width: 45%;
+  width: 50%;
   margin-bottom: ${(prop) => (prop.id === 1 ? "48px" : "0px")};
   align-self: ${(prop) => (prop.id === 1 ? "flex-start" : "none")};
   @media (max-width: 768px) {
@@ -132,7 +132,7 @@ const TitleBox = styled.div`
 `;
 
 const Demo = styled.img`
-  max-width: ${(prop) => (prop.id === 1 ? "55%" : "50%")};
+  max-width: ${(prop) => (prop.id === 1 ? "50%" : "45%")};
   border-radius: 8px;
   box-shadow: ${(prop) =>
     prop.id === 4
@@ -142,6 +142,9 @@ const Demo = styled.img`
       : "none"};
   align-self: ${(prop) => (prop.id === 1 ? "flex-end" : "none")};
   margin-bottom: ${(prop) => (prop.id === 1 ? "10%" : "0px")};
+  @media (max-width: 1440px) {
+    margin-bottom: ${(prop) => (prop.id === 1 ? "5%" : "0px")};
+  }
   @media (max-width: 768px) {
     align-self: center;
     max-width: 90%;
