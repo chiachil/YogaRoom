@@ -1,8 +1,9 @@
-# YogaRoom 🧘🏻‍♀️
+[English Version](#yogaroom-english-%EF%B8%8F) | [中文版](#yogaroom-中文-%EF%B8%8F)
 
-YogaRoom is a yoga practice tool website that aims to assist yogi / yogini with their practice at home. It was built during the pandemic of COVID-19, therefore, YogaRoom brings the experience from offline to online and tries to make yoga practice more personal, comfortable and convinient through a set of online tools, such as `Sequence Builder`, `Visual and Auditory Guidance`, and `Save Feature`.
+# YogaRoom (English) 🧘🏻‍♀️
 
-YogaRoom 是一個輔助瑜珈自主練習的工具網站。它是源於疫情期間，為了幫助瑜珈學習者在家也能自在練習，因此打造了瑜珈課體驗的線上空間，引導學習者從 `自行設計瑜珈序列` ，到 `給予視/聽覺的示範輔助` ，以及 `儲存課程的功能` ，讓瑜珈練習變得更個人、舒適和方便的體驗。
+YogaRoom is a yoga practice tool website that aims to assist yogi / yogini with their practice at home. Built during the pandemic of COVID-19, YogaRoom brings the experience from offline to online and tries to make yoga practice more personal, comfortable and convenient through a set of online tools, such as `Sequence Builder`, `Visual and Auditory Guidance`, and `Save Feature`.
+
 
 
 ## Content of Table
@@ -22,29 +23,106 @@ YogaRoom 是一個輔助瑜珈自主練習的工具網站。它是源於疫情�
  https://yogaroom-24504.firebaseapp.com/
 </p>
 
-
 ### Test Account
 
-You are free to experience YogaRoom as a guest or you might want to log in, which allows you to store your sequence settings, making a faster way to get practice started. For your testing, a set of account and password is provided below.
+You are free to experience YogaRoom as a guest or you might want to log in as a member to store your sequence settings after practice. For your testing, a set of account and password is provided below.
 
-你可以透過訪客的方式體驗 YogaRoom 大多數的功能，也可以選擇登入會員，獲得儲存課程的功能，方便下次輕鬆快速開始你的練習。若希望測試會員功能，以下提供測試帳號及密碼供你使用。
 
 | Account | yoga@yogaroom.com |
 | --- | --- |
 | Password | yoga123 |
 
 
+
 ## Tech Stack
 
 <p align="center">
- <img src="https://i.imgur.com/GrhLA4Q.png">
+ <img src="https://i.imgur.com/h8cjJaL.png">
 </p>
 
-YogaRoom is constructed by using `React Hook` and  `React-Router` to implement Single Page Application（**SPA**）, making the user experience better; Using `React Context` to pass member state through nested components tree; Using `JSX` and `Styled-components` to write HTML element and style right directly in the JS component, making writing more semantic and intuitive; Using `Third-party Module` to achieve the text-to-speech function.
+### Front-end Skills
+1. Used `React Hook` and  `React-Router` to implement Single Page Application（**SPA**）, giving better user experience
+2. Used `React Context` to pass member state through nested components tree
+3. Used `JSX` and `Styled-components` to write HTML element and style right directly in the JS component, making writing more semantic and intuitive
+4. Applied `Third-party Module` to achieve the text-to-speech function
+5. Supported `RWD` by using CSS MEdia Queries and Flexbox
 
-Using the `Firebase` back-end service platform to set up the website (Hosting), membership system (Auth), and database (Firestore) operation .
+### Back-end Skills
+Used `Firebase` back-end service platform to set up the website (Hosting), membership system (Auth) and database (Firestore) operation .
 
-Using `NPM` for package management, `Prettier` to unified coding style, and `GitHub` to do Git version control.
+### Develop Tools
+Used `NPM` for package management, `Prettier` to unified coding style, and `GitHub` to do Git version control.
+
+
+## Component Planning & State Management
+<p align="center">
+ <img src="https://i.imgur.com/6lZifBN.png">
+</p>
+
+Routers are designed to distinguish main components, including Homepage, Flow, Practice and PracticeList. Main components are then divided into sub-components based on the complexity of the component. In addition, Header is a shared component.
+
+States are separatively stored in each of the four main components, and are passed to the child components through props and stored in sessionStorage by React Router. Particularly, Member states are stored in the highest layer of the App and are passed through the nested tree to child components by Context API. Save feature allows member to store data in Firebase Firestore.
+
+
+
+## Features
+
+### ⭐ ****Build Your Own Sequences****
+
+Users can design ideal sequences and adjust foucs time on each position. YogaRoom makes practice more personal.
+
+
+### ⭐ ****Visual and Auditory Guidance****
+
+Without memorizing sequences, users can focus more on position and breath. YogaRoom makes practice more comfortable.
+
+
+### ⭐ ****Create List for Your Favorite Practices****
+
+Upon logging, users are allowed to save any practice and get a quick start for next time. YogaRoom makes practice more convenient.
+
+
+---
+## YogaRoom (中文) 🧘‍♂️
+
+YogaRoom 是一個輔助瑜珈自主練習的工具網站。它是源於疫情期間，為了幫助瑜珈學習者在家也能自在練習，因此打造了瑜珈課體驗的線上空間，引導學習者從 `自行設計瑜珈序列` ，到 `給予視/聽覺的示範輔助` ，以及 `儲存課程的功能` ，讓瑜珈練習變得更個人、舒適和方便的體驗。
+
+
+
+## 目錄
+
+  * [畫面 Demo](#畫面-demo)
+    + [測試帳號](#測試帳號)
+  * [技術棧](#技術棧)
+  * [組件規劃 & 狀態管理](#組件規劃--狀態管理)
+  * [亮點功能](#亮點功能)
+
+
+
+## 畫面 Demo
+<p align="center">
+ <img src="https://i.imgur.com/KqA9QQD.gif">
+</p>
+<p align="center" src="https://yogaroom-24504.firebaseapp.com/">
+ https://yogaroom-24504.firebaseapp.com/
+</p>
+
+
+### 測試帳號
+
+你可以透過訪客的方式體驗 YogaRoom 大多數的功能，也可以選擇登入會員，獲得儲存課程的功能，方便下次輕鬆快速開始你的練習。若希望測試會員功能，以下提供測試帳號及密碼供你使用。
+
+| 帳號 | yoga@yogaroom.com |
+| --- | --- |
+| 密碼 | yoga123 |
+
+
+
+## 技術棧
+
+<p align="center">
+ <img src="https://i.imgur.com/h8cjJaL.png">
+</p>
 
 ### 前端開發
 
@@ -61,37 +139,28 @@ Using `NPM` for package management, `Prettier` to unified coding style, and `G
 使用 `NPM` 進行套件管理、`Prettier` 統一程式碼風格、`GitHub` 做版本控制。
 
 
-## Component Planning & State Management
+
+## 組件規劃 & 狀態管理
 <p align="center">
- <img src="https://i.imgur.com/GT5HygA.png">
+ <img src="https://i.imgur.com/6lZifBN.png">
 </p>
 
-Component planning manages routing according to the core functions, and is divided into four main components (Homepage, Flow, Practice, PracticeList), and then divided into sub-components according to the functional complexity of each component. Besides, Header is a shared component.
+根據組件的主要功能做路由區分跟管理，其中四個主要組件為 Homepage, Flow, Practice 和 PracticeList，再根據各自組件功能複雜度，再度切分成子組件。另外，Header為共用組件。
 
-組件的規劃依照核心功能做路由的管理，分為四個主要組件(Homepage, Flow, Practice, PracticeList)，然後依據各自組件功能複雜度，再度切分成子組件。另外，Header為共用組件。
-
-
-The position of the main function state management is in the parent layer of each of the four main components, and is passed to the child layer through props and stored in sessionStorage through React Router. In addition, Practices saved by member are stored in Firebase Firestore.
-
-主要功能狀態管理的位置都在四個主要組件各自的父層，透過 prop 傳遞到子層，並透過 React Router 的 useNavigate 和 useLocation 實現不同路由的組件間的傳遞 (sessionStorage 的方式記錄)。另外，也透過 Firebase Firestore 存放會員儲存的課程。
+狀態管理的位置主要在四個父組件內，透過 prop 傳遞到子組件，並透過 React Router 的 useNavigate 和 useLocation 實現不同路由的組件間的傳遞 (sessionStorage 的方式記錄)。關於會員登入狀態則是存放在 App 最上層，並透過 Context API 傳遞到組件樹內。另外，會員儲存的課程存放在 Firebase Firestore。
 
 
-## Features
 
-### ⭐ ****Build Your Own Sequences****
+## 亮點功能
 
-Users can design ideal sequences and adjust foucs time on each position. YogaRoom makes practice more personal.
+### ⭐ ****自由設計序列****
 
 使用者可以自行排序理想的瑜珈序列，針對每個動作也可以自定義理想的停留時間，達到更符合個人化的練習。
 
-### ⭐ ****Visual and Auditory Guidance****
-
-Without memorizing sequences, users can focus more on position and breath. YogaRoom makes practice more comfortable.
+### ⭐ ****視/聽覺輔助****
 
 使用者不用去記序列，跟著視覺示範和聽覺輔助，達到更專注和舒服的練習。
 
-### ⭐ ****Create List for Your Favorite Practices****
-
-Upon logging, users are allowed to save any practice and get a quick start for next time. YogaRoom makes practice more convenient.
+### ⭐ ****收藏練習****
 
 在登入情況下，使用者可以收藏課程的序列設定，供下次練習快速開始，讓每次練習都更加方便。
