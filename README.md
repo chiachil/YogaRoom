@@ -83,7 +83,9 @@ Upon logging, users are allowed to save any practice and get a quick start for n
 
 
 ---
-## YogaRoom (中文) 🧘‍♂️
+
+
+# YogaRoom (中文) 🧘‍♂️
 
 YogaRoom 是一個輔助瑜珈自主練習的工具網站。它是源於疫情期間，為了幫助瑜珈學習者在家也能自在練習，因此打造了瑜珈課體驗的線上空間，引導學習者從 `自行設計瑜珈序列` ，到 `給予視/聽覺的示範輔助` ，以及 `儲存課程的功能` ，讓瑜珈練習變得更個人、舒適和方便的體驗。
 
