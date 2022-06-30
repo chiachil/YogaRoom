@@ -2,7 +2,7 @@
 
 YogaRoom is a yoga practice tool website that aims to assist yogi / yogini with their practice at home. It was built during the pandemic of COVID-19, therefore, YogaRoom brings the experience from offline to online and tries to make yoga practice more personal, comfortable and convinient through a set of online tools, such as `Sequence Builder`, `Visual and Auditory Guidance`, and `Save Feature`.
 
-YogaRoom 是一個輔助瑜珈自主練習的工具網站。它的誕生是源於疫情期間，為了幫助瑜珈學習者在家也能自在練習，因此打造了瑜珈課體驗的線上空間，引導學習者從 `自行設計瑜珈序列` ，到 `給予視/聽覺的示範輔助` ，以及 `儲存課程的功能` ，讓瑜珈練習變得更個人、舒適和方便的體驗。
+YogaRoom 是一個輔助瑜珈自主練習的工具網站。它是源於疫情期間，為了幫助瑜珈學習者在家也能自在練習，因此打造了瑜珈課體驗的線上空間，引導學習者從 `自行設計瑜珈序列` ，到 `給予視/聽覺的示範輔助` ，以及 `儲存課程的功能` ，讓瑜珈練習變得更個人、舒適和方便的體驗。
 
 
 ## Content of Table
@@ -86,12 +86,12 @@ Users can design ideal sequences and adjust foucs time on each position. YogaRoo
 
 ### ⭐ ****Visual and Auditory Guidance****
 
-Without memorizing sequences, users can focus more on position and breathe. YogaRoom makes practice more comfortable.
+Without memorizing sequences, users can focus more on position and breath. YogaRoom makes practice more comfortable.
 
 使用者不用去記序列，跟著視覺示範和聽覺輔助，達到更專注和舒服的練習。
 
 ### ⭐ ****Create List for Your Favorite Practices****
 
-Upon logging, users are allowed to save any practice and get a quick start for next time. YogaRoom makes practice more convinient.
+Upon logging, users are allowed to save any practice and get a quick start for next time. YogaRoom makes practice more convenient.
 
 在登入情況下，使用者可以收藏課程的序列設定，供下次練習快速開始，讓每次練習都更加方便。
