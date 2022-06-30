@@ -25,7 +25,6 @@ const Demo = ({ slide, roomData, updateRoom, setSpeech, started }) => {
 export default Demo;
 
 // styled components
-
 const Container = styled.div`
   position: relative;
   width: 70%;
@@ -46,6 +45,7 @@ const Container = styled.div`
     height: 300px;
   }
 `;
+
 const Background = styled.img`
   width: 100%;
   height: 100%;
@@ -56,6 +56,7 @@ const Background = styled.img`
   background-position: center;
   background-repeat: no-repeat;
 `;
+
 const Mat = styled.div`
   position: absolute;
   left: 50%;
@@ -63,7 +64,7 @@ const Mat = styled.div`
   bottom: 5%;
   width: 80%;
   height: 0;
-  border-bottom: 90px solid ${(props) => props.color};
+  border-bottom: 90px solid ${(prop) => prop.color};
   border-left: 90px solid transparent;
   border-right: 90px solid transparent;
   border-radius: 1px;
@@ -72,17 +73,18 @@ const Mat = styled.div`
   }
   @media (max-width: 1024px) {
     width: 80%;
-    border-bottom: 72px solid ${(props) => props.color};
+    border-bottom: 72px solid ${(prop) => prop.color};
     border-left: 72px solid transparent;
     border-right: 72px solid transparent;
   }
   @media (max-width: 768px) {
     width: 95%;
-    border-bottom: 56px solid ${(props) => props.color};
+    border-bottom: 56px solid ${(prop) => prop.color};
     border-left: 56px solid transparent;
     border-right: 56px solid transparent;
   }
 `;
+
 const Figure = styled.img`
   position: absolute;
   left: 50%;

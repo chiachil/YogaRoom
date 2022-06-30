@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSpeechSynthesis } from "react-speech-kit";
-import { useEffect } from "react";
 import { db } from "../../../firebase-config";
 import {
   collection,
@@ -10,11 +10,10 @@ import {
   doc,
   serverTimestamp,
 } from "firebase/firestore";
-import { useContext } from "react";
 import { LoginContext, UserContext } from "../../../context/userContext";
 import { AiFillSound } from "react-icons/ai";
 
-const Footer = ({
+const Navigation = ({
   speech,
   setSpeech,
   listData,
@@ -52,6 +51,7 @@ const Footer = ({
     return timeId;
   }
 
+  // click start and play voice guide & slider
   function clickStart() {
     setStarted(!started);
     if (!supported) {
@@ -74,44 +74,7 @@ const Footer = ({
     playSlide(roomData.language, timeId);
   }
 
-  async function Quit(isSave) {
-    if (isSave) {
-      const timestamp = serverTimestamp();
-
-      if (practiceId) {
-        // update doc to firestore
-        const practiceDoc = doc(db, "users", user, "practices", practiceId);
-        const newListData = {
-          listName: listName,
-          listData: listData,
-          timestamp: timestamp,
-        };
-        await updateDoc(practiceDoc, newListData);
-      } else {
-        // add doc to firestore
-        const addPractice = async () => {
-          await Promise.all([
-            addDoc(collection(db, "users", user, "practices"), {
-              listName: listName,
-              listData: listData,
-              timestamp: timestamp,
-            }),
-          ]);
-        };
-        addPractice();
-      }
-    }
-    navigate("/flow", {
-      state: {
-        listData: [listData[0]],
-        roomData: {
-          color: roomData.color,
-          language: roomData.language,
-        },
-      },
-    });
-  }
-
+  // play slider
   function playSlide(language, timeId) {
     let total = listData[0].duration;
     for (let i = 1; i < listData.length; i++) {
@@ -160,6 +123,45 @@ const Footer = ({
       total += listData[i].duration;
     }
   }
+
+  async function Quit(isSave) {
+    if (isSave) {
+      const timestamp = serverTimestamp();
+
+      if (practiceId) {
+        // update doc to firestore
+        const practiceDoc = doc(db, "users", user, "practices", practiceId);
+        const newListData = {
+          listName: listName,
+          listData: listData,
+          timestamp: timestamp,
+        };
+        await updateDoc(practiceDoc, newListData);
+      } else {
+        // add doc to firestore
+        const addPractice = async () => {
+          await Promise.all([
+            addDoc(collection(db, "users", user, "practices"), {
+              listName: listName,
+              listData: listData,
+              timestamp: timestamp,
+            }),
+          ]);
+        };
+        addPractice();
+      }
+    }
+    navigate("/flow", {
+      state: {
+        listData: [listData[0]],
+        roomData: {
+          color: roomData.color,
+          language: roomData.language,
+        },
+      },
+    });
+  }
+
   function BackEdit() {
     navigate("/flow", {
       state: {
@@ -242,7 +244,7 @@ const Footer = ({
   );
 };
 
-export default Footer;
+export default Navigation;
 
 const Container = styled.div`
   position: fixed;

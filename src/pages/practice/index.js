@@ -1,14 +1,13 @@
 import styled from "styled-components";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
 import Header from "../../components/Header";
 import Demo from "./Components/Demo";
 import Schedule from "./Components/Schedule";
-import Footer from "./Components/Footer";
-import { useEffect } from "react";
+import Navigation from "./Components/Navigation";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { LanguageContext } from "../../context/preferenceContext";
 
-const GoPractice = () => {
+const Practice = () => {
   const { state } = useLocation();
   const { listData, roomData, listName, practiceId, isEnter } = state;
   const [speech, setSpeech] = useState({
@@ -21,7 +20,6 @@ const GoPractice = () => {
   const [started, setStarted] = useState(false);
   const [chinese, setChinese] = useState(false);
 
-  useEffect(() => {}, []);
   return (
     <>
       <LanguageContext.Provider
@@ -55,7 +53,7 @@ const GoPractice = () => {
             </Box>
           </Content>
         </Main>
-        <Footer
+        <Navigation
           speech={speech}
           setSpeech={setSpeech}
           listData={listData}
@@ -73,7 +71,7 @@ const GoPractice = () => {
   );
 };
 
-export default GoPractice;
+export default Practice;
 
 // styled components
 const Main = styled.div`

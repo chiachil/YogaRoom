@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import Item from "./Item";
 
@@ -41,7 +40,6 @@ const Schedule = ({ listData, slide, duration, started, listName }) => {
 export default Schedule;
 
 // styled components
-
 const Container = styled.div`
   width: 30%;
   height: 100%;
@@ -61,6 +59,7 @@ const Container = styled.div`
     padding: 8px;
   }
 `;
+
 const Title = styled.h1`
   font-weight: 500;
   font-size: 18px;
@@ -76,6 +75,7 @@ const Title = styled.h1`
     font-size: 16px;
   }
 `;
+
 const SubTitle = styled(Title)`
   font-size: 16px;
   font-weight: 400;
@@ -85,6 +85,7 @@ const SubTitle = styled(Title)`
     padding-bottom: 16px;
   }
 `;
+
 const Box = styled.div`
   display: flex;
   flex-direction: column;

@@ -1,9 +1,9 @@
 import styled from "styled-components";
+import { useState, useContext } from "react";
+import { colorArr, voiceArr } from "../../../global/constants/room";
+import { LanguageContext } from "../../../context/preferenceContext";
 import { IoIosSettings } from "react-icons/io";
 import { AiFillSound } from "react-icons/ai";
-import { colorArr, voiceArr } from "../../../global/constants/room";
-import { useState, useContext } from "react";
-import { LanguageContext } from "../../../context/preferenceContext";
 
 const Preference = ({ roomData, updateRoom, setSpeech }) => {
   const [popup, setPopup] = useState(false);
@@ -97,6 +97,7 @@ const Preference = ({ roomData, updateRoom, setSpeech }) => {
 
 export default Preference;
 
+// styled components
 const Button = styled.button`
   display: flex;
   justify-content: space-between;
@@ -135,7 +136,7 @@ const Popup = styled.div`
   background-color: rgba(255, 255, 255, 0.7);
   padding: 16px;
   border-radius: 8px;
-  z-index: 4;
+  z-index: 3;
   @media (max-width: 768px) {
     background-color: rgba(255, 255, 255, 1);
   }

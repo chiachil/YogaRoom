@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Header from "../../components/Header";
-import { useEffect, useState, useContext } from "react";
 import Option from "./components/Option";
+import { useState, useEffect, useContext } from "react";
 import { db } from "../../firebase-config";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { LoginContext } from "../../context/userContext";
@@ -9,28 +9,24 @@ import { spinner } from "../../global/constants/urlPath";
 
 const FavList = () => {
   const [list, setList] = useState([]);
-  const { loggedIn } = useContext(LoginContext);
   const [open, setOpen] = useState(true);
+  const { loggedIn } = useContext(LoginContext);
 
   useEffect(() => {
-    const getPractice = async () => {
-      if (loggedIn) {
-        const collectionRef = collection(
-          db,
-          "users",
-          loggedIn.uid,
-          "practices"
-        );
-        const q = query(collectionRef, orderBy("timestamp", "desc"));
-        const data = onSnapshot(q, (snapshot) =>
-          setList(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-        );
-        setOpen(false);
-        return data;
-      }
-    };
     getPractice();
   }, [loggedIn]);
+
+  async function getPractice() {
+    if (loggedIn) {
+      const collectionRef = collection(db, "users", loggedIn.uid, "practices");
+      const q = query(collectionRef, orderBy("timestamp", "desc"));
+      const data = onSnapshot(q, (snapshot) =>
+        setList(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      );
+      setOpen(false);
+      return data;
+    }
+  }
 
   return (
     <>
@@ -107,11 +103,13 @@ const Content = styled.div`
     padding: 62px 10px 114px 10px;
   } ;
 `;
+
 const TitleBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-content: center;
 `;
+
 const Title = styled.h1`
   font-weight: 500;
   font-size: 24px;
@@ -147,6 +145,7 @@ const Note = styled.p`
     font-size: 16px;
   }
 `;
+
 const PopBG = styled.div`
   position: absolute;
   width: 100%;
@@ -158,6 +157,7 @@ const PopBG = styled.div`
     top: 56px;
   }
 `;
+
 const Spinner = styled.img`
   width: 48px;
   height: 48px;

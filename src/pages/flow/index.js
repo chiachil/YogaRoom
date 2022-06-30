@@ -2,15 +2,13 @@ import styled from "styled-components";
 import Header from "../../components/Header";
 import Select from "./Components/Select";
 import List from "./Components/List";
-import Footer from "./Components/Footer";
-import { useEffect, useState, useContext } from "react";
+import Navigation from "./Components/Navigation";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { colorArr, voiceArr } from "../../global/constants/room";
-import { LoginContext } from "../../context/userContext";
 
-const SetFlow = () => {
+const Flow = () => {
   const { state } = useLocation();
-  const { loggedIn, setLoggedIn } = useContext(LoginContext);
   const [listName, setListName] = useState("");
   const [practiceId, setPracticeId] = useState("");
   const [list, setList] = useState([
@@ -59,18 +57,17 @@ const SetFlow = () => {
           </Box>
         </Content>
       </Main>
-      <Footer
+      <Navigation
         listData={list}
         roomData={background}
         listName={listName}
-        setListName={setListName}
         practiceId={practiceId}
       />
     </>
   );
 };
 
-export default SetFlow;
+export default Flow;
 
 // styled components
 const Main = styled.div`

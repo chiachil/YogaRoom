@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { demoImage } from "../../../global/constants/urlPath";
 import { useState, useContext } from "react";
+import { colorArr, voiceArr } from "../../../global/constants/room";
+import { demoImage } from "../../../global/constants/urlPath";
 import { RiEditBoxLine } from "react-icons/ri";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../../firebase-config";
 import { doc, deleteDoc } from "firebase/firestore";
-import { colorArr, voiceArr } from "../../../global/constants/room";
 import { UserContext } from "../../../context/userContext";
 
 const Option = ({ id, listData, listName, setList, date }) => {
@@ -141,6 +141,7 @@ const NameBox = styled.div`
   justify-content: center;
   align-items: start;
 `;
+
 const Name = styled.h2`
   width: 95%;
   white-space: nowrap;
@@ -208,6 +209,7 @@ const Setting = styled.button`
     left: 2px;
   }
 `;
+
 const PopBG = styled.div`
   position: fixed;
   width: 100%;
@@ -217,6 +219,7 @@ const PopBG = styled.div`
   top: 0px;
   left: 0px;
 `;
+
 const Popup = styled.div`
   position: absolute;
   background: #fff;
@@ -233,11 +236,13 @@ const Popup = styled.div`
     left: 24px;
   }
 `;
+
 const Select = styled.div`
   padding-bottom: ${(prop) => (prop.first ? "8px" : "0px")};
   border-bottom: ${(prop) => (prop.first ? "1px solid #e9e9e9" : "")};
   margin-bottom: ${(prop) => (prop.first ? "8px" : "0px")};
 `;
+
 const SelectBtn = styled.button`
   background: #fff;
   width: 100%;
@@ -259,6 +264,7 @@ const SelectBtn = styled.button`
 const EditIcon = styled(RiEditBoxLine)`
   margin-right: 8px;
 `;
+
 const DeleteIcon = styled(RiDeleteBin6Line)`
   margin-right: 8px;
 `;

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SetFlow from "./pages/flow";
-import GoPractice from "./pages/practice";
+import Flow from "./pages/flow";
+import Practice from "./pages/practice";
 import HomePage from "./pages/homepage";
 import FavList from "./pages/practiceList";
 import { useState } from "react";
@@ -27,8 +27,8 @@ export const App = () => {
         <Router>
           <Routes>
             <Route path="/practiceList" element={<FavList />} />
-            <Route path="/practice" element={<GoPractice />} />
-            <Route path="/flow" element={<SetFlow />} />
+            <Route path="/practice" element={<Practice />} />
+            <Route path="/flow" element={<Flow />} />
             <Route path="/" element={<HomePage />} />
           </Routes>
         </Router>

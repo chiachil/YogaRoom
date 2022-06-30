@@ -6,32 +6,32 @@ import { db } from "../../../firebase-config";
 import { updateDoc, doc, serverTimestamp } from "firebase/firestore";
 import { UserContext } from "../../../context/userContext";
 
-const Footer = ({ listData, roomData, listName, practiceId }) => {
+const Navigation = ({ listData, roomData, listName, practiceId }) => {
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
+  const [alert, setAlert] = useState(false);
   const [message, setMessage] = useState("");
   const { user } = useContext(UserContext);
 
   useEffect(() => {
     if (practiceId) {
-      setOpen(true);
+      setAlert(true);
       setMessage("You are in editing mode.");
-      setTimeout(() => setOpen(false), 3000);
+      setTimeout(() => setAlert(false), 3000);
     }
   }, [practiceId]);
 
   async function clickEnterRoom() {
     // data validation
     if (listData.length < 2) {
-      setOpen(true);
+      setAlert(true);
       setMessage("At least 2 positions are required.");
-      setTimeout(() => setOpen(false), 3000);
+      setTimeout(() => setAlert(false), 3000);
       return;
     }
     if (listData.length > 100) {
-      setOpen(true);
+      setAlert(true);
       setMessage("Reached limit of 100 positions.");
-      setTimeout(() => setOpen(false), 3000);
+      setTimeout(() => setAlert(false), 3000);
       return;
     }
     if (!listName) {
@@ -57,7 +57,7 @@ const Footer = ({ listData, roomData, listName, practiceId }) => {
     });
   }
   async function clickSave() {
-    setOpen(false);
+    setAlert(false);
     // update data to firestore
     const timestamp = serverTimestamp();
     const practiceDoc = doc(db, "users", user, "practices", practiceId);
@@ -71,13 +71,13 @@ const Footer = ({ listData, roomData, listName, practiceId }) => {
   }
 
   function clickDiscard() {
-    setOpen(false);
+    setAlert(false);
     navigate("/practiceList");
   }
 
   return (
     <>
-      {open ? (
+      {alert ? (
         <AlertCard>
           <AlertIcon></AlertIcon>
           <AlertContent>{message}</AlertContent>
@@ -105,7 +105,7 @@ const Footer = ({ listData, roomData, listName, practiceId }) => {
   );
 };
 
-export default Footer;
+export default Navigation;
 
 const Container = styled.div`
   position: fixed;
@@ -146,11 +146,9 @@ const EnterButton = styled.button`
   border-radius: 16px;
   box-shadow: ${(props) =>
     props.primary ? "0px 4px 0px #b39e99" : "0px 4px 0px #cacaca"};
-  font-family: "Poppins", sans-serif;
   font-size: 18px;
   color: ${(props) => (props.primary ? "#FFFFFF" : "#adadad")};
   letter-spacing: 1px;
-  cursor: pointer;
   &:hover {
     background: ${(props) => (props.primary ? "#dec8b8" : "#e9e9e9")};
     box-shadow: ${(props) =>
@@ -167,6 +165,7 @@ const EnterButton = styled.button`
     height: 40px;
   }
 `;
+
 const leftIn = keyframes`
     0% {
         opacity: 0.8;
