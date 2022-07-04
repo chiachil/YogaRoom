@@ -22,7 +22,7 @@ const Header = () => {
   const { setUser } = useContext(UserContext);
 
   useEffect(() => {
-    if ((typeof window !== 'undefined') & (window.location == domain)) {
+    if ((typeof window !== 'undefined') & (window.location.href === domain)) {
       setSmall(false);
       window.addEventListener('scroll', () => setSmall(window.pageYOffset > 140));
     }
