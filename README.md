@@ -32,7 +32,7 @@ You are free to experience YogaRoom as a guest or you might want to log in as a 
 ## Tech Stack
 
 <p align="center">
- <img src="https://i.imgur.com/h8cjJaL.png">
+ <img src="https://i.imgur.com/JhGwuiR.png">
 </p>
 
 ### Front-end Skills
@@ -49,7 +49,7 @@ Used `Firebase` back-end service platform to set up the website (Hosting), membe
 
 ### Develop Tools
 
-Used `NPM` for package management, `Prettier` to unified coding style, and `GitHub` to do Git version control.
+Used `NPM` for package management, `Prettier`, `ESLint`, `Stylelint` to unified coding style, and `GitHub` to do Git version control.
 
 ## Component Planning & State Management
 
@@ -63,15 +63,15 @@ States are separatively stored in each of the four main components, and are pass
 
 ## Features
 
-### ⭐ \***\*Build Your Own Sequences\*\***
+### ⭐ **Build Your Own Sequences**
 
 Users can design ideal sequences and adjust foucs time on each position. YogaRoom makes practice more personal.
 
-### ⭐ \***\*Visual and Auditory Guidance\*\***
+### ⭐ **Visual and Auditory Guidance**
 
 Without memorizing sequences, users can focus more on position and breath. YogaRoom makes practice more comfortable.
 
-### ⭐ \***\*Create List for Your Favorite Practices\*\***
+### ⭐ **Create List for Your Favorite Practices**
 
 Upon logging, users are allowed to save any practice and get a quick start for next time. YogaRoom makes practice more convenient.
 
@@ -109,7 +109,7 @@ YogaRoom 是一個輔助瑜珈自主練習的工具網站。它是源於疫情�
 ## 技術棧
 
 <p align="center">
- <img src="https://i.imgur.com/h8cjJaL.png">
+ <img src="https://i.imgur.com/JhGwuiR.png">
 </p>
 
 ### 前端開發
@@ -126,7 +126,7 @@ YogaRoom 是一個輔助瑜珈自主練習的工具網站。它是源於疫情�
 
 ### 開發工具
 
-使用 `NPM` 進行套件管理、`Prettier` 統一程式碼風格、`GitHub` 做版本控制。
+使用 `NPM` 進行套件管理、`Prettier`, `ESLint`, `Stylelint` 統一程式碼風格、`GitHub` 做版本控制。
 
 ## 組件規劃 & 狀態管理
 
@@ -140,14 +140,14 @@ YogaRoom 是一個輔助瑜珈自主練習的工具網站。它是源於疫情�
 
 ## 亮點功能
 
-### ⭐ \***\*自由設計序列\*\***
+### ⭐ **自由設計序列**
 
 使用者可以自行排序理想的瑜珈序列，針對每個動作也可以自定義理想的停留時間，達到更符合個人化的練習。
 
-### ⭐ \***\*視/聽覺輔助\*\***
+### ⭐ **視/聽覺輔助**
 
 使用者不用去記序列，跟著視覺示範和聽覺輔助，達到更專注和舒服的練習。
 
-### ⭐ \***\*收藏練習\*\***
+### ⭐ **收藏練習**
 
 在登入情況下，使用者可以收藏課程的序列設定，供下次練習快速開始，讓每次練習都更加方便。
