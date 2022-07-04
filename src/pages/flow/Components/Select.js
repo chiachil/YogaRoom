@@ -1,7 +1,8 @@
-import styled from "styled-components";
-import Option from "./Option";
-import { poses } from "../../../global/constants/poses";
-import { v4 } from "uuid";
+import styled from 'styled-components';
+import Option from './Option';
+import { poses } from '../../../global/constants/poses';
+import { v4 } from 'uuid';
+import React from 'react';
 
 const Select = ({ listData, addData }) => {
   return (

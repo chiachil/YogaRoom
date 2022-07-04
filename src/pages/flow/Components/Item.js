@@ -1,9 +1,10 @@
-import styled from "styled-components";
-import { BiMinus } from "react-icons/bi";
-import { smImageUrl } from "../../../global/constants/urlPath";
-import { IoMdArrowDropup, IoMdArrowDropdown } from "react-icons/io";
-import { useState } from "react";
-import { useEffect } from "react";
+import styled from 'styled-components';
+import React from 'react';
+import { BiMinus } from 'react-icons/bi';
+import { smImageUrl } from '../../../global/constants/urlPath';
+import { IoMdArrowDropup, IoMdArrowDropdown } from 'react-icons/io';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Item = ({ id, imagePath, duration, updateData, deleteData }) => {
   const [sec, setSec] = useState(duration);
@@ -73,7 +74,7 @@ export default Item;
 
 // styled components
 const Box = styled.div`
-  width: clac(100%-48px);
+  width: calc(100% - 48px);
   display: flex;
   justify-content: space-between;
   align-items: center;

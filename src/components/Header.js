@@ -1,44 +1,42 @@
-import styled from "styled-components";
-import SignIn from "./Popup/SignIn";
-import SignUp from "./Popup/SignUp";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
-import { signOut, onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase-config";
-import { LoginContext, UserContext } from "../context/userContext";
-import { domain } from "../global/constants/urlPath";
-import { FiLogOut } from "react-icons/fi";
+import styled from 'styled-components';
+import SignIn from './Popup/SignIn';
+import SignUp from './Popup/SignUp';
+import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { signOut, onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase-config';
+import { LoginContext, UserContext } from '../context/userContext';
+import { domain } from '../global/constants/urlPath';
+import { FiLogOut } from 'react-icons/fi';
 
 const Header = () => {
   const navigate = useNavigate();
   const [small, setSmall] = useState(true);
   const [open, setOpen] = useState(false);
   const [signup, setSignup] = useState(false);
-  const [loginEmail, setLoginEmail] = useState("yoga@yogaroom.com");
-  const [loginPassword, setLoginPassword] = useState("yoga123");
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState('yoga@yogaroom.com');
+  const [loginPassword, setLoginPassword] = useState('yoga123');
+  const [registerEmail, setRegisterEmail] = useState('');
+  const [registerPassword, setRegisterPassword] = useState('');
   const { loggedIn, setLoggedIn } = useContext(LoginContext);
   const { setUser } = useContext(UserContext);
 
   useEffect(() => {
-    if ((typeof window !== "undefined") & (window.location == domain)) {
+    if ((typeof window !== 'undefined') & (window.location == domain)) {
       setSmall(false);
-      window.addEventListener("scroll", () =>
-        setSmall(window.pageYOffset > 140)
-      );
+      window.addEventListener('scroll', () => setSmall(window.pageYOffset > 140));
     }
   }, []);
   useEffect(() => {
     if (!open) {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto';
       return;
     }
     if (window.pageYOffset > 0) {
       document.documentElement.scrollTop = 0;
     }
     document.body.scrollTop = 0; // for safari
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
   }, [open]);
 
   useEffect(() => {
@@ -52,12 +50,12 @@ const Header = () => {
 
   async function logout() {
     await signOut(auth);
-    navigate("/");
+    navigate('/');
   }
 
   function clickFavList() {
     if (loggedIn) {
-      navigate("/practiceList");
+      navigate('/practiceList');
     } else {
       setOpen(true);
     }
@@ -65,12 +63,12 @@ const Header = () => {
 
   return (
     <>
-      <Container small={`${small ? "small" : ""}`}>
-        <Content small={`${small ? "small" : ""}`}>
+      <Container small={`${small ? 'small' : ''}`}>
+        <Content small={`${small ? 'small' : ''}`}>
           <Logo
-            small={`${small ? "small" : ""}`}
+            small={`${small ? 'small' : ''}`}
             onClick={() => {
-              navigate("/");
+              navigate('/');
             }}
           >
             YogaRoom
@@ -125,13 +123,11 @@ const Container = styled.div`
   z-index: 2;
   width: 100%;
   background-image: ${(props) =>
-    props.small
-      ? "linear-gradient(135deg, #c59c96, #d3aba4, #d7b0a9, #e2c2ba)"
-      : "auto"};
-  box-shadow: ${(props) => (props.small ? "0px 0px 6px #c59c96" : "none")};
+    props.small ? 'linear-gradient(135deg, #c59c96, #d3aba4, #d7b0a9, #e2c2ba)' : 'auto'};
+  box-shadow: ${(props) => (props.small ? '0px 0px 6px #c59c96' : 'none')};
   @media (max-width: 768px) {
     z-index: 4;
-  } ;
+  }
 `;
 
 const Content = styled.div`
@@ -151,7 +147,7 @@ const Content = styled.div`
   }
   @media (max-width: 768px) {
     padding: 16px 10px;
-  } ;
+  }
 `;
 
 const Logo = styled.a`
@@ -159,7 +155,7 @@ const Logo = styled.a`
   display: block;
   color: #fff;
   font-weight: 700;
-  font-size: ${(props) => (props.small ? "24px" : "28px")};
+  font-size: ${(props) => (props.small ? '24px' : '28px')};
   letter-spacing: 4px;
   cursor: pointer;
   @media (max-width: 768px) {
@@ -170,19 +166,19 @@ const Logo = styled.a`
 const Navbar = styled.ul`
   display: flex;
   justify-content: start;
-  align-items: center; ;
+  align-items: center;
 `;
 
 const Option = styled.li`
   font-size: 20px;
   font-weight: 400;
   color: #fff;
-  margin-right: ${(prop) => (prop.first ? "24px" : "0px")};
+  margin-right: ${(prop) => (prop.first ? '24px' : '0px')};
   letter-spacing: 2px;
   cursor: pointer;
   @media (max-width: 768px) {
     font-size: 16px;
-    margin-right: ${(prop) => (prop.first ? "12px" : "0px")};
+    margin-right: ${(prop) => (prop.first ? '12px' : '0px')};
     letter-spacing: 1px;
   }
 `;

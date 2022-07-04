@@ -1,17 +1,11 @@
-import styled from "styled-components";
-import { useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSpeechSynthesis } from "react-speech-kit";
-import { db } from "../../../firebase-config";
-import {
-  collection,
-  addDoc,
-  updateDoc,
-  doc,
-  serverTimestamp,
-} from "firebase/firestore";
-import { LoginContext, UserContext } from "../../../context/userContext";
-import { AiFillSound } from "react-icons/ai";
+import styled from 'styled-components';
+import React, { useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSpeechSynthesis } from 'react-speech-kit';
+import { db } from '../../../firebase-config';
+import { collection, addDoc, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { LoginContext, UserContext } from '../../../context/userContext';
+import { AiFillSound } from 'react-icons/ai';
 
 const Navigation = ({
   speech,
@@ -24,12 +18,12 @@ const Navigation = ({
   setStarted,
   listName,
   practiceId,
-  isEnter,
+  isEnter
 }) => {
   const navigate = useNavigate();
   const { speak, voices, supported } = useSpeechSynthesis();
-  const voiceEng = voices.find(({ lang }) => lang.match("en-ZA"));
-  const voiceChi = voices.find(({ lang }) => lang.match("zh-TW"));
+  const voiceEng = voices.find(({ lang }) => lang.match('en-ZA'));
+  const voiceChi = voices.find(({ lang }) => lang.match('zh-TW'));
   const { loggedIn } = useContext(LoginContext);
   const { user } = useContext(UserContext);
 
@@ -37,9 +31,9 @@ const Navigation = ({
     if (!speech.trigger) {
       return;
     }
-    if (supported && roomData.language === "English") {
+    if (supported && roomData.language === 'English') {
       speak({ text: speech.text, voice: voiceEng });
-    } else if (supported && roomData.language === "中文") {
+    } else if (supported && roomData.language === '中文') {
       speak({ text: speech.text, voice: voiceChi });
     }
   }, [speech]);
@@ -59,15 +53,15 @@ const Navigation = ({
         "Sorry, your practice will continue without voice guide since your browser doesn't support it."
       );
     }
-    if (roomData.language === "English") {
+    if (roomData.language === 'English') {
       setSpeech({
-        text: "Practice starts with " + listData[0].engName + ".",
-        trigger: true,
+        text: 'Practice starts with ' + listData[0].engName + '.',
+        trigger: true
       });
-    } else if (roomData.language === "中文") {
+    } else if (roomData.language === '中文') {
       setSpeech({
-        text: "從" + listData[0].chiName + "開始練習。",
-        trigger: true,
+        text: '從' + listData[0].chiName + '開始練習。',
+        trigger: true
       });
     }
     let timeId = countDown();
@@ -79,41 +73,41 @@ const Navigation = ({
     let total = listData[0].duration;
     for (let i = 1; i < listData.length; i++) {
       setTimeout(() => {
-        if (language === "English") {
+        if (language === 'English') {
           if (i === listData.length - 1) {
             setSpeech({
-              text: "Last position, " + listData[i].engName + ".",
-              trigger: true,
+              text: 'Last position, ' + listData[i].engName + '.',
+              trigger: true
             });
             setTimeout(() => {
               clearInterval(timeId);
               setDuration(0);
               setSpeech({
-                text: "End of practice!",
-                trigger: true,
+                text: 'End of practice!',
+                trigger: true
               });
             }, listData[i].duration * 1000);
           } else {
             setSpeech({
-              text: "Next position, " + listData[i].engName + ".",
-              trigger: true,
+              text: 'Next position, ' + listData[i].engName + '.',
+              trigger: true
             });
           }
-        } else if (language === "中文") {
+        } else if (language === '中文') {
           if (i === listData.length - 1) {
             setSpeech({
-              text: "最後一個動作，" + listData[i].chiName,
-              trigger: true,
+              text: '最後一個動作，' + listData[i].chiName,
+              trigger: true
             });
             setTimeout(() => {
               clearInterval(timeId);
               setDuration(0);
-              setSpeech({ text: "練習結束！", trigger: true });
+              setSpeech({ text: '練習結束！', trigger: true });
             }, listData[i].duration * 1000);
           } else {
             setSpeech({
-              text: "下一個動作， " + listData[i].chiName,
-              trigger: true,
+              text: '下一個動作， ' + listData[i].chiName,
+              trigger: true
             });
           }
         }
@@ -130,50 +124,50 @@ const Navigation = ({
 
       if (practiceId) {
         // update doc to firestore
-        const practiceDoc = doc(db, "users", user, "practices", practiceId);
+        const practiceDoc = doc(db, 'users', user, 'practices', practiceId);
         const newListData = {
           listName: listName,
           listData: listData,
-          timestamp: timestamp,
+          timestamp: timestamp
         };
         await updateDoc(practiceDoc, newListData);
       } else {
         // add doc to firestore
         const addPractice = async () => {
           await Promise.all([
-            addDoc(collection(db, "users", user, "practices"), {
+            addDoc(collection(db, 'users', user, 'practices'), {
               listName: listName,
               listData: listData,
-              timestamp: timestamp,
-            }),
+              timestamp: timestamp
+            })
           ]);
         };
         addPractice();
       }
     }
-    navigate("/flow", {
+    navigate('/flow', {
       state: {
         listData: [listData[0]],
         roomData: {
           color: roomData.color,
-          language: roomData.language,
-        },
-      },
+          language: roomData.language
+        }
+      }
     });
   }
 
   function BackEdit() {
-    navigate("/flow", {
+    navigate('/flow', {
       state: {
         listData: listData,
         roomData: roomData,
-        listName: listName,
-      },
+        listName: listName
+      }
     });
   }
 
   function BackList() {
-    navigate("/practiceList");
+    navigate('/practiceList');
   }
 
   return (
@@ -279,29 +273,25 @@ const Content = styled.div`
 const Button = styled.button`
   width: 168px;
   height: 48px;
-  background-color: ${(props) => (props.primary ? "#d7b0a9" : "#FFFFFF")};
-  border: ${(props) =>
-    props.primary ? "0px solid #FC9874" : "2px solid #cacaca"};
+  background-color: ${(props) => (props.primary ? '#d7b0a9' : '#FFFFFF')};
+  border: ${(props) => (props.primary ? '0px solid #FC9874' : '2px solid #cacaca')};
   border-radius: 16px;
-  box-shadow: ${(props) =>
-    props.primary ? "0px 4px 0px #b39e99" : "0px 4px 0px #cacaca"};
-  font-family: "Poppins", sans-serif;
+  box-shadow: ${(props) => (props.primary ? '0px 4px 0px #b39e99' : '0px 4px 0px #cacaca')};
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
-  color: ${(props) => (props.primary ? "#FFFFFF" : "#adadad")};
+  color: ${(props) => (props.primary ? '#FFFFFF' : '#adadad')};
   letter-spacing: 1px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   &:hover {
-    background: ${(props) => (props.primary ? "#dec8b8" : "#e9e9e9")};
-    box-shadow: ${(props) =>
-      props.primary ? "0px 4px 0px #b39e99" : "0px 4px 0px #bdbdbd"};
+    background: ${(props) => (props.primary ? '#dec8b8' : '#e9e9e9')};
+    box-shadow: ${(props) => (props.primary ? '0px 4px 0px #b39e99' : '0px 4px 0px #bdbdbd')};
   }
   &:active {
     transform: translateY(2px);
-    box-shadow: ${(props) =>
-      props.primary ? "0px 0px 0px #69403b" : "0px 0px 0px #adadad"};
+    box-shadow: ${(props) => (props.primary ? '0px 0px 0px #69403b' : '0px 0px 0px #adadad')};
   }
   @media (max-width: 768px) {
     font-size: 16px;

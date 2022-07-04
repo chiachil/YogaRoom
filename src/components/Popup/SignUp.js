@@ -1,16 +1,7 @@
-import React, { useState } from "react";
-import {
-  PopBG,
-  Popup,
-  Title,
-  Input,
-  Button,
-  Tab,
-  TabLink,
-  Note,
-} from "./style/sharedStyle";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase-config";
+import React, { useState } from 'react';
+import { PopBG, Popup, Title, Input, Button, Tab, TabLink, Note } from './style/sharedStyle';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase-config';
 
 const SignUp = ({
   setOpen,
@@ -18,29 +9,25 @@ const SignUp = ({
   setRegisterEmail,
   registerPassword,
   setRegisterPassword,
-  setSignup,
+  setSignup
 }) => {
-  const [note, setNote] = useState("");
-  const [messageColor, setMessageColor] = useState("");
+  const [note, setNote] = useState('');
+  const [messageColor, setMessageColor] = useState('');
 
   async function register() {
     try {
-      await createUserWithEmailAndPassword(
-        auth,
-        registerEmail,
-        registerPassword
-      );
-      setMessageColor("#b39e99");
-      setNote("Account created successfully.");
+      await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+      setMessageColor('#b39e99');
+      setNote('Account created successfully.');
     } catch (error) {
       setNote(error.message);
-      setMessageColor("#8B8B8B");
-      if (registerEmail === "" || registerPassword === "") {
-        setNote("The field cannot be empty.");
-      } else if (error.code === "auth/email-already-in-use") {
-        setNote("The Email address has been registered.");
+      setMessageColor('#8B8B8B');
+      if (registerEmail === '' || registerPassword === '') {
+        setNote('The field cannot be empty.');
+      } else if (error.code === 'auth/email-already-in-use') {
+        setNote('The Email address has been registered.');
       } else {
-        setNote("Email or password input error");
+        setNote('Email or password input error');
       }
     }
   }

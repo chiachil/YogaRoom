@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import Item from "./Item";
+import styled from 'styled-components';
+import Item from './Item';
+import React from 'react';
 
 const Schedule = ({ listData, slide, duration, started, listName }) => {
   return (
@@ -99,13 +100,13 @@ const Box = styled.div`
 `;
 
 const Pose = styled.h2`
-  font-weight: ${(prop) => (prop.primary ? "500" : "400")};
-  font-size: ${(prop) => (prop.primary ? "24px" : "22px")};
-  color: ${(prop) => (prop.primary ? "#333333" : "#c4c4c4")};
-  letter-spacing: ${(prop) => (prop.primary ? "1px" : "2.5px")};
-  margin-bottom: ${(prop) => (prop.primary ? "16px" : "0px")};
+  font-weight: ${(prop) => (prop.primary ? '500' : '400')};
+  font-size: ${(prop) => (prop.primary ? '24px' : '22px')};
+  color: ${(prop) => (prop.primary ? '#333333' : '#c4c4c4')};
+  letter-spacing: ${(prop) => (prop.primary ? '1px' : '2.5px')};
+  margin-bottom: ${(prop) => (prop.primary ? '16px' : '0px')};
   @media (max-width: 768px) {
-    font-size: ${(prop) => (prop.primary ? "20px" : "18px")};
+    font-size: ${(prop) => (prop.primary ? '20px' : '18px')};
   }
 `;
 

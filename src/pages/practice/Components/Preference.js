@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { useState, useContext } from "react";
-import { colorArr, voiceArr } from "../../../global/constants/room";
-import { LanguageContext } from "../../../context/preferenceContext";
-import { IoIosSettings } from "react-icons/io";
-import { AiFillSound } from "react-icons/ai";
+import styled from 'styled-components';
+import React, { useState, useContext } from 'react';
+import { colorArr, voiceArr } from '../../../global/constants/room';
+import { LanguageContext } from '../../../context/preferenceContext';
+import { IoIosSettings } from 'react-icons/io';
+import { AiFillSound } from 'react-icons/ai';
 
 const Preference = ({ roomData, updateRoom, setSpeech }) => {
   const [popup, setPopup] = useState(false);
@@ -13,7 +13,7 @@ const Preference = ({ roomData, updateRoom, setSpeech }) => {
     updateRoom({
       background: roomData.background,
       color: option,
-      language: roomData.language,
+      language: roomData.language
     });
   }
 
@@ -21,15 +21,15 @@ const Preference = ({ roomData, updateRoom, setSpeech }) => {
     updateRoom({
       background: roomData.background,
       color: roomData.color,
-      language: option,
+      language: option
     });
-    if (option === "中文") {
+    if (option === '中文') {
       setSpeech({ text: "點擊 'START'", trigger: false });
       setChinese(true);
     } else {
       setSpeech({
         text: "Click 'START'",
-        trigger: false,
+        trigger: false
       });
       setChinese(false);
     }
@@ -111,7 +111,7 @@ const Button = styled.button`
   background-color: rgba(255, 255, 255, 0.7);
   border: 1px solid #e5e5e5;
   border-radius: 8px;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   color: #333333;
   letter-spacing: 1px;
@@ -160,15 +160,14 @@ const Box = styled.div`
   height: auto;
   justify-content: start;
   width: 100%;
-  padding-bottom: ${(prop) => (prop.last ? "0px" : "24px")};
+  padding-bottom: ${(prop) => (prop.last ? '0px' : '24px')};
 `;
 
 const ColorOption = styled.div`
   width: 32px;
   height: 32px;
   border: 2px solid #ffffff;
-  outline: ${(prop) =>
-    prop.selected ? "2px solid #adadad" : "2px solid #e9e9e9"};
+  outline: ${(prop) => (prop.selected ? '2px solid #adadad' : '2px solid #e9e9e9')};
   border-radius: 8px;
   margin-right: 16px;
   transition: ease-in 0.1s;
@@ -188,8 +187,7 @@ const VoiceOption = styled.div`
   letter-spacing: 1px;
   color: #696969;
   background: #ffffff;
-  border: ${(prop) =>
-    prop.selected ? "2px solid #adadad;" : "2px solid #e9e9e9;"};
+  border: ${(prop) => (prop.selected ? '2px solid #adadad;' : '2px solid #e9e9e9;')};
   border-radius: 8px;
   text-align: center;
   margin-right: 16px;

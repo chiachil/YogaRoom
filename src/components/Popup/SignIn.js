@@ -1,18 +1,9 @@
-import React, { useState, useContext } from "react";
-import { UserContext } from "../../context/userContext";
+import React, { useState, useContext } from 'react';
+import { UserContext } from '../../context/userContext';
 
-import {
-  PopBG,
-  Popup,
-  Title,
-  Input,
-  Button,
-  Tab,
-  TabLink,
-  Note,
-} from "./style/sharedStyle";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase-config";
+import { PopBG, Popup, Title, Input, Button, Tab, TabLink, Note } from './style/sharedStyle';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase-config';
 
 const SignIn = ({
   setOpen,
@@ -20,33 +11,29 @@ const SignIn = ({
   setLoginEmail,
   loginPassword,
   setLoginPassword,
-  setSignup,
+  setSignup
 }) => {
-  const [note, setNote] = useState("");
-  const [messageColor, setMessageColor] = useState("");
+  const [note, setNote] = useState('');
+  const [messageColor, setMessageColor] = useState('');
   const { setUser } = useContext(UserContext);
 
   async function login() {
     try {
-      const data = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      setMessageColor("#b39e99");
-      setNote("Sign In Successfully!");
+      const data = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      setMessageColor('#b39e99');
+      setNote('Sign In Successfully!');
       setTimeout(() => {
         setOpen(false);
       }, 1000);
       setUser(data.user.uid);
     } catch (error) {
-      setMessageColor("#8B8B8B");
-      if (loginEmail === "" || loginPassword === "") {
-        setNote("The field cannot be empty");
-      } else if (error.code === "auth/user-not-found") {
-        setNote("Email address has not been registered");
+      setMessageColor('#8B8B8B');
+      if (loginEmail === '' || loginPassword === '') {
+        setNote('The field cannot be empty');
+      } else if (error.code === 'auth/user-not-found') {
+        setNote('Email address has not been registered');
       } else {
-        setNote("Email or password input error");
+        setNote('Email or password input error');
       }
     }
   }
@@ -64,7 +51,7 @@ const SignIn = ({
         <Input
           onChange={(e) => {
             setLoginEmail(e.target.value);
-            setNote("");
+            setNote('');
           }}
           type="type"
           placeholder="email"
@@ -73,7 +60,7 @@ const SignIn = ({
         <Input
           onChange={(e) => {
             setLoginPassword(e.target.value);
-            setNote("");
+            setNote('');
           }}
           type="password"
           placeholder="password"

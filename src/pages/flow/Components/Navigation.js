@@ -1,21 +1,21 @@
-import styled, { keyframes } from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
-import { AiOutlineAlert } from "react-icons/ai";
-import { db } from "../../../firebase-config";
-import { updateDoc, doc, serverTimestamp } from "firebase/firestore";
-import { UserContext } from "../../../context/userContext";
+import styled, { keyframes } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { AiOutlineAlert } from 'react-icons/ai';
+import { db } from '../../../firebase-config';
+import { updateDoc, doc, serverTimestamp } from 'firebase/firestore';
+import { UserContext } from '../../../context/userContext';
 
 const Navigation = ({ listData, roomData, listName, practiceId }) => {
   const navigate = useNavigate();
   const [alert, setAlert] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const { user } = useContext(UserContext);
 
   useEffect(() => {
     if (practiceId) {
       setAlert(true);
-      setMessage("You are in editing mode.");
+      setMessage('You are in editing mode.');
       setTimeout(() => setAlert(false), 3000);
     }
   }, [practiceId]);
@@ -24,55 +24,55 @@ const Navigation = ({ listData, roomData, listName, practiceId }) => {
     // data validation
     if (listData.length < 2) {
       setAlert(true);
-      setMessage("At least 2 positions are required.");
+      setMessage('At least 2 positions are required.');
       setTimeout(() => setAlert(false), 3000);
       return;
     }
     if (listData.length > 100) {
       setAlert(true);
-      setMessage("Reached limit of 100 positions.");
+      setMessage('Reached limit of 100 positions.');
       setTimeout(() => setAlert(false), 3000);
       return;
     }
     if (!listName) {
-      const listName = "Untitled";
-      navigate("/practice", {
+      const listName = 'Untitled';
+      navigate('/practice', {
         state: {
           listData: listData,
           roomData: roomData,
           listName: listName,
-          practiceId: practiceId,
-        },
+          practiceId: practiceId
+        }
       });
       return;
     }
     // change page
-    navigate("/practice", {
+    navigate('/practice', {
       state: {
         listData: listData,
         roomData: roomData,
         listName: listName,
-        practiceId: practiceId,
-      },
+        practiceId: practiceId
+      }
     });
   }
   async function clickSave() {
     setAlert(false);
     // update data to firestore
     const timestamp = serverTimestamp();
-    const practiceDoc = doc(db, "users", user, "practices", practiceId);
+    const practiceDoc = doc(db, 'users', user, 'practices', practiceId);
     const newListData = {
       listName: listName,
       listData: listData,
-      timestamp: timestamp,
+      timestamp: timestamp
     };
     await updateDoc(practiceDoc, newListData);
-    navigate("/practiceList");
+    navigate('/practiceList');
   }
 
   function clickDiscard() {
     setAlert(false);
-    navigate("/practiceList");
+    navigate('/practiceList');
   }
 
   return (
@@ -83,7 +83,7 @@ const Navigation = ({ listData, roomData, listName, practiceId }) => {
           <AlertContent>{message}</AlertContent>
         </AlertCard>
       ) : (
-        ""
+        ''
       )}
       <Container>
         <Content>
@@ -140,24 +140,20 @@ const Content = styled.div`
 const EnterButton = styled.button`
   width: 158px;
   height: 48px;
-  background-color: ${(props) => (props.primary ? "#d7b0a9" : "#FFFFFF")};
-  border: ${(props) =>
-    props.primary ? "0px solid #FC9874" : "2px solid #cacaca"};
+  background-color: ${(props) => (props.primary ? '#d7b0a9' : '#FFFFFF')};
+  border: ${(props) => (props.primary ? '0px solid #FC9874' : '2px solid #cacaca')};
   border-radius: 16px;
-  box-shadow: ${(props) =>
-    props.primary ? "0px 4px 0px #b39e99" : "0px 4px 0px #cacaca"};
+  box-shadow: ${(props) => (props.primary ? '0px 4px 0px #b39e99' : '0px 4px 0px #cacaca')};
   font-size: 18px;
-  color: ${(props) => (props.primary ? "#FFFFFF" : "#adadad")};
+  color: ${(props) => (props.primary ? '#FFFFFF' : '#adadad')};
   letter-spacing: 1px;
   &:hover {
-    background: ${(props) => (props.primary ? "#dec8b8" : "#e9e9e9")};
-    box-shadow: ${(props) =>
-      props.primary ? "0px 4px 0px #b39e99" : "0px 4px 0px #bdbdbd"};
+    background: ${(props) => (props.primary ? '#dec8b8' : '#e9e9e9')};
+    box-shadow: ${(props) => (props.primary ? '0px 4px 0px #b39e99' : '0px 4px 0px #bdbdbd')};
   }
   &:active {
     transform: translateY(2px);
-    box-shadow: ${(props) =>
-      props.primary ? "0px 0px 0px #69403b" : "0px 0px 0px #adadad"};
+    box-shadow: ${(props) => (props.primary ? '0px 0px 0px #69403b' : '0px 0px 0px #adadad')};
   }
   @media (max-width: 768px) {
     font-size: 16px;

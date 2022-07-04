@@ -1,29 +1,29 @@
-import styled from "styled-components";
-import Header from "../../components/Header";
-import Select from "./Components/Select";
-import List from "./Components/List";
-import Navigation from "./Components/Navigation";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { colorArr, voiceArr } from "../../global/constants/room";
+import styled from 'styled-components';
+import Header from '../../components/Header';
+import Select from './Components/Select';
+import List from './Components/List';
+import Navigation from './Components/Navigation';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { colorArr, voiceArr } from '../../global/constants/room';
 
 const Flow = () => {
   const { state } = useLocation();
-  const [listName, setListName] = useState("");
-  const [practiceId, setPracticeId] = useState("");
+  const [listName, setListName] = useState('');
+  const [practiceId, setPracticeId] = useState('');
   const [list, setList] = useState([
     {
       id: 0,
-      engName: "Easy Pose",
-      chiName: "簡易坐式",
-      imagePath: "EasyPose.svg",
-      duration: 10,
-    },
+      engName: 'Easy Pose',
+      chiName: '簡易坐式',
+      imagePath: 'EasyPose.svg',
+      duration: 10
+    }
   ]);
 
   const [background, setBackground] = useState({
     color: colorArr[0],
-    language: voiceArr[0],
+    language: voiceArr[0]
   });
 
   useEffect(() => {
@@ -93,7 +93,7 @@ const Content = styled.div`
   }
   @media (max-width: 768px) {
     padding: 62px 10px 114px 10px;
-  } ;
+  }
 `;
 
 const Title = styled.h1`
@@ -116,10 +116,10 @@ const Title = styled.h1`
 const Box = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: ${(prop) => (prop.primary ? "space-between" : "start")};
+  justify-content: ${(prop) => (prop.primary ? 'space-between' : 'start')};
   align-items: center;
   width: 100%;
-  height: ${(prop) => (prop.primary ? "80%" : "15%")};
+  height: ${(prop) => (prop.primary ? '80%' : '15%')};
   @media (max-width: 1024px) {
     flex-direction: column-reverse;
     height: auto;

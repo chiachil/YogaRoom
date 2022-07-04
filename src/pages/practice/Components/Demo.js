@@ -1,7 +1,8 @@
-import styled from "styled-components";
-import Preference from "./Preference";
-import { lgImageUrl } from "../../../global/constants/urlPath";
-import { roomImage } from "../../../global/constants/urlPath";
+import styled from 'styled-components';
+import Preference from './Preference';
+import { lgImageUrl } from '../../../global/constants/urlPath';
+import { roomImage } from '../../../global/constants/urlPath';
+import React from 'react';
 
 const Demo = ({ slide, roomData, updateRoom, setSpeech, started }) => {
   return (
@@ -12,11 +13,7 @@ const Demo = ({ slide, roomData, updateRoom, setSpeech, started }) => {
       {started ? (
         <></>
       ) : (
-        <Preference
-          roomData={roomData}
-          updateRoom={updateRoom}
-          setSpeech={setSpeech}
-        ></Preference>
+        <Preference roomData={roomData} updateRoom={updateRoom} setSpeech={setSpeech}></Preference>
       )}
     </Container>
   );

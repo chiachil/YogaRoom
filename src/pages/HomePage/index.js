@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import Header from "../../components/Header";
-import { demoImage } from "../../global/constants/urlPath";
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import styled from 'styled-components';
+import Header from '../../components/Header';
+import { demoImage } from '../../global/constants/urlPath';
+import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -10,28 +10,24 @@ const HomePage = () => {
   const Content = [
     {
       id: 1,
-      title: "Online Tools for Yoga Practice",
-      subTitle:
-        "including Sequence Builder, Visual & Auditory Guidance and Save Feature",
+      title: 'Online Tools for Yoga Practice',
+      subTitle: 'including Sequence Builder, Visual & Auditory Guidance and Save Feature'
     },
     {
       id: 2,
-      title: "Build Your Own Sequences",
-      subTitle:
-        "Select positions and focus time to create a unique and personalized practice",
+      title: 'Build Your Own Sequences',
+      subTitle: 'Select positions and focus time to create a unique and personalized practice'
     },
     {
       id: 3,
-      title: "Get Visual and Auditory Guidance",
-      subTitle:
-        "Support voice guide in English & Mandarin, and different mat colors to choose from",
+      title: 'Get Visual and Auditory Guidance',
+      subTitle: 'Support voice guide in English & Mandarin, and different mat colors to choose from'
     },
     {
       id: 4,
-      title: "Save Practice to Favorites",
-      subTitle:
-        "Upon logging, you can save your practice and start any practice immediately",
-    },
+      title: 'Save Practice to Favorites',
+      subTitle: 'Upon logging, you can save your practice and start any practice immediately'
+    }
   ];
 
   useEffect(() => {
@@ -41,10 +37,7 @@ const HomePage = () => {
   }, []);
 
   function scroll() {
-    if (
-      document.body.scrollTop > 1000 ||
-      document.documentElement.scrollTop > 1000
-    ) {
+    if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
       setTop(true);
     } else {
       setTop(false);
@@ -57,7 +50,7 @@ const HomePage = () => {
   }
   return (
     <>
-      {top ? <GoTop onClick={backToTop}>TOP</GoTop> : ""}
+      {top ? <GoTop onClick={backToTop}>TOP</GoTop> : ''}
       <Header />
       <Main>
         {Content.map((section) => {
@@ -69,17 +62,15 @@ const HomePage = () => {
                   <Title id={id}>{title}</Title>
                   <SubTitle id={id}>{subTitle}</SubTitle>
                   {id === 1 ? (
-                    <Button onClick={() => navigate("/flow")}>
-                      QUICK START
-                    </Button>
+                    <Button onClick={() => navigate('/flow')}>QUICK START</Button>
                   ) : (
                     <></>
                   )}
                 </TitleBox>
                 {id === 1 ? (
-                  <Demo id={id} src={demoImage + "demo1.gif"}></Demo>
+                  <Demo id={id} src={demoImage + 'demo1.gif'}></Demo>
                 ) : (
-                  <Demo id={id} src={demoImage + "demo" + id + ".png"}></Demo>
+                  <Demo id={id} src={demoImage + 'demo' + id + '.png'}></Demo>
                 )}
               </Box>
             </Section>
@@ -105,23 +96,22 @@ const Main = styled.div`
 
 const Section = styled.div`
   width: 100%;
-  height: 100%;
   position: relative;
-  height: ${(prop) => (prop.id === 1 ? "100vh" : "70vh")};
+  height: ${(prop) => (prop.id === 1 ? '100vh' : '70vh')};
   background: ${(prop) =>
     prop.id === 1
-      ? "linear-gradient(135deg, #c59c96, #d7b0a9, #edd3cb, #FAEBE8)"
+      ? 'linear-gradient(135deg, #c59c96, #d7b0a9, #edd3cb, #FAEBE8)'
       : prop.id === 3
-      ? "#e9e9e9"
-      : "#FFFFFF"};
+      ? '#e9e9e9'
+      : '#FFFFFF'};
   @media (max-width: 768px) {
-    height: ${(prop) => (prop.id === 1 ? "100vh" : "80vh")};
-  } ;
+    height: ${(prop) => (prop.id === 1 ? '100vh' : '80vh')};
+  }
 `;
+
 const Box = styled.div`
   display: flex;
-  flex-direction: ${(prop) =>
-    prop.id === 1 || prop.id === 3 ? "row" : "row-reverse"};
+  flex-direction: ${(prop) => (prop.id === 1 || prop.id === 3 ? 'row' : 'row-reverse')};
   justify-content: space-between;
   align-items: center;
   position: absolute;
@@ -130,45 +120,46 @@ const Box = styled.div`
   transform: translate(-50%, -50%);
   width: 1344px;
   height: 100%;
-  padding: ${(prop) => (prop.id === 1 ? "158px 0px 0px 0px" : "0px")};
+  padding: ${(prop) => (prop.id === 1 ? '158px 0px 0px 0px' : '0px')};
   @media (max-width: 1440px) {
     width: 100%;
-    padding: ${(prop) => (prop.id === 1 ? "158px 48px 0px 48px" : "0px 48px")};
+    padding: ${(prop) => (prop.id === 1 ? '158px 48px 0px 48px' : '0px 48px')};
   }
   @media (max-width: 1024px) {
-    padding: ${(prop) => (prop.id === 1 ? "158px 24px 0px 24px" : "0px 24px")};
+    padding: ${(prop) => (prop.id === 1 ? '158px 24px 0px 24px' : '0px 24px')};
   }
   @media (max-width: 768px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: ${(prop) => (prop.id === 1 ? "0px 10px" : "0px 10px")};
+    padding: ${(prop) => (prop.id === 1 ? '0px 10px' : '0px 10px')};
     height: 100%;
-  } ;
+  }
 `;
+
 const TitleBox = styled.div`
   width: 50%;
-  margin-bottom: ${(prop) => (prop.id === 1 ? "48px" : "0px")};
-  align-self: ${(prop) => (prop.id === 1 ? "flex-start" : "none")};
+  margin-bottom: ${(prop) => (prop.id === 1 ? '48px' : '0px')};
+  align-self: ${(prop) => (prop.id === 1 ? 'flex-start' : 'none')};
   @media (max-width: 768px) {
     margin-bottom: 48px;
     width: 100%;
-  } ;
+  }
 `;
 
 const Demo = styled.img`
-  max-width: ${(prop) => (prop.id === 1 ? "50%" : "45%")};
+  max-width: ${(prop) => (prop.id === 1 ? '50%' : '45%')};
   border-radius: 8px;
   box-shadow: ${(prop) =>
     prop.id === 4
-      ? "-40px 48px 48px rgb(85 78 78 / 32%)"
+      ? '-40px 48px 48px rgb(85 78 78 / 32%)'
       : prop.id === 1 || prop.id === 3
-      ? "48px 40px 48px rgb(85 78 78 / 32%)"
-      : "none"};
-  align-self: ${(prop) => (prop.id === 1 ? "flex-end" : "none")};
-  margin-bottom: ${(prop) => (prop.id === 1 ? "10%" : "0px")};
+      ? '48px 40px 48px rgb(85 78 78 / 32%)'
+      : 'none'};
+  align-self: ${(prop) => (prop.id === 1 ? 'flex-end' : 'none')};
+  margin-bottom: ${(prop) => (prop.id === 1 ? '10%' : '0px')};
   @media (max-width: 1440px) {
-    margin-bottom: ${(prop) => (prop.id === 1 ? "5%" : "0px")};
+    margin-bottom: ${(prop) => (prop.id === 1 ? '5%' : '0px')};
   }
   @media (max-width: 768px) {
     align-self: center;
@@ -180,7 +171,7 @@ const Demo = styled.img`
 const Title = styled.p`
   font-size: 40px;
   font-weight: 500;
-  color: ${(prop) => (prop.id === 1 ? "#FFF" : "#333")};
+  color: ${(prop) => (prop.id === 1 ? '#FFF' : '#333')};
   line-height: 64px;
   @media (max-width: 1024px) {
     font-size: 32px;
@@ -194,7 +185,7 @@ const Title = styled.p`
 const SubTitle = styled.p`
   font-size: 24px;
   font-weight: 400;
-  color: ${(prop) => (prop.id === 1 ? "#FFF" : "#adadad")};
+  color: ${(prop) => (prop.id === 1 ? '#FFF' : '#adadad')};
   margin-top: 24px;
   line-height: 40px;
   @media (max-width: 1024px) {
@@ -210,7 +201,6 @@ const SubTitle = styled.p`
 const Button = styled.button`
   width: fit-content;
   padding: 16px 24px;
-  font-size: 20px;
   font-weight: 500;
   color: #fff;
   background-color: #dec8b8;

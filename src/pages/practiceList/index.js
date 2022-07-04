@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import Header from "../../components/Header";
-import Option from "./components/Option";
-import { useState, useEffect, useContext } from "react";
-import { db } from "../../firebase-config";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-import { LoginContext } from "../../context/userContext";
-import { spinner } from "../../global/constants/urlPath";
+import styled from 'styled-components';
+import Header from '../../components/Header';
+import Option from './components/Option';
+import React, { useState, useEffect, useContext } from 'react';
+import { db } from '../../firebase-config';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { LoginContext } from '../../context/userContext';
+import { spinner } from '../../global/constants/urlPath';
 
 const FavList = () => {
   const [list, setList] = useState([]);
@@ -18,8 +18,8 @@ const FavList = () => {
 
   async function getPractice() {
     if (loggedIn) {
-      const collectionRef = collection(db, "users", loggedIn.uid, "practices");
-      const q = query(collectionRef, orderBy("timestamp", "desc"));
+      const collectionRef = collection(db, 'users', loggedIn.uid, 'practices');
+      const q = query(collectionRef, orderBy('timestamp', 'desc'));
       const data = onSnapshot(q, (snapshot) =>
         setList(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       );
@@ -37,7 +37,7 @@ const FavList = () => {
             <Spinner src={spinner}></Spinner>
           </PopBG>
         ) : (
-          ""
+          ''
         )}
         <Content>
           <TitleBox>
@@ -52,11 +52,7 @@ const FavList = () => {
                   const { listName, listData, id, timestamp } = item;
                   const date = timestamp.toDate();
                   const dateString =
-                    date.getFullYear() +
-                    "/" +
-                    date.getMonth() +
-                    "/" +
-                    date.getDate();
+                    date.getFullYear() + '/' + date.getMonth() + '/' + date.getDate();
                   return (
                     <Option
                       key={id}
@@ -101,7 +97,7 @@ const Content = styled.div`
   }
   @media (max-width: 768px) {
     padding: 62px 10px 114px 10px;
-  } ;
+  }
 `;
 
 const TitleBox = styled.div`

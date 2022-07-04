@@ -1,36 +1,36 @@
-import styled from "styled-components";
-import { useState, useContext } from "react";
-import { colorArr, voiceArr } from "../../../global/constants/room";
-import { demoImage } from "../../../global/constants/urlPath";
-import { RiEditBoxLine } from "react-icons/ri";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
-import { db } from "../../../firebase-config";
-import { doc, deleteDoc } from "firebase/firestore";
-import { UserContext } from "../../../context/userContext";
+import styled from 'styled-components';
+import React, { useState, useContext } from 'react';
+import { colorArr, voiceArr } from '../../../global/constants/room';
+import { demoImage } from '../../../global/constants/urlPath';
+import { RiEditBoxLine } from 'react-icons/ri';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../../../firebase-config';
+import { doc, deleteDoc } from 'firebase/firestore';
+import { UserContext } from '../../../context/userContext';
 
 const Option = ({ id, listData, listName, setList, date }) => {
   const [openSetting, setOpenSetting] = useState(false);
   const navigate = useNavigate();
   const roomData = {
     color: colorArr[0],
-    language: voiceArr[0],
+    language: voiceArr[0]
   };
   const { user } = useContext(UserContext);
 
   async function updatePractice() {
-    navigate("/flow", {
+    navigate('/flow', {
       state: {
         listData: listData,
         roomData: roomData,
         listName: listName,
-        practiceId: id,
-      },
+        practiceId: id
+      }
     });
   }
 
   async function deletePractice() {
-    const practiceDoc = doc(db, "users", user, "practices", id);
+    const practiceDoc = doc(db, 'users', user, 'practices', id);
     await deleteDoc(practiceDoc);
     setList((prev) => {
       return prev.filter((practice) => practice.id !== id);
@@ -39,13 +39,13 @@ const Option = ({ id, listData, listName, setList, date }) => {
 
   function goPractice() {
     const isEnter = true;
-    navigate("/practice", {
+    navigate('/practice', {
       state: {
         listData: listData,
         roomData: roomData,
         listName: listName,
-        isEnter: isEnter,
-      },
+        isEnter: isEnter
+      }
     });
   }
   return (
@@ -70,10 +70,10 @@ const Option = ({ id, listData, listName, setList, date }) => {
           <PopBG onClick={() => setOpenSetting(!openSetting)}></PopBG>
         </>
       ) : (
-        ""
+        ''
       )}
       <Practice>
-        <Image src={demoImage + "EasyPose-demo.svg"}></Image>
+        <Image src={demoImage + 'EasyPose-demo.svg'}></Image>
         <NameBox>
           <Name>{listName}</Name>
           <Date>{date}</Date>
@@ -160,7 +160,7 @@ const Name = styled.h2`
 `;
 
 const Date = styled.h3`
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -238,9 +238,9 @@ const Popup = styled.div`
 `;
 
 const Select = styled.div`
-  padding-bottom: ${(prop) => (prop.first ? "8px" : "0px")};
-  border-bottom: ${(prop) => (prop.first ? "1px solid #e9e9e9" : "")};
-  margin-bottom: ${(prop) => (prop.first ? "8px" : "0px")};
+  padding-bottom: ${(prop) => (prop.first ? '8px' : '0px')};
+  border-bottom: ${(prop) => (prop.first ? '1px solid #e9e9e9' : '')};
+  margin-bottom: ${(prop) => (prop.first ? '8px' : '0px')};
 `;
 
 const SelectBtn = styled.button`

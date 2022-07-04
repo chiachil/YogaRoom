@@ -1,16 +1,9 @@
-import styled from "styled-components";
-import { BiPlus } from "react-icons/bi";
-import { smImageUrl } from "../../../global/constants/urlPath";
+import styled from 'styled-components';
+import React from 'react';
+import { BiPlus } from 'react-icons/bi';
+import { smImageUrl } from '../../../global/constants/urlPath';
 
-const Option = ({
-  id,
-  engName,
-  chiName,
-  imagePath,
-  duration,
-  listData,
-  addData,
-}) => {
+const Option = ({ id, engName, chiName, imagePath, duration, listData, addData }) => {
   function addItem() {
     if (listData.length > 100) {
       alert("You've reached the limit of 100. Please delete some to add more.");
@@ -23,8 +16,8 @@ const Option = ({
             engName: engName,
             chiName: chiName,
             imagePath: imagePath,
-            duration: duration,
-          },
+            duration: duration
+          }
         ];
       });
     }
@@ -100,7 +93,7 @@ const NameBox = styled.div`
 `;
 
 const EngName = styled.h2`
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   line-height: 24px;
   font-weight: 500;
@@ -114,7 +107,7 @@ const EngName = styled.h2`
 `;
 
 const ChiName = styled.h3`
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   line-height: 24px;
   font-weight: 400;

@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { smImageUrl } from "../../../global/constants/urlPath";
-import { useContext } from "react";
-import { LanguageContext } from "../../../context/preferenceContext";
+import styled from 'styled-components';
+import { smImageUrl } from '../../../global/constants/urlPath';
+import React, { useContext } from 'react';
+import { LanguageContext } from '../../../context/preferenceContext';
 
 const Item = ({ engName, chiName, imagePath, duration }) => {
   const { chinese } = useContext(LanguageContext);
@@ -9,7 +9,7 @@ const Item = ({ engName, chiName, imagePath, duration }) => {
   return (
     <Card>
       <Image src={smImageUrl + imagePath}></Image>
-      <Number>{duration + "s"}</Number>
+      <Number>{duration + 's'}</Number>
       {chinese ? <Name>{chiName}</Name> : <Name>{engName}</Name>}
     </Card>
   );
@@ -52,7 +52,7 @@ const Name = styled.p`
     width: 270px;
   }
   @media (max-width: 1024px) {
-    width: calc(100%-48px);
+    width: calc(100% - 48px);
   }
 `;
 

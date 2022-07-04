@@ -1,18 +1,18 @@
-import styled from "styled-components";
-import Header from "../../components/Header";
-import Demo from "./Components/Demo";
-import Schedule from "./Components/Schedule";
-import Navigation from "./Components/Navigation";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
-import { LanguageContext } from "../../context/preferenceContext";
+import styled from 'styled-components';
+import Header from '../../components/Header';
+import Demo from './Components/Demo';
+import Schedule from './Components/Schedule';
+import Navigation from './Components/Navigation';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { LanguageContext } from '../../context/preferenceContext';
 
 const Practice = () => {
   const { state } = useLocation();
   const { listData, roomData, listName, practiceId, isEnter } = state;
   const [speech, setSpeech] = useState({
     text: "Click 'START'",
-    trigger: false,
+    trigger: false
   });
   const [slide, setSlide] = useState(listData[0]);
   const [duration, setDuration] = useState(slide.duration);
@@ -25,7 +25,7 @@ const Practice = () => {
       <LanguageContext.Provider
         value={{
           chinese,
-          setChinese,
+          setChinese
         }}
       >
         <Header />
@@ -97,7 +97,7 @@ const Content = styled.div`
   }
   @media (max-width: 768px) {
     padding: 62px 10px 114px 10px;
-  } ;
+  }
 `;
 
 const Title = styled.h1`
@@ -121,7 +121,7 @@ const Box = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: ${(props) => (props.primary ? "80%" : "15%")};
+  height: ${(props) => (props.primary ? '80%' : '15%')};
   @media (max-width: 1024px) {
     flex-direction: column;
     height: auto;
