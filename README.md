@@ -2,7 +2,7 @@
 
 # YogaRoom (English) 🧘🏻‍♀️
 
-YogaRoom is a yoga practice tool website that aims to assist yogi / yogini with their practice at home. Built during the pandemic of COVID-19, YogaRoom brings the experience from offline to online and is designed to make yoga practice more personal, comfortable and convenient through a set of online tools, such as `Sequence Builder`, `Visual and Auditory Guidance`, and `Save Feature`.
+YogaRoom is a yoga practice tool website that aims to assist yogi / yogini with their practice at home. Built during the pandemic of COVID-19, YogaRoom brings the experience from offline to online and is designed with great UX to make yoga practice more personal, comfortable and convenient through a set of online tools, such as `Sequence Builder`, `Visual and Auditory Guidance`, and `Save Feature`.
 
 ## Content of Table
 
@@ -11,6 +11,7 @@ YogaRoom is a yoga practice tool website that aims to assist yogi / yogini with 
 - [Tech Stack](#tech-stack)
 - [Component Planning & State Management](#component-planning--state-management)
 - [Features](#features)
+- [UX Optimization](#ux-optimization)
 
 ## Live Demo
 
@@ -74,12 +75,21 @@ Without memorizing sequences, users can focus more on position and breath. YogaR
 ### ⭐ **Create List for Your Favorite Practices**
 
 Upon logging, users are allowed to save any practice and get a quick start for next time. YogaRoom makes practice more convenient.
+## UX Optimization
+
+1️⃣ Friendly navigation design: The bottom navigation bar makes CTA button clearer and more friendly to mobile users
+
+2️⃣ Minimize image size: converted images to svg format and used `svgo` to minimize the file; converted gif to WebM format and used HTML video attributes, reducing the file size by 75%
+
+3️⃣ Reduce blank page： Loading icon is displayed when waiting for external resources to be loaded
+
+4️⃣ Increase website's attractiveness when sharing: set `OG tag` to display website thumbnail, title and description when the URL is shared in social media
 
 ---
 
 # YogaRoom (中文) 🧘‍♂️
 
-YogaRoom 是一個輔助瑜珈自主練習的工具網站。它是源於疫情期間，為了幫助瑜珈學習者在家也能自在練習，因此打造了瑜珈課體驗的線上空間，引導學習者從 `自行設計瑜珈序列` ，到 `給予視/聽覺的示範輔助` ，以及 `儲存課程的功能` ，讓瑜珈練習變得更個人、舒適和方便的體驗。
+YogaRoom 是一個輔助瑜珈自主練習的工具網站。它是源於疫情期間，為了幫助瑜珈學習者在家也能自在練習，因此打造了瑜珈課體驗的線上空間，以流暢的 UX 設計，引導學習者從 `自行設計瑜珈序列` ，到 `給予視/聽覺的示範輔助` ，以及 `儲存課程的功能` ，讓瑜珈練習變得更個人、舒適和方便的體驗。
 
 ## 目錄
 
@@ -88,6 +98,7 @@ YogaRoom 是一個輔助瑜珈自主練習的工具網站。它是源於疫情�
 - [技術棧](#技術棧)
 - [組件規劃 & 狀態管理](#組件規劃--狀態管理)
 - [亮點功能](#亮點功能)
+- [使用者體驗優化](#使用者體驗優化)
 
 ## 畫面 Demo
 
@@ -151,3 +162,13 @@ YogaRoom 是一個輔助瑜珈自主練習的工具網站。它是源於疫情�
 ### ⭐ **收藏練習**
 
 在登入情況下，使用者可以收藏課程的序列設定，供下次練習快速開始，讓每次練習都更加方便。
+
+## 使用者體驗優化
+
+1️⃣ 增加導覽動線：仿 App 的置底導覽列設計，讓動線更明確，也對手機版使用者更友善
+
+2️⃣ 降低圖片大小，加速載入：優先使用 svg 並使用 `svgo` 將檔案最小化；動態圖片使用 WebM 格式搭配 HTML video 屬性，相較 gif 檔案大小降低 75 %
+
+3️⃣ 降低出現空白畫面：等待載入外部資源時，顯示 Loading 圖示，降低因空白頁面的跳出率
+
+4️⃣ 增加網站被分享時的吸引力：設定 `OG tag` ，當網址被分享時，會顯示網站縮圖、標題及描述
