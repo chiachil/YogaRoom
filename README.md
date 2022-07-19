@@ -2,7 +2,7 @@
 
 # YogaRoom (English) 🧘🏻‍♀️
 
-YogaRoom is a yoga practice tool website that aims to assist yogi / yogini with their practice at home. Built during the pandemic of COVID-19, YogaRoom brings the experience from offline to online and tries to make yoga practice more personal, comfortable and convenient through a set of online tools, such as `Sequence Builder`, `Visual and Auditory Guidance`, and `Save Feature`.
+YogaRoom is a yoga practice tool website that aims to assist yogi / yogini with their practice at home. Built during the pandemic of COVID-19, YogaRoom brings the experience from offline to online and is designed to make yoga practice more personal, comfortable and convenient through a set of online tools, such as `Sequence Builder`, `Visual and Auditory Guidance`, and `Save Feature`.
 
 ## Content of Table
 
@@ -65,7 +65,7 @@ States are separatively stored in each of the four main components, and are pass
 
 ### ⭐ **Build Your Own Sequences**
 
-Users can design ideal sequences and adjust foucs time on each position. YogaRoom makes practice more personal.
+Users can design ideal sequences and adjust focus time on each position. YogaRoom makes practice more personal.
 
 ### ⭐ **Visual and Auditory Guidance**
 
