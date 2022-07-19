@@ -87,7 +87,7 @@ const Figure = styled.img`
   left: 50%;
   transform: translateX(-50%);
   bottom: 7%;
-  width: 80%;
+  max-width: 80%;
   height: 80%;
   @media (max-width: 1024px) {
     width: 320px;
