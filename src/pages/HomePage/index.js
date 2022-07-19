@@ -11,22 +11,27 @@ const HomePage = () => {
     {
       id: 1,
       title: 'Online Tools for Yoga Practice',
-      subTitle: 'including Sequence Builder, Visual & Auditory Guidance and Save Feature'
+      subTitle: 'including Sequence Builder, Visual & Auditory Guidance and Save Feature',
+      imageSrc: `${demoImage}demo1.webm`
     },
     {
       id: 2,
       title: 'Build Your Own Sequences',
-      subTitle: 'Select positions and focus time to create a unique and personalized practice'
+      subTitle: 'Select positions and focus time to create a unique and personalized practice',
+      imageSrc: `${demoImage}demo2.png`
     },
     {
       id: 3,
       title: 'Get Visual and Auditory Guidance',
-      subTitle: 'Support voice guide in English & Mandarin, and different mat colors to choose from'
+      subTitle:
+        'Support voice guide in English & Mandarin, and different mat colors to choose from',
+      imageSrc: `${demoImage}demo3.png`
     },
     {
       id: 4,
       title: 'Save Practice to Favorites',
-      subTitle: 'Upon logging, you can save your practice and start any practice immediately'
+      subTitle: 'Upon logging, you can save your practice and start any practice immediately',
+      imageSrc: `${demoImage}demo4.png`
     }
   ];
 
@@ -54,9 +59,9 @@ const HomePage = () => {
       <Header />
       <Main>
         {Content.map((section) => {
-          const { id, title, subTitle } = section;
+          const { id, title, subTitle, imageSrc } = section;
           return (
-            <Section id={id}>
+            <Section key={id} id={id}>
               <Box id={id}>
                 <TitleBox id={id}>
                   <Title id={id}>{title}</Title>
@@ -68,9 +73,11 @@ const HomePage = () => {
                   )}
                 </TitleBox>
                 {id === 1 ? (
-                  <Demo id={id} src={demoImage + 'demo1.gif'}></Demo>
+                  <Gif autoPlay loop muted playsInline>
+                    <source src={imageSrc} type="video/webm"></source>
+                  </Gif>
                 ) : (
-                  <Demo id={id} src={demoImage + 'demo' + id + '.png'}></Demo>
+                  <Image id={id} src={imageSrc}></Image>
                 )}
               </Box>
             </Section>
@@ -146,24 +153,38 @@ const TitleBox = styled.div`
     width: 100%;
   }
 `;
-
-const Demo = styled.img`
-  max-width: ${(prop) => (prop.id === 1 ? '50%' : '45%')};
+const Gif = styled.video`
+  max-width: 50%;
   border-radius: 8px;
-  box-shadow: ${(prop) =>
-    prop.id === 4
-      ? '-40px 48px 48px rgb(85 78 78 / 32%)'
-      : prop.id === 1 || prop.id === 3
-      ? '48px 40px 48px rgb(85 78 78 / 32%)'
-      : 'none'};
-  align-self: ${(prop) => (prop.id === 1 ? 'flex-end' : 'none')};
-  margin-bottom: ${(prop) => (prop.id === 1 ? '10%' : '0px')};
+  box-shadow: 48px 40px 48px rgb(85 78 78 / 32%);
+  align-self: flex-end;
+  margin-bottom: 10%;
   @media (max-width: 1440px) {
-    margin-bottom: ${(prop) => (prop.id === 1 ? '5%' : '0px')};
+    margin-bottom: 5%;
   }
   @media (max-width: 768px) {
     align-self: center;
     max-width: 90%;
+    margin-bottom: 0px;
+  }
+`;
+
+const Image = styled.img`
+  max-width: 45%;
+  border-radius: 8px;
+  box-shadow: ${(prop) =>
+    prop.id === 4
+      ? '-40px 48px 48px rgb(85 78 78 / 32%)'
+      : prop.id === 3
+      ? '48px 40px 48px rgb(85 78 78 / 32%)'
+      : 'none'};
+  margin-bottom: 0px;
+  @media (max-width: 1440px) {
+    margin-bottom: 0px;
+  }
+  @media (max-width: 768px) {
+    align-self: center;
+    max-width: 80%;
     margin-bottom: 0px;
   }
 `;
