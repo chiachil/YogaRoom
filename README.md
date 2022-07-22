@@ -77,9 +77,9 @@ Without memorizing sequences, users can focus more on position and breath. YogaR
 Upon logging, users are allowed to save any practice and get a quick start for next time. YogaRoom makes practice more convenient.
 ## UX Optimization
 
-1️⃣ Friendly navigation design: The bottom navigation bar makes CTA button clearer and more friendly to mobile users
+1️⃣ Deliver better UX: chose SPA to create more fluent UX and achieved `pixel perfection` through craftsmanship
 
-2️⃣ Minimize image size: converted images to svg format and used `svgo` to minimize the file; converted gif to WebM format and used HTML video attributes, reducing the file size by 75%
+2️⃣ Minimize image size: converted images to svg format and used `svgo` to minimize the file
 
 3️⃣ Reduce blank page： Loading icon is displayed when waiting for external resources to be loaded
 
@@ -165,7 +165,7 @@ YogaRoom 是一個輔助瑜珈自主練習的工具網站。它是源於疫情�
 
 ## 使用者體驗優化
 
-1️⃣ 增加導覽動線：仿 App 的置底導覽列設計，讓動線更明確，也對手機版使用者更友善
+1️⃣ 提供更好的使用者體驗：選擇 SPA 打造更流暢體驗，並以工藝精神實現畫面的`像素完美`
 
 2️⃣ 降低圖片大小，加速載入：優先使用 svg 並使用 `svgo` 將檔案最小化；動態圖片使用 WebM 格式搭配 HTML video 屬性，相較 gif 檔案大小降低 75 %
 

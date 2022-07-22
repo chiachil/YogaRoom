@@ -12,7 +12,7 @@ const HomePage = () => {
       id: 1,
       title: 'Online Tools for Yoga Practice',
       subTitle: 'including Sequence Builder, Visual & Auditory Guidance and Save Feature',
-      imageSrc: `${demoImage}demo1.webm`
+      imageSrc: `${demoImage}demo1.gif`
     },
     {
       id: 2,
@@ -66,19 +66,9 @@ const HomePage = () => {
                 <TitleBox id={id}>
                   <Title id={id}>{title}</Title>
                   <SubTitle id={id}>{subTitle}</SubTitle>
-                  {id === 1 ? (
-                    <Button onClick={() => navigate('/flow')}>QUICK START</Button>
-                  ) : (
-                    <></>
-                  )}
+                  {id === 1 && <Button onClick={() => navigate('/flow')}>QUICK START</Button>}
                 </TitleBox>
-                {id === 1 ? (
-                  <Gif autoPlay loop muted playsInline>
-                    <source src={imageSrc} type="video/webm"></source>
-                  </Gif>
-                ) : (
-                  <Image id={id} src={imageSrc}></Image>
-                )}
+                {id === 1 ? <Gif src={imageSrc}></Gif> : <Image id={id} src={imageSrc}></Image>}
               </Box>
             </Section>
           );
@@ -153,11 +143,11 @@ const TitleBox = styled.div`
     width: 100%;
   }
 `;
-const Gif = styled.video`
+const Gif = styled.img`
   max-width: 50%;
   border-radius: 8px;
-  box-shadow: 48px 40px 48px rgb(85 78 78 / 32%);
   align-self: flex-end;
+  box-shadow: 48px 40px 48px rgb(85 78 78 / 32%);
   margin-bottom: 10%;
   @media (max-width: 1440px) {
     margin-bottom: 5%;
